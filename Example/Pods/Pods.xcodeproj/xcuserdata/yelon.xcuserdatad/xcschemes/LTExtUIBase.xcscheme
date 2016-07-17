@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '10CFBC31BDE7A2C3201C23D6C7DD9CC2'
+               BlueprintIdentifier = 'C9D3EBFBB91D401E0EFE4211404BBD94'
                BlueprintName = 'LTExtUIBase'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'LTExtUIBase.framework'>

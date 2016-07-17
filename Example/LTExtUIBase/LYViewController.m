@@ -7,8 +7,12 @@
 //
 
 #import "LYViewController.h"
+#import <LTExtUIBase/LTPickerView.h>
+@interface LYViewController ()<LTPickerViewDelegate>{
+    
+    NSArray *listArray;
+}
 
-@interface LYViewController ()
 
 @end
 
@@ -16,14 +20,40 @@
 
 - (void)viewDidLoad
 {
+    
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
+    
+    listArray = @[@{@"title":@"名称1",
+                    @"value":@"000",@"image":@"eeee"},
+                  @{@"title":@"名称2",@"value":@"000",@"image":@"eeee"},
+                  @{@"title":@"名称3",@"value":@"000",@"image":@"eeee"}];
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    
+    
+    [LTPickerView showPickerViewInView:self.view
+                              delegate:self];
+}
+
+- (NSUInteger)numberOfItemInltPickerView:(LTPickerView *)ltPickerView{
+    
+    return [listArray count];
+}
+- (NSString *)ltPickerView:(LTPickerView *)ltPickerView
+        titleForRowAtIndex:(NSInteger)rowIndex{
+    
+    return listArray[rowIndex][@"title"];
+}
+- (void)ltPickerView:(LTPickerView *)ltPickerView
+ didSelectRowAtIndex:(NSInteger)rowIndex{
+    
+    NSLog(@"didSelect=%@",listArray[rowIndex][@"title"]);
+}
+- (void)ltPickerView:(LTPickerView *)ltPickerView
+    didChangeToIndex:(NSInteger)rowIndex{
+    
+    NSLog(@"didChange=%@",listArray[rowIndex][@"title"]);
 }
 
 @end

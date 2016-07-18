@@ -56,6 +56,29 @@
                      }];
 }
 
+
+- (void)lt_setTransform:(CGAffineTransform)transform
+               animated:(BOOL)animated
+               duration:(NSTimeInterval)duration
+                  delay:(NSTimeInterval)delay
+             completion:(void (^ __nullable)(BOOL finished,UIView *view))completion{
+    
+    [UIView animateWithDuration:duration
+                          delay:delay
+                        options:UIViewAnimationOptionCurveEaseInOut
+                     animations:^{
+                         
+                         self.transform = transform;
+                     }
+                     completion:^(BOOL finished) {
+                         
+                         if (completion) {
+                             
+                             completion(finished,self);
+                         }
+                     }];
+}
+
 - (void)lt_setAlpha:(CGFloat)alpha
            animated:(BOOL)animated{
 

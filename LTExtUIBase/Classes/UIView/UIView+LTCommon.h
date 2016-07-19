@@ -15,4 +15,6 @@
 
 - (void)lt_setCornerRadius:(CGFloat)radius;
 - (void)lt_setBorder:(CGFloat)borderWidth color:(UIColor *)color;
+
+- (UIImage *)lt_screenshot;
 @end

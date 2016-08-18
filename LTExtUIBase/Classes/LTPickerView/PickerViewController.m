@@ -22,12 +22,18 @@
     
     [super viewDidLoad];
     
+    UIColor *tintColor = self.navigationController.navigationBar.tintColor;
+    
+    if (!tintColor) {
+        
+        tintColor = [UIColor blackColor];
+    }
     UIButton *btn_left = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
     btn_left.backgroundColor = [UIColor clearColor];
     btn_left.titleLabel.font = [UIFont systemFontOfSize:17.0];
     [btn_left setTitle:@"关闭" forState:UIControlStateNormal];
 
-    [btn_left setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn_left setTitleColor:tintColor forState:UIControlStateNormal];
     [btn_left setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [btn_left addTarget:self
                  action:@selector(leftAction)
@@ -41,7 +47,7 @@
     btn_right.titleLabel.font = [UIFont systemFontOfSize:17.0];
     [btn_right setTitle:@"确定" forState:UIControlStateNormal];
     
-    [btn_right setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    [btn_right setTitleColor:tintColor forState:UIControlStateNormal];
     [btn_right setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [btn_right addTarget:self
                  action:@selector(rightAction)

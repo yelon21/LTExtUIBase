@@ -22,8 +22,18 @@
 + (instancetype)showPickerViewInView:(UIView *)inView
                             delegate:(id<LTPickerViewDelegate>)delegate{
 
+    return [LTPickerView showPickerViewInView:inView
+                              navigationTitle:nil
+                                     delegate:delegate];
+}
+
++ (instancetype)showPickerViewInView:(UIView *)inView
+                     navigationTitle:(NSString *)title
+                            delegate:(id<LTPickerViewDelegate>)delegate{
+    
     LTPickerView *pickerView = [[LTPickerView alloc]initWithSuperView:inView];
     pickerView.delegate = delegate;
+    pickerView.title = title;
     return pickerView;
 }
 
@@ -117,6 +127,18 @@
     [self moveOutPickerVC];
 }
 
+-(void)setTitle:(NSString *)title{
+
+    if (_title != title) {
+        
+        _title = title;
+        if (self.pickerNav) {
+            
+            self.pickerNav.navigationItem.title = _title;
+        }
+    }
+}
+
 - (void)moveOutPickerVC{
 
     [self.pickerNav.view lt_setTransform:CGAffineTransformMakeTranslation(0.0, CGRectGetHeight(self.bounds))
@@ -145,6 +167,11 @@
                                   
                                   [self removeFromSuperview];
                               }];
+}
+
+- (NSString *)pickerViewControllerNavigationTitle{
+
+    return self.title;
 }
 
 -(void)pickerViewControllerDidSelectIndex:(NSInteger)index{

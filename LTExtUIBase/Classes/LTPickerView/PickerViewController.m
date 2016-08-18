@@ -50,6 +50,11 @@
     
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn_right];
     
+    if ([self.delegate respondsToSelector:@selector(pickerViewControllerNavigationTitle)]) {
+        
+        self.navigationItem.title = [self.delegate pickerViewControllerNavigationTitle];
+    }
+    
     UIView *superView = self.view;
     
     dataPickerView = [UIPickerView new];

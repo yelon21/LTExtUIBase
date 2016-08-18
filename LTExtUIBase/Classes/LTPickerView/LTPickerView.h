@@ -26,5 +26,9 @@
 
 + (instancetype)showPickerViewInView:(UIView *)inView
                             delegate:(id<LTPickerViewDelegate>)delegate;
++ (instancetype)showPickerViewInView:(UIView *)inView
+                     navigationTitle:(NSString *)title
+                            delegate:(id<LTPickerViewDelegate>)delegate;
 
+@property(nonatomic,strong)NSString *title;
 @end

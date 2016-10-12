@@ -28,7 +28,7 @@
                animated:(BOOL)animated
                duration:(NSTimeInterval)duration
                   delay:(NSTimeInterval)delay
-             completion:(void (^ __nullable)(BOOL finished,UIView *view))completion;
+             completion:(void (^ __nullable)(BOOL finished,  UIView * _Nonnull view))completion;
 
 - (void)lt_setAlpha:(CGFloat)alpha
            animated:(BOOL)animated;

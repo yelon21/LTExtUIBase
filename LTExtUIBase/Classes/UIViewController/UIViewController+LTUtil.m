@@ -44,4 +44,21 @@
 
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
++ (UIViewController *)LT_FrontViewController{
+    
+    UIViewController *viewCon = [[UIApplication sharedApplication].delegate window].rootViewController;
+    return [UIViewController LT_FrontViewController:viewCon];
+}
+
++ (UIViewController *)LT_FrontViewController:(UIViewController *)root{
+    
+    UIViewController *rootVC = root;
+    
+    if (rootVC.presentedViewController) {
+        
+        return [self LT_FrontViewController:rootVC.presentedViewController];
+    }
+    return rootVC;
+}
 @end

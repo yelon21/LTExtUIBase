@@ -23,4 +23,6 @@
 
 - (void)lt_setPresentedVCBackItem;
 - (void)lt_dismissToLastVC;
+
++ (UIViewController *)LT_FrontViewController;
 @end

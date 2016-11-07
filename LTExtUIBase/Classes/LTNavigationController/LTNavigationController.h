@@ -13,4 +13,6 @@
 @interface LTNavigationController : UINavigationController
 
 + (LTNavigationController *)LT_NavigationController:(UIViewController *)rootViewController;
+
+- (void)setBackgroundImage:(UIImage *)backgroundImage;
 @end

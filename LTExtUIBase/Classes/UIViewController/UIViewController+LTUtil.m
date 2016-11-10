@@ -12,37 +12,34 @@
 
 - (void)lt_setNavBackItem{
     
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem LT_item:@"<"
-                                                               color:[UIColor blackColor]
-                                                              target:self
-                                                                 sel:@selector(lt_popToLastVC)];
+    [self lt_setNavBackItem:@"nav_back"];
 }
 
-- (void)lt_popToLastVC{
+- (void)lt_setNavBackItem:(NSString *)imageName{
     
-    [self.navigationController popViewControllerAnimated:YES];
+    [self lt_setNavBackItemImg:[UIImage imageNamed:imageName]];
 }
 
-- (void)lt_popToLastVCAfter:(CGFloat)delay{
+- (void)lt_setNavBackItemImg:(UIImage *)image{
+    
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem LT_itemImage:image
+                                                                highlight:nil
+                                                                   target:self
+                                                                      sel:@selector(lt_popToLastVC)];
+}
+
+- (void)lt_closeSelfAction{
+    
+    [LTRouter LT_CloseViewController:self animated:YES];
+}
+
+- (void)lt_closeSelfActionAfter:(CGFloat)delay{
 
     dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 3*NSEC_PER_SEC);
     dispatch_after(time, dispatch_get_main_queue(), ^{
        
-        [self lt_popToLastVC];
+        [self lt_closeSelfAction];
     });
-}
-
-- (void)lt_setPresentedVCBackItem{
-    
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem LT_item:@"X"
-                                                               color:[UIColor blackColor]
-                                                              target:self
-                                                                 sel:@selector(lt_dismissToLastVC)];
-}
-
-- (void)lt_dismissToLastVC{
-
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 + (UIViewController *)LT_FrontViewController{

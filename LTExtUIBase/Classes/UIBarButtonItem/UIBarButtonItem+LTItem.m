@@ -15,17 +15,10 @@
                   target:(NSObject *)target
                      sel:(SEL)sel{
     
-    UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
-//    btn.backgroundColor = [UIColor blackColor];
-
-    [btn setImage:[UIImage imageNamed:imageName]
-         forState:UIControlStateNormal];
-//    [btn setImage:[UIImage imageNamed:imageNameH]
-//                   forState:UIControlStateHighlighted];
-    [btn addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
-    [btn sizeToFit];
-    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
-    return item;
+    return [UIBarButtonItem LT_itemImage:[UIImage imageNamed:imageName]
+                               highlight:[UIImage imageNamed:imageNameH]
+                                  target:target
+                                     sel:sel];
 }
 
 +(UIBarButtonItem *)LT_itemImage:(UIImage *)image
@@ -34,12 +27,10 @@
                         sel:(SEL)sel{
     
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
-    //    btn.backgroundColor = [UIColor blackColor];
     
     [btn setImage:image
          forState:UIControlStateNormal];
-    //    [btn setImage:[UIImage imageNamed:imageNameH]
-    //                   forState:UIControlStateHighlighted];
+    
     [btn addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
     [btn sizeToFit];
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];

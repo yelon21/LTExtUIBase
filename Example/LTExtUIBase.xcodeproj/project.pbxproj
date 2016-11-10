@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1C7A3542856B280BC8F029E2 /* Pods_LTExtUIBase_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E9EECA531F90F2D293E5E1AF /* Pods_LTExtUIBase_Example.framework */; };
+		14A1640EE93FF7353A5E222A /* libPods-LTExtUIBase_Example.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E57371E3F1CC46C7DBCBE7A4 /* libPods-LTExtUIBase_Example.a */; };
 		6003F58E195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58F195388D20070C39A /* CoreGraphics.framework */; };
 		6003F592195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
@@ -21,8 +21,8 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
-		6829F408055E127F764EA854 /* Pods_LTExtUIBase_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34CD4194BDA66AB4123A180F /* Pods_LTExtUIBase_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		A4D64DF33AC10DC23D68072A /* libPods-LTExtUIBase_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4398353C9716B12FE6A6D2A9 /* libPods-LTExtUIBase_Tests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,8 +37,8 @@
 
 /* Begin PBXFileReference section */
 		33AAADC572C02D1E19817764 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		34CD4194BDA66AB4123A180F /* Pods_LTExtUIBase_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LTExtUIBase_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		34E9F2C113C4B37961C26F2E /* Pods-LTExtUIBase_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTExtUIBase_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-LTExtUIBase_Tests/Pods-LTExtUIBase_Tests.release.xcconfig"; sourceTree = "<group>"; };
+		4398353C9716B12FE6A6D2A9 /* libPods-LTExtUIBase_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTExtUIBase_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47614D1AAA599A845E2A3070 /* Pods-LTExtUIBase_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTExtUIBase_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-LTExtUIBase_Example/Pods-LTExtUIBase_Example.release.xcconfig"; sourceTree = "<group>"; };
 		530AD0AA5198EC89021685EC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		6003F58A195388D20070C39A /* LTExtUIBase_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LTExtUIBase_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -64,7 +64,7 @@
 		92BEE0D8E5D12DD21B78E931 /* Pods-LTExtUIBase_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTExtUIBase_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTExtUIBase_Example/Pods-LTExtUIBase_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		A44A2669C0589027689EB2E5 /* LTExtUIBase.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LTExtUIBase.podspec; path = ../LTExtUIBase.podspec; sourceTree = "<group>"; };
 		C172979E4610B440C0F43B2C /* Pods-LTExtUIBase_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTExtUIBase_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTExtUIBase_Tests/Pods-LTExtUIBase_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		E9EECA531F90F2D293E5E1AF /* Pods_LTExtUIBase_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_LTExtUIBase_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E57371E3F1CC46C7DBCBE7A4 /* libPods-LTExtUIBase_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTExtUIBase_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 				6003F590195388D20070C39A /* CoreGraphics.framework in Frameworks */,
 				6003F592195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F58E195388D20070C39A /* Foundation.framework in Frameworks */,
-				1C7A3542856B280BC8F029E2 /* Pods_LTExtUIBase_Example.framework in Frameworks */,
+				14A1640EE93FF7353A5E222A /* libPods-LTExtUIBase_Example.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -86,7 +86,7 @@
 				6003F5B0195388D20070C39A /* XCTest.framework in Frameworks */,
 				6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */,
 				6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */,
-				6829F408055E127F764EA854 /* Pods_LTExtUIBase_Tests.framework in Frameworks */,
+				A4D64DF33AC10DC23D68072A /* libPods-LTExtUIBase_Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -121,8 +121,8 @@
 				6003F58F195388D20070C39A /* CoreGraphics.framework */,
 				6003F591195388D20070C39A /* UIKit.framework */,
 				6003F5AF195388D20070C39A /* XCTest.framework */,
-				E9EECA531F90F2D293E5E1AF /* Pods_LTExtUIBase_Example.framework */,
-				34CD4194BDA66AB4123A180F /* Pods_LTExtUIBase_Tests.framework */,
+				E57371E3F1CC46C7DBCBE7A4 /* libPods-LTExtUIBase_Example.a */,
+				4398353C9716B12FE6A6D2A9 /* libPods-LTExtUIBase_Tests.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

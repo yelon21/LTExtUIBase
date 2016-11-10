@@ -1,4 +1,5 @@
-use_frameworks!
+source'https://github.com/yelon21/LTSpecs.git'#我们自己的私有spec仓库的地址
+source'https://github.com/CocoaPods/Specs.git'#官方仓库的地址
 
 target 'LTExtUIBase_Example' do
   pod 'LTExtUIBase', :path => '../'

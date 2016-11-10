@@ -1,6 +1,6 @@
 {
   "name": "LTExtUIBase",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "summary": "个人工具",
   "description": "LTExtUIBase 个人工具.",
   "homepage": "https://github.com/yelon21/LTExtUIBase",
@@ -13,10 +13,16 @@
   },
   "source": {
     "git": "https://github.com/yelon21/LTExtUIBase.git",
-    "tag": "0.1.1"
+    "tag": "0.1.2"
   },
   "platforms": {
     "ios": "6.0"
   },
-  "source_files": "LTExtUIBase/Classes/**/*"
+  "source_files": "LTExtUIBase/Classes/**/*",
+  "resources": "LTExtUIBase/Assets/*.png",
+  "dependencies": {
+    "LTRouter": [
+      "~> 0.1.0"
+    ]
+  }
 }

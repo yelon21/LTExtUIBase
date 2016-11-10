@@ -9,6 +9,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>LTRouter.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-LTExtUIBase_Example.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -22,17 +27,22 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>5ACD0328F53B3F79C70F32D83725C24A</key>
+		<key>05BA276366EF88F959D05CB6D1668152</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>CE47E61F0CCBD4584D2109450C84EBA3</key>
+		<key>2249056A04B1541500D58D328096624A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>F13DD9C4FC8006AB911A6F2832091254</key>
+		<key>48178B12F9B525D7B40ACBE871384378</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>6B1E948AF01E35A05725D8D0EA1DE565</key>
 		<dict>
 			<key>primary</key>
 			<true/>

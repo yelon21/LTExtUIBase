@@ -1,5 +1,7 @@
 PODS:
-  - LTExtUIBase (0.1.1)
+  - LTExtUIBase (0.1.2):
+    - LTRouter (~> 0.1.0)
+  - LTRouter (0.1.0)
 
 DEPENDENCIES:
   - LTExtUIBase (from `../`)
@@ -9,8 +11,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  LTExtUIBase: edd658e289b8d389f4dbcf3bcf70693e3ed96e58
+  LTExtUIBase: 6a0b66acc55e15d3e26925eb95b1b1d080d7918d
+  LTRouter: 6533939bc30eaa64307b1c04f287828394a0d369
 
-PODFILE CHECKSUM: 75e5115d4bbf42063310f75771917358d7ca477c
+PODFILE CHECKSUM: ff17e32ef11b35403eaf74663425bf1208bebe9f
 
 COCOAPODS: 1.1.0.rc.2

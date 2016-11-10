@@ -1,6 +1,0 @@
-framework module LTExtUIBase {
-  umbrella header "LTExtUIBase-umbrella.h"
-
-  export *
-  module * { export * }
-}

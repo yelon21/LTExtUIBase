@@ -15,14 +15,18 @@
 #import "UIView+LTCommon.h"
 #import "UIView+LTTransform.h"
 
+#import "LTRouter.h"
+
 @interface UIViewController (LTUtil)
 
 - (void)lt_setNavBackItem;
-- (void)lt_popToLastVC;
-- (void)lt_popToLastVCAfter:(CGFloat)delay;
 
-- (void)lt_setPresentedVCBackItem;
-- (void)lt_dismissToLastVC;
+- (void)lt_setNavBackItem:(NSString *)imageName;
+
+- (void)lt_setNavBackItemImg:(UIImage *)image;
+
+- (void)lt_closeSelfAction;
+- (void)lt_closeSelfActionAfter:(CGFloat)delay;
 
 + (UIViewController *)LT_FrontViewController;
 @end

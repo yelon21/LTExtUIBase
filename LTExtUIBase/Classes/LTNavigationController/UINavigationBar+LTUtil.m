@@ -26,10 +26,19 @@
 
 - (void)lt_setBackgroundImageByColor:(UIColor *)color{
 
-    UIImage *image = [UINavigationBar imageByColor:color];
+    UIImage *backgroundImage = [UINavigationBar imageByColor:color];
     
-    [self setBackgroundImage:image
-               forBarMetrics:UIBarMetricsDefault];
+    if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
+        
+        [self setBackgroundImage:backgroundImage
+                                forBarPosition:UIBarPositionTopAttached
+                                    barMetrics:UIBarMetricsDefault];
+    }
+    else{
+        
+        [self setBackgroundImage:backgroundImage
+                                 forBarMetrics:UIBarMetricsDefault];
+    }
 }
 
 - (void)lt_hideNavigationBarItem{

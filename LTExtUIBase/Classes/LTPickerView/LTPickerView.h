@@ -31,4 +31,6 @@
                             delegate:(id<LTPickerViewDelegate>)delegate;
 
 @property(nonatomic,strong)NSString *title;
+
+@property(nonatomic,strong,readonly) UINavigationBar *navigationBar;
 @end

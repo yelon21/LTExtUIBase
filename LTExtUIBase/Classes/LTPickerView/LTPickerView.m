@@ -139,6 +139,11 @@
     }
 }
 
+-(UINavigationBar *)navigationBar{
+
+    return self.pickerNav.navigationBar;
+}
+
 - (void)moveOutPickerVC{
 
     [self.pickerNav.view lt_setTransform:CGAffineTransformMakeTranslation(0.0, CGRectGetHeight(self.bounds))

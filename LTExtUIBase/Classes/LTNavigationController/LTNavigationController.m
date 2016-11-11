@@ -19,6 +19,18 @@
     // Do any additional setup after loading the view.
 }
 
+-(instancetype)initWithRootViewController:(UIViewController *)rootViewController{
+
+    if (self = [super initWithRootViewController:rootViewController]) {
+        
+        [self.navigationBar setTranslucent:NO];
+        [self.navigationBar lt_setBackgroundImageByColor:[UIColor blackColor]];
+        [self.navigationBar setTintColor:[UIColor whiteColor]];
+        [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
+    }
+    return self;
+}
+
 -(UIStatusBarStyle)preferredStatusBarStyle{
     
     return UIStatusBarStyleLightContent;
@@ -42,10 +54,6 @@
 + (LTNavigationController *)LT_NavigationController:(UIViewController *)rootViewController{
     
     LTNavigationController *controller = [[LTNavigationController alloc] initWithRootViewController:rootViewController];
-    [controller.navigationBar setTranslucent:NO];
-    [controller setBackgroundImage:[self imageWithColor:[UIColor blackColor]]];
-    [controller.navigationBar setTintColor:[UIColor whiteColor]];
-    [controller.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];
     
     return controller;
 }

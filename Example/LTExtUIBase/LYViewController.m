@@ -19,6 +19,8 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor = [UIColor whiteColor];
+    
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 40, 40)];
     btn.backgroundColor = [UIColor grayColor];
     [self.view addSubview:btn];
@@ -36,8 +38,9 @@
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-
-    LTPickerView *view = [LTPickerView showPickerViewInView:self.view
+    
+    [LTPickerView showPickerViewInView:self.view
+                       navigationTitle:@"3242"
                               delegate:self];
 }
 

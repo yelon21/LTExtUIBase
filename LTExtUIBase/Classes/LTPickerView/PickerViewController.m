@@ -26,7 +26,7 @@
     
     if (!tintColor) {
         
-        tintColor = [UIColor blackColor];
+        tintColor = [UIColor whiteColor];
     }
     UIButton *btn_left = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
     btn_left.backgroundColor = [UIColor clearColor];

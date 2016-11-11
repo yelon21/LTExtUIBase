@@ -9,12 +9,13 @@
 #import "LTPickerView.h"
 #import "PickerViewController.h"
 #import "UIView+LTTransform.h"
+#import "LTNavigationController.h"
 
 @interface LTPickerView ()<PickerViewControllerDelegate>
 
 @property(nonatomic,strong)id<LTPickerViewDelegate>delegate;
 @property(nonatomic,strong)PickerViewController *pickerVC;
-@property(nonatomic,strong)UINavigationController *pickerNav;
+@property(nonatomic,strong)LTNavigationController *pickerNav;
 @end
 
 @implementation LTPickerView
@@ -89,7 +90,7 @@
     }
     self.pickerVC = [[PickerViewController alloc] init];
     self.pickerVC.delegate = self;
-    self.pickerNav = [[UINavigationController alloc]initWithRootViewController:self.pickerVC];
+    self.pickerNav = [LTNavigationController LT_NavigationController:self.pickerVC];
     self.pickerNav.view.translatesAutoresizingMaskIntoConstraints = NO;
     
     UIView *superView = self;
@@ -137,11 +138,6 @@
             self.pickerNav.navigationItem.title = _title;
         }
     }
-}
-
--(UINavigationBar *)navigationBar{
-
-    return self.pickerNav.navigationBar;
 }
 
 - (void)moveOutPickerVC{

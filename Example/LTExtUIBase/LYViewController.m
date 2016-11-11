@@ -8,8 +8,8 @@
 
 #import "LYViewController.h"
 #import "UIControl+LTBlock.h"
-
-@interface LYViewController ()
+#import "LTPickerView.h"
+@interface LYViewController ()<LTPickerViewDelegate>
 
 @end
 
@@ -35,5 +35,27 @@
                    }];
 }
 
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
+    LTPickerView *view = [LTPickerView showPickerViewInView:self.view
+                              delegate:self];
+}
+
+- (NSUInteger)numberOfItemInltPickerView:(LTPickerView *)ltPickerView{
+
+    return 5;
+}
+
+- (NSString *)ltPickerView:(LTPickerView *)ltPickerView
+        titleForRowAtIndex:(NSInteger)rowIndex{
+
+    return [NSString stringWithFormat:@"%@",@(rowIndex)];
+}
+
+- (void)ltPickerView:(LTPickerView *)ltPickerView
+ didSelectRowAtIndex:(NSInteger)rowIndex{
+
+
+}
 
 @end

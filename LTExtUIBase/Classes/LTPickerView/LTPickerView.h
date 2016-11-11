@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @class LTPickerView;
+@class LTNavigationController;
 
 @protocol LTPickerViewDelegate <NSObject>
 
@@ -32,5 +33,5 @@
 
 @property(nonatomic,strong)NSString *title;
 
-@property(nonatomic,strong,readonly) UINavigationBar *navigationBar;
+@property(nonatomic,strong,readonly)LTNavigationController *pickerNav;
 @end

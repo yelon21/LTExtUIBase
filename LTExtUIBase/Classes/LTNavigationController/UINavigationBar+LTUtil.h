@@ -15,6 +15,8 @@
 
 - (void)lt_setBackgroundImageByColor:(UIColor *)color;
 
+- (void)lt_setBackgroundImage:(UIImage *)backgroundImage;
+
 - (void)lt_hideNavigationBarItem;
 - (void)lt_setNavigationBarItemAlpha:(CGFloat)alpha;
 @end

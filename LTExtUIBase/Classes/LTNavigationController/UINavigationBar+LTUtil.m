@@ -28,16 +28,22 @@
 
     UIImage *backgroundImage = [UINavigationBar imageByColor:color];
     
+    [self lt_setBackgroundImage:nil];
+    [self lt_setBackgroundImage:backgroundImage];
+}
+
+- (void)lt_setBackgroundImage:(UIImage *)backgroundImage{
+
     if ([[[UIDevice currentDevice]systemVersion]floatValue]>=7.0) {
         
         [self setBackgroundImage:backgroundImage
-                                forBarPosition:UIBarPositionTopAttached
-                                    barMetrics:UIBarMetricsDefault];
+                  forBarPosition:UIBarPositionTopAttached
+                      barMetrics:UIBarMetricsDefault];
     }
     else{
         
         [self setBackgroundImage:backgroundImage
-                                 forBarMetrics:UIBarMetricsDefault];
+                   forBarMetrics:UIBarMetricsDefault];
     }
 }
 

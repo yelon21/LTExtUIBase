@@ -9,6 +9,7 @@
 #import "LYViewController.h"
 #import "UIControl+LTBlock.h"
 #import "LTPickerView.h"
+#import "LTNavigationController.h"
 @interface LYViewController ()<LTPickerViewDelegate>
 
 @end
@@ -39,9 +40,10 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     
-    [LTPickerView showPickerViewInView:self.view
+    LTPickerView *pickerView = [LTPickerView showPickerViewInView:self.view
                        navigationTitle:@"3242"
                               delegate:self];
+    [pickerView.pickerNav.navigationBar lt_setBackgroundImageByColor:[UIColor orangeColor]];
 }
 
 - (NSUInteger)numberOfItemInltPickerView:(LTPickerView *)ltPickerView{

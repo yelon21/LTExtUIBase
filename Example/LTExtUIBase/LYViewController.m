@@ -10,7 +10,10 @@
 #import "UIControl+LTBlock.h"
 #import "LTPickerView.h"
 #import "LTNavigationController.h"
-@interface LYViewController ()<LTPickerViewDelegate>
+#import "AmountTextField.h"
+#import "MobileNoTextField.h"
+
+@interface LYViewController ()
 
 @end
 
@@ -36,31 +39,18 @@
                        
                        NSLog(@"obj=%@",obj);
                    }];
+    
+    MobileNoTextField *amoutTF = [[MobileNoTextField alloc]initWithFrame:CGRectMake(20, 40, 100, 40)];
+    amoutTF.backgroundColor = [UIColor lightGrayColor];
+    
+    [self.view addSubview:amoutTF];
+    
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+
     
-    LTPickerView *pickerView = [LTPickerView showPickerViewInView:self.view
-                       navigationTitle:@"3242"
-                              delegate:self];
-    [pickerView.pickerNav.navigationBar lt_setBackgroundImageByColor:[UIColor orangeColor]];
 }
 
-- (NSUInteger)numberOfItemInltPickerView:(LTPickerView *)ltPickerView{
-
-    return 5;
-}
-
-- (NSString *)ltPickerView:(LTPickerView *)ltPickerView
-        titleForRowAtIndex:(NSInteger)rowIndex{
-
-    return [NSString stringWithFormat:@"%@",@(rowIndex)];
-}
-
-- (void)ltPickerView:(LTPickerView *)ltPickerView
- didSelectRowAtIndex:(NSInteger)rowIndex{
-
-
-}
 
 @end

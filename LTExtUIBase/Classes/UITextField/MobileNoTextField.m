@@ -39,6 +39,11 @@
 shouldChangeCharactersInRange:(NSRange)range
 replacementString:(NSString *)string{
     
+    if ([string length]==0) {
+        
+        return YES;
+    }
+    
     BOOL flag = YES;
     
     NSUInteger length = [string length];

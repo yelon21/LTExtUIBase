@@ -12,6 +12,7 @@
 #import "LTNavigationController.h"
 #import "AmountTextField.h"
 #import "MobileNoTextField.h"
+#import "CardTextField.h"
 
 @interface LYViewController ()
 
@@ -40,7 +41,7 @@
                        NSLog(@"obj=%@",obj);
                    }];
     
-    MobileNoTextField *amoutTF = [[MobileNoTextField alloc]initWithFrame:CGRectMake(20, 40, 100, 40)];
+    CardTextField *amoutTF = [[CardTextField alloc]initWithFrame:CGRectMake(20, 40, 200, 40)];
     amoutTF.backgroundColor = [UIColor lightGrayColor];
     
     [self.view addSubview:amoutTF];

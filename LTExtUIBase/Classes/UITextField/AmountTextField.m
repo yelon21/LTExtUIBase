@@ -40,16 +40,25 @@
     if (_amountType == AmountTypeDefault) {
         
         self.keyboardType   = UIKeyboardTypeDecimalPad;
+        
         [self addTarget:self
                  action:@selector(updateDispalyText)
        forControlEvents:UIControlEventEditingDidEnd];
+        
+        [self addTarget:self
+                 action:@selector(beginEditingAction)
+       forControlEvents:UIControlEventEditingDidBegin];
     }
     else{
         
         self.keyboardType   = UIKeyboardTypeNumberPad;
+        
         [self removeTarget:self
                     action:@selector(updateDispalyText)
           forControlEvents:UIControlEventEditingDidEnd];
+        [self removeTarget:self
+                    action:@selector(beginEditingAction)
+          forControlEvents:UIControlEventEditingDidBegin];
     }
 }
 
@@ -65,6 +74,14 @@
 -(void)awakeFromNib {
    
     [self setup];
+}
+
+- (void)beginEditingAction{
+
+    if (_amountType == AmountTypeDefault) {
+        
+        self.text = numberString;
+    }
 }
 
 - (void)updateDispalyText{

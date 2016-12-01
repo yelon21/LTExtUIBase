@@ -20,7 +20,7 @@
 - (void)setup {
 
     _amountType = -1;
-    self.amountType     = AmountTypeATM;
+    self.amountType     = AmountTypeDefault;
     self.maxValue       = 100000.00;
     
     numberString = [[NSMutableString alloc]init];
@@ -40,10 +40,16 @@
     if (_amountType == AmountTypeDefault) {
         
         self.keyboardType   = UIKeyboardTypeDecimalPad;
+        [self addTarget:self
+                 action:@selector(updateDispalyText)
+       forControlEvents:UIControlEventEditingDidEnd];
     }
     else{
         
         self.keyboardType   = UIKeyboardTypeNumberPad;
+        [self removeTarget:self
+                    action:@selector(updateDispalyText)
+          forControlEvents:UIControlEventEditingDidEnd];
     }
 }
 
@@ -97,7 +103,7 @@ replacementString:(NSString *)string{
         
         [numberString deleteCharactersInRange:NSMakeRange(length-1, 1)];
         
-        [self updateDispalyText];
+        self.text = numberString;
         return NO;
     }
     
@@ -159,7 +165,7 @@ replacementString:(NSString *)string{
     
     [numberString appendString:appendString];
     
-    [self updateDispalyText];
+    self.text = numberString;
 }
 
 - (void)checkATMAppendString:(NSString *)appendString{

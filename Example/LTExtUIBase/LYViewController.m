@@ -41,7 +41,7 @@
                        NSLog(@"obj=%@",obj);
                    }];
     
-    CardTextField *amoutTF = [[CardTextField alloc]initWithFrame:CGRectMake(20, 40, 200, 40)];
+    AmountTextField *amoutTF = [[AmountTextField alloc]initWithFrame:CGRectMake(20, 40, 200, 40)];
     amoutTF.backgroundColor = [UIColor lightGrayColor];
     
     [self.view addSubview:amoutTF];

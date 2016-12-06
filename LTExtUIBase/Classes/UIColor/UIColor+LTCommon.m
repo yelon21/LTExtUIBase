@@ -11,6 +11,11 @@
 @implementation UIColor (LTCommon)
 
 + (UIColor *)colorWithRGBHex:(UInt32)hex {
+
+    return [UIColor LT_colorWithRGBHex:hex];
+}
+
++ (UIColor *)LT_colorWithRGBHex:(UInt32)hex {
     int r = (hex >> 16) & 0xFF;
     int g = (hex >> 8) & 0xFF;
     int b = (hex) & 0xFF;
@@ -21,13 +26,53 @@
                            alpha:1.0f];
 }
 
-// Returns a UIColor by scanning the string for a hex number and passing that to +[UIColor colorWithRGBHex:]
-// Skips any leading whitespace and ignores any trailing characters
 + (UIColor *)colorWithHexString:(NSString *)stringToConvert {
+
+    return [UIColor LT_colorWithHexString:stringToConvert];
+}
++ (UIColor *)LT_colorWithHexString:(NSString *)stringToConvert {
+    
     NSString *hexString = [stringToConvert stringByReplacingOccurrencesOfString:@"#" withString:@""];
     NSScanner *scanner = [NSScanner scannerWithString:hexString];
     unsigned hexNum;
     if (![scanner scanHexInt:&hexNum]) return nil;
-    return [self colorWithRGBHex:hexNum];
+    return [self LT_colorWithRGBHex:hexNum];
+}
+
+- (UIColor *)lt_inverseColor {
+
+    CGColorRef oldCGColor = self.CGColor;
+    
+    CGFloat alpha = CGColorGetAlpha(oldCGColor);
+    
+    if (alpha==0.0) {
+        
+        return [UIColor blackColor];
+    }
+    
+    size_t componentsCount = CGColorGetNumberOfComponents(oldCGColor);
+    
+    const CGFloat *oldComponentColors = CGColorGetComponents(oldCGColor);
+    
+    CGFloat newComponentColors[componentsCount];
+    
+    if (componentsCount==1) {
+        
+        return [UIColor colorWithCGColor:oldCGColor];
+    }
+    
+    int i = componentsCount - 1;
+    
+    newComponentColors[i] = oldComponentColors[i]; // alpha
+    
+    while (--i >= 0) {
+        
+        newComponentColors[i] = 1 - oldComponentColors[i];
+    }
+    CGColorRef newCGColor = CGColorCreate(CGColorGetColorSpace(oldCGColor), newComponentColors);
+    UIColor *newColor = [UIColor colorWithCGColor:newCGColor];
+    CGColorRelease(newCGColor);
+    
+    return [newColor colorWithAlphaComponent:1.0];
 }
 @end

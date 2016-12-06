@@ -16,49 +16,8 @@
 {
     self.window = [[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     
-    LYViewController *viewCon = [[LYViewController alloc]init];
-    
-    NSNumber *number = @(1234567890);
-    
-    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
-   
-    [formatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh_Hans_CN"]];
-    
-    [formatter setPaddingPosition:NSNumberFormatterPadAfterSuffix];
-    
-    [formatter setUsesGroupingSeparator:YES];
-    [formatter setGroupingSize:4];//四个一组
-    [formatter setGroupingSeparator:@" "];
-    
-    [formatter setNumberStyle:NSNumberFormatterNoStyle];
-    NSLog(@"NSNumberFormatterNoStyle=%@",[formatter stringFromNumber:number]);
-
-    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
-    NSLog(@"NSNumberFormatterDecimalStyle=%@",[formatter stringFromNumber:number]);
-    
-    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    NSLog(@"NSNumberFormatterCurrencyStyle=%@",[formatter stringFromNumber:number]);
-    
-    [formatter setNumberStyle:NSNumberFormatterPercentStyle];
-    NSLog(@"NSNumberFormatterPercentStyle=%@",[formatter stringFromNumber:number]);
-    
-    [formatter setNumberStyle:NSNumberFormatterScientificStyle];
-    NSLog(@"NSNumberFormatterScientificStyle=%@",[formatter stringFromNumber:number]);
-    
-    [formatter setNumberStyle:NSNumberFormatterSpellOutStyle];
-    NSLog(@"NSNumberFormatterSpellOutStyle=%@",[formatter stringFromNumber:number]);
-    
-    [formatter setNumberStyle:NSNumberFormatterOrdinalStyle];
-    NSLog(@"NSNumberFormatterOrdinalStyle=%@",[formatter stringFromNumber:number]);
-    
-    [formatter setNumberStyle:NSNumberFormatterCurrencyISOCodeStyle];
-    NSLog(@"NSNumberFormatterCurrencyISOCodeStyle=%@",[formatter stringFromNumber:number]);
-    
-    [formatter setNumberStyle:NSNumberFormatterCurrencyPluralStyle];
-    NSLog(@"NSNumberFormatterCurrencyPluralStyle=%@",[formatter stringFromNumber:number]);
-    
-    [formatter setNumberStyle:NSNumberFormatterCurrencyAccountingStyle];
-    NSLog(@"NSNumberFormatterCurrencyAccountingStyle=%@",[formatter stringFromNumber:number]);
+    LYViewController *viewCon = [[LYViewController alloc]initWithNibName:@"LYViewController"
+                                                                  bundle:nil];
     
     self.window.rootViewController = [LTNavigationController LT_NavigationController:viewCon];
     [self.window makeKeyAndVisible];

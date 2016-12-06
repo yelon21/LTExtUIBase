@@ -25,7 +25,8 @@
  *
  *  @return 颜色UIColor
  */
-+ (UIColor *)colorWithRGBHex:(UInt32)hex;
++ (UIColor *)LT_colorWithRGBHex:(UInt32)hex;
++ (UIColor *)colorWithRGBHex:(UInt32)hex NS_DEPRECATED_IOS(2_0, 3_0);
 /**
  *  @author yelon
  *
@@ -35,5 +36,13 @@
  *
  *  @return 颜色UIColor
  */
-+ (UIColor *)colorWithHexString:(NSString *)stringToConvert;
++ (UIColor *)LT_colorWithHexString:(NSString *)stringToConvert;
++ (UIColor *)colorWithHexString:(NSString *)stringToConvert NS_DEPRECATED_IOS(2_0, 3_0);
+
+/**
+ 取反色
+
+ @return 反色
+ */
+- (UIColor *)lt_inverseColor;
 @end

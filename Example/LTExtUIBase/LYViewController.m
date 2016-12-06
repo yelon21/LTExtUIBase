@@ -13,8 +13,11 @@
 #import "AmountTextField.h"
 #import "MobileNoTextField.h"
 #import "CardTextField.h"
+#import "LTLoadingButton.h"
 
 @interface LYViewController ()
+
+@property (weak, nonatomic) IBOutlet LTLoadingButton *btn;
 
 @end
 
@@ -41,12 +44,28 @@
                        NSLog(@"obj=%@",obj);
                    }];
     
-    AmountTextField *amoutTF = [[AmountTextField alloc]initWithFrame:CGRectMake(20, 40, 200, 40)];
-    amoutTF.backgroundColor = [UIColor lightGrayColor];
-    
-    [self.view addSubview:amoutTF];
-    
+    self.btn.layer.cornerRadius = 5.0;
+//    self.btn.progressBgColor = [UIColor lightGrayColor];
+    self.btn.progressColor = [UIColor blueColor];
+//    LTLoadingButton *amoutTF = [[LTLoadingButton alloc]initWithFrame:CGRectMake(120, 200, 100, 40)];
+//    amoutTF.backgroundColor = [UIColor lightGrayColor];
+//    amoutTF.layer.cornerRadius = 5.0;
+//    
+//    [self.view addSubview:amoutTF];
+//    
+//    [amoutTF addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
 }
+
+- (IBAction)btnAction:(LTLoadingButton *)sender {
+    
+    [sender startLoading];
+    
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        
+        [sender stopLoading];
+    });
+}
+
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 

@@ -8,26 +8,27 @@
 
 #import "LTLoadingButton.h"
 #import "UIColor+LTCommon.h"
+#import "UIImage+LTCommon.h"
 
 typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
-   
+    
     LTLoadingButtonStatusReady,
     LTLoadingButtonStatusLoading,
-    LTLoadingButtonStatusFinishing,
-    LTLoadingButtonStatusFinished
+    LTLoadingButtonStatusFinishing
 };
 
 @interface LTLoadingButton ()<CAAnimationDelegate>{
-
+    
     LTLoadingButtonStatus loadingStatus;
-    
-    CGFloat defaultRadius;
-    CGRect defaultBounds;
-    UIImage *defaultBackImage;
-    
     CGFloat prepareLoadingAnimDuration;
     CGFloat finishLoadingAnimDuration;
     CGFloat lineWidth;
+    
+    CGFloat defaultRadius;
+    CGRect  defaultBounds;
+    UIImage *defaultBackImage;
+    UIImage *defaultImage;
+    //    UIColor *defaultBackColor;
 }
 
 @property(nonatomic,assign) CGRect circleBounds;
@@ -42,7 +43,7 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
 
 #pragma make overwrite
 -(instancetype)initWithFrame:(CGRect)frame{
-
+    
     if (self = [super initWithFrame:frame]) {
         
         [self setup];
@@ -52,26 +53,15 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
 }
 
 -(void)awakeFromNib{
-
+    
     [super awakeFromNib];
     
     [self setup];
 }
 
--(void)layoutSubviews{
-
-    [super layoutSubviews];
-    
-    if (loadingStatus == LTLoadingButtonStatusReady) {
-        
-        defaultBounds = self.bounds;
-    }
-    
-}
-
 #pragma mark getter & setter
 -(UIColor *)progressColor{
-
+    
     if (!_progressColor) {
         
         _progressColor = [UIColor greenColor];
@@ -80,7 +70,7 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
 }
 
 -(UIColor *)progressBgColor{
-
+    
     if (!_progressBgColor) {
         
         _progressBgColor = [[UIColor whiteColor] colorWithAlphaComponent:0.35];
@@ -90,7 +80,7 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
 }
 
 -(CAShapeLayer *)animationLayer{
-
+    
     if (!_animationLayer) {
         
         _animationLayer = [CAShapeLayer layer];
@@ -104,7 +94,7 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
 }
 
 -(CALayer *)bootomCorverLayer{
-
+    
     if (!_bootomCorverLayer) {
         
         _bootomCorverLayer = [CALayer layer];
@@ -114,7 +104,7 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
 }
 
 -(CGRect)circleBounds{
-
+    
     CGFloat width = CGRectGetWidth(defaultBounds);
     CGFloat height = CGRectGetHeight(defaultBounds);
     
@@ -128,22 +118,18 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
 }
 #pragma mark private
 - (void)setup{
-
-    defaultBackImage = [self backgroundImageForState:UIControlStateNormal];
+    
+    loadingStatus = LTLoadingButtonStatusReady;
     
     prepareLoadingAnimDuration = 0.35;
     finishLoadingAnimDuration = 0.35;
     lineWidth = 5.0;
     
-    loadingStatus = LTLoadingButtonStatusReady;
-    
-    defaultRadius = self.layer.cornerRadius;
-    
     self.prepareGroup = dispatch_group_create();
 }
 
 - (void)resetLayer{
-
+    
     self.layer.bounds = defaultBounds;
     self.layer.cornerRadius = defaultRadius;
     
@@ -155,24 +141,33 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
 }
 //
 - (void)startLoading{
-
-    NSLog(@"startLoading");
-
+    
+    if (loadingStatus != LTLoadingButtonStatusReady) {
+        
+        return;
+    }
+    
     [self startSetting];
     [self prepareForLoadingAnimation];
     
 }
 
 - (void)startSetting{
-
+    
     loadingStatus = LTLoadingButtonStatusLoading;
     
-    self.userInteractionEnabled = NO;
+    defaultBounds = self.bounds;
+    defaultRadius = self.layer.cornerRadius;
+    defaultBackImage = [self backgroundImageForState:UIControlStateNormal];
+    defaultImage    = [self imageForState:UIControlStateNormal];
     
+    self.userInteractionEnabled = NO;
     self.titleLabel.alpha = 0.0;
     
-    [super setBackgroundImage:nil
-                     forState:UIControlStateNormal];
+    [self setBackgroundImage:nil
+                    forState:UIControlStateNormal];
+    [self setImage:defaultImage
+          forState:UIControlStateNormal];
     
     [self resetLayer];
     
@@ -181,14 +176,14 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
         self.bootomCorverLayer.backgroundColor = [UIColor colorWithPatternImage:defaultBackImage].CGColor;
     }
     else{
-    
+        
         self.bootomCorverLayer.backgroundColor = [[self.backgroundColor lt_inverseColor] colorWithAlphaComponent:0.35].CGColor;
     }
     
 }
 
 - (void)prepareForLoadingAnimation{
-
+    
     NSTimeInterval delay = prepareLoadingAnimDuration;
     
     CGFloat radius = CGRectGetMidX(self.circleBounds);
@@ -222,7 +217,7 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
     
     CABasicAnimation *borderBackgroundColorAnimate = [CABasicAnimation animationWithKeyPath:@"position"];
     borderBackgroundColorAnimate.toValue = [NSValue valueWithCGPoint:CGPointMake(CGRectGetMidX(self.circleBounds), CGRectGetMidY(self.circleBounds))];
-
+    
     CAAnimationGroup *borderGroup = [CAAnimationGroup animation];
     borderGroup.animations = @[boundsAnimate,cornerRadiusAnimate,borderBackgroundColorAnimate];
     
@@ -241,8 +236,6 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
                           , dispatch_get_main_queue()
                           , ^{
                               
-                              NSLog(@"prepare动画结束");
-                             
                               self.layer.bounds = self.circleBounds;
                               self.layer.cornerRadius = radius;
                               
@@ -266,7 +259,6 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
     CGFloat radius = CGRectGetMidX(self.circleBounds);
     CGPoint center = CGPointMake(radius, radius);
     radius = radius - lineWidth/2.0;
-    
     
     CGFloat angle = 2*M_PI/pointCount;
     CGFloat deltAngle = M_PI/6;
@@ -302,10 +294,10 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
         pointSpace.lineWidth = lineWidth;
         
         pointSpace.path = [UIBezierPath bezierPathWithArcCenter:center
-                                                    radius:radius
-                                                startAngle:endAngle
-                                                  endAngle:startAngle+angle
-                                                 clockwise:YES].CGPath;
+                                                         radius:radius
+                                                     startAngle:endAngle
+                                                       endAngle:startAngle+angle
+                                                      clockwise:YES].CGPath;
         
         [self.animationLayer addSublayer:pointSpace];
         
@@ -317,10 +309,10 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
             
             return;
         }
-            CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
-            rotationAnimation.byValue = @(M_PI*2.0);
-            rotationAnimation.duration = 1.0;
-            rotationAnimation.repeatCount = INFINITY;
+        CABasicAnimation *rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+        rotationAnimation.byValue = @(M_PI*2.0);
+        rotationAnimation.duration = 1.0;
+        rotationAnimation.repeatCount = INFINITY;
         
         [point addAnimation:rotationAnimation forKey:nil];
     }
@@ -328,8 +320,6 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
 }
 //停止
 - (void)stopLoading{
-    
-    NSLog(@"stopLoading");
     
     [self prepareForStop];
 }
@@ -390,8 +380,6 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
                           , dispatch_get_main_queue()
                           , ^{
                               
-                              NSLog(@"prepare动画结束");
-                              
                               [self resetLayer];
                               
                               [self.bootomCorverLayer removeAllAnimations];
@@ -402,16 +390,18 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
 }
 
 - (void)stopSetting{
-
+    
     self.titleLabel.alpha = 1.0;
     
-    [super setBackgroundImage:defaultBackImage
-                     forState:UIControlStateNormal];
+    [self setBackgroundImage:defaultBackImage
+                    forState:UIControlStateNormal];
+    [self setImage:defaultImage
+          forState:UIControlStateNormal];
     
     [self.bootomCorverLayer removeFromSuperlayer];
     self.bootomCorverLayer = nil;
     
-    loadingStatus = LTLoadingButtonStatusFinished;
+    loadingStatus = LTLoadingButtonStatusReady;
     
     self.userInteractionEnabled = YES;
 }
@@ -419,7 +409,7 @@ typedef NS_ENUM(NSUInteger, LTLoadingButtonStatus) {
 #pragma mark CAAnimationDelegate
 /* Called when the animation begins its active duration. */
 - (void)animationDidStart:(CAAnimation *)anim{
-
+    
 }
 
 /* Called when the animation either completes its active duration or

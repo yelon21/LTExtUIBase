@@ -156,4 +156,57 @@
     
     return [UIImage imageWithContentsOfFile:imagePath];
 }
+
+/**
+ 根据高度 比例缩放
+ 
+ @param height 指定高度
+ @return 新图片
+ */
+- (UIImage *)lt_scaleImageByDefaultHeight:(CGFloat)height{
+    
+    UIImage *newimage = nil;
+    if (self) {
+        
+        CGFloat imageH = self.size.height;
+        
+        if (imageH>height) {
+            
+            newimage = self;
+        }
+        else{
+            
+            CGFloat width = height/self.size.height*self.size.width;
+            newimage = [self lt_thumbImage:CGSizeMake(width, height)];
+        }
+    }
+    return newimage;
+}
+/**
+ 根据宽度 比例缩放
+ 
+ @param width 指定宽度
+ @return 新图片
+ */
+- (UIImage *)lt_scaleImageByDefaultWidth:(CGFloat)width{
+    
+    UIImage *newimage = nil;
+    if (self) {
+        
+        CGFloat imageW = self.size.width;
+        
+        if (imageW>width) {
+            
+            newimage = self;
+        }
+        else{
+            
+            CGFloat height = width/imageW*self.size.height;
+            newimage = [self lt_thumbImage:CGSizeMake(width, height)];
+        }
+        
+    }
+    return newimage;
+}
+
 @end

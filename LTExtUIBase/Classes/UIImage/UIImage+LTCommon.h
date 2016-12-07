@@ -55,4 +55,19 @@
 
 + (UIImage *)lt_imageName:(NSString *)name;
 + (UIImage *)lt_imageWithPath:(NSString *)imagePath;
+
+/**
+根据高度 比例缩放
+
+ @param height 指定高度
+ @return 新图片
+ */
+- (UIImage *)lt_scaleImageByDefaultHeight:(CGFloat)height;
+/**
+ 根据宽度 比例缩放
+ 
+ @param width 指定宽度
+ @return 新图片
+ */
+- (UIImage *)lt_scaleImageByDefaultWidth:(CGFloat)width;
 @end

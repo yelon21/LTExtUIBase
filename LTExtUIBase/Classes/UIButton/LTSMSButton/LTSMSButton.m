@@ -16,29 +16,60 @@
 
 @implementation LTSMSButton
 
--(void)layoutSubviews{
+-(instancetype)initWithFrame:(CGRect)frame{
 
-    [super layoutSubviews];
-    
-    if (self.timeOutSeconds==0.0) {
+    if ([super initWithFrame:frame]) {
         
-        self.timeOutSeconds = 120.0;
+        [self setup];
     }
+    return self;
+}
+
+-(void)awakeFromNib{
+
+    [super awakeFromNib];
+    
+    [self setup];
+}
+
+- (void)setup{
+
+    if (self.timeOutSeconds>0.0) {
+        
+        return;
+    }
+    self.timeOutSeconds = 120.0;
+    self.defaultMessage = @"获取验证码";
+    self.defaultColor = [UIColor blackColor];
+    [self resetTime];
 }
 
 - (void)resetTime{
     
     NSLog(@"resetTime");
     self.enabled = YES;
-    [self setTitle:@"获取验证码" forState:UIControlStateNormal];
-    [self setTitleColor:[UIColor blackColor]
+    [self setTitle:self.defaultMessage forState:UIControlStateNormal];
+    [self setTitleColor:self.defaultColor
                forState:UIControlStateNormal];
+    [self setTitleColor:[UIColor grayColor]
+               forState:UIControlStateDisabled];
+    
     self.titleLabel.font = [UIFont systemFontOfSize:14.0];
+    
+    self.layer.borderWidth = 1.0;
+    self.layer.borderColor = self.defaultColor.CGColor;
 }
 
 - (void)startCountdown{
     
+    [self startCountdown:NO];
+}
+
+- (void)startCountdown:(BOOL)silently{
+    
     self.enabled = NO;
+    
+    self.layer.borderColor = [UIColor grayColor].CGColor;
     
     if (self.timeOutSeconds==0) {
         
@@ -47,10 +78,10 @@
     
     self.startDate = [NSDate date];
     
-    [self countDown];
+    [self countDown:silently];
 }
 
-- (void)countDown{
+- (void)countDown:(BOOL)silently{
 
     NSTimeInterval interval = [[NSDate date] timeIntervalSinceDate:self.startDate];
     
@@ -58,17 +89,20 @@
     
     if (deltInterval>0.0) {
         
-//        NSLog(@"deltInterval == %f",deltInterval);
+        if (!silently) {
+            
+            [UIView animateWithDuration:0.5
+                             animations:^{
+                                 
+                                 [self setTitle:[NSString stringWithFormat:@"%0.0fS",deltInterval]
+                                       forState:UIControlStateDisabled];
+                             }];
+        }
         
-        [UIView animateWithDuration:0.5
-                         animations:^{
-                             
-                             [self setTitle:[NSString stringWithFormat:@"%0.0fS",deltInterval]
-                                   forState:UIControlStateDisabled];
-                         }];
-        
-        
-        [self performSelector:@selector(countDown) withObject:nil afterDelay:1.0];
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            [self countDown:silently];
+        });
     }
     else{
 

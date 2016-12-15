@@ -11,8 +11,10 @@
 @interface LTSMSButton : UIButton
 
 @property(nonatomic,assign) CGFloat timeOutSeconds;
+@property(nonatomic,strong) NSString *defaultMessage;
+@property(nonatomic,strong) UIColor *defaultColor;
 
 - (void)resetTime;
 - (void)startCountdown;
-
+- (void)startCountdown:(BOOL)silently;
 @end

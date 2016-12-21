@@ -172,12 +172,12 @@
         
         if (imageH>height) {
             
-            newimage = self;
+            CGFloat width = height/self.size.height*self.size.width;
+            newimage = [self lt_thumbImage:CGSizeMake(width, height)];
         }
         else{
             
-            CGFloat width = height/self.size.height*self.size.width;
-            newimage = [self lt_thumbImage:CGSizeMake(width, height)];
+            newimage = self;
         }
     }
     return newimage;
@@ -197,12 +197,12 @@
         
         if (imageW>width) {
             
-            newimage = self;
+            CGFloat height = width/imageW*self.size.height;
+            newimage = [self lt_thumbImage:CGSizeMake(width, height)];
         }
         else{
             
-            CGFloat height = width/imageW*self.size.height;
-            newimage = [self lt_thumbImage:CGSizeMake(width, height)];
+            newimage = self;
         }
         
     }

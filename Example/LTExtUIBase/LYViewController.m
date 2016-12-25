@@ -14,7 +14,7 @@
 #import "MobileNoTextField.h"
 #import "CardTextField.h"
 #import "LTLoadingButton.h"
-
+#import "NavViewController.h"
 @interface LYViewController ()
 
 @property (weak, nonatomic) IBOutlet LTLoadingButton *btn;
@@ -70,6 +70,9 @@
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 
     [self.view endEditing:YES];
+    
+    NavViewController *viewCon = [[NavViewController alloc]initWithNibName:@"NavViewController" bundle:nil];
+    [self.navigationController pushViewController:viewCon animated:YES];
 }
 
 

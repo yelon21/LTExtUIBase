@@ -22,6 +22,8 @@
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
 		6364C59F1DF28189003AE715 /* LYViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6364C59E1DF28189003AE715 /* LYViewController.xib */; };
+		636E07741E0FA22300323E9C /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636E07721E0FA22300323E9C /* NavViewController.m */; };
+		636E07751E0FA22300323E9C /* NavViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 636E07731E0FA22300323E9C /* NavViewController.xib */; };
 		637067071DF454460068968A /* eg_tulip.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 637067061DF454460068968A /* eg_tulip.jpg */; };
 		A4D64DF33AC10DC23D68072A /* libPods-LTExtUIBase_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4398353C9716B12FE6A6D2A9 /* libPods-LTExtUIBase_Tests.a */; };
 /* End PBXBuildFile section */
@@ -62,6 +64,9 @@
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
 		6364C59E1DF28189003AE715 /* LYViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYViewController.xib; sourceTree = "<group>"; };
+		636E07711E0FA22300323E9C /* NavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavViewController.h; sourceTree = "<group>"; };
+		636E07721E0FA22300323E9C /* NavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
+		636E07731E0FA22300323E9C /* NavViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavViewController.xib; sourceTree = "<group>"; };
 		637067061DF454460068968A /* eg_tulip.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = eg_tulip.jpg; sourceTree = "<group>"; };
 		92BEE0D8E5D12DD21B78E931 /* Pods-LTExtUIBase_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTExtUIBase_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTExtUIBase_Example/Pods-LTExtUIBase_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		A44A2669C0589027689EB2E5 /* LTExtUIBase.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LTExtUIBase.podspec; path = ../LTExtUIBase.podspec; sourceTree = "<group>"; };
@@ -138,6 +143,7 @@
 				6003F5A5195388D20070C39A /* LYViewController.h */,
 				6003F5A6195388D20070C39A /* LYViewController.m */,
 				6364C59E1DF28189003AE715 /* LYViewController.xib */,
+				636E07701E0FA20A00323E9C /* NavigationBar */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -183,6 +189,16 @@
 				530AD0AA5198EC89021685EC /* LICENSE */,
 			);
 			name = "Podspec Metadata";
+			sourceTree = "<group>";
+		};
+		636E07701E0FA20A00323E9C /* NavigationBar */ = {
+			isa = PBXGroup;
+			children = (
+				636E07711E0FA22300323E9C /* NavViewController.h */,
+				636E07721E0FA22300323E9C /* NavViewController.m */,
+				636E07731E0FA22300323E9C /* NavViewController.xib */,
+			);
+			path = NavigationBar;
 			sourceTree = "<group>";
 		};
 		8FF19BABB65B4DC280EAFF93 /* Pods */ = {
@@ -284,6 +300,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				637067071DF454460068968A /* eg_tulip.jpg in Resources */,
+				636E07751E0FA22300323E9C /* NavViewController.xib in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6364C59F1DF28189003AE715 /* LYViewController.xib in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -400,6 +417,7 @@
 			files = (
 				6003F59E195388D20070C39A /* LYAppDelegate.m in Sources */,
 				6003F5A7195388D20070C39A /* LYViewController.m in Sources */,
+				636E07741E0FA22300323E9C /* NavViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

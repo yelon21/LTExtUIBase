@@ -19,4 +19,5 @@
 
 - (void)lt_hideNavigationBarItem;
 - (void)lt_setNavigationBarItemAlpha:(CGFloat)alpha;
+- (void)lt_setNavigationBarBackgroundAlpha:(CGFloat)alpha;
 @end

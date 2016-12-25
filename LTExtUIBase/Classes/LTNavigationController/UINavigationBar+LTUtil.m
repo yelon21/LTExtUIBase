@@ -76,6 +76,31 @@
     }
 }
 
+- (void)lt_setNavigationBarBackgroundAlpha:(CGFloat)alpha{
+    
+    if (alpha<0.01) {
+        
+        alpha = 0.01;
+    }
+    else if (alpha>1.0) {
+        
+        alpha = 1.0;
+    }
+    
+    for (UIView *view in [self subviews]) {
+        
+        NSString *className = NSStringFromClass([view class]);
+        if ([className isEqualToString:@"_UINavigationBarBackground"]) {
+            
+            if (view.alpha > 0.0) {
+                
+                view.alpha = alpha;
+            }
+            break;
+        }
+    }
+}
+
 //根据颜色返回图片
 + (UIImage*)imageByColor:(UIColor*)color{
     

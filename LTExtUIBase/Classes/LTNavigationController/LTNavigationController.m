@@ -23,7 +23,7 @@
 
     if (self = [super initWithRootViewController:rootViewController]) {
         
-        [self.navigationBar setTranslucent:NO];
+        [self.navigationBar setTranslucent:YES];
         [self.navigationBar lt_setBackgroundImageByColor:[UIColor blackColor]];
         [self.navigationBar setTintColor:[UIColor whiteColor]];
         [self.navigationBar setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]}];

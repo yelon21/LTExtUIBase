@@ -57,6 +57,13 @@
 + (UIImage *)lt_imageWithPath:(NSString *)imagePath;
 
 /**
+ 根据高度 比例缩放
+ 
+ @param size 指定最大边长
+ @return 新图片
+ */
+- (UIImage *)lt_scaleImageToMaxSize:(CGFloat)size;
+/**
 根据高度 比例缩放
 
  @param height 指定高度

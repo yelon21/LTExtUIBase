@@ -157,6 +157,25 @@
     return [UIImage imageWithContentsOfFile:imagePath];
 }
 
+- (UIImage *)lt_scaleImageToMaxSize:(CGFloat)size{
+    
+    UIImage *newimage = nil;
+    if (self) {
+        
+        CGFloat imageH = self.size.height;
+        CGFloat imageW = self.size.width;
+        
+        if (imageH>imageW) {
+            
+            newimage = [self lt_scaleImageByDefaultHeight:size];
+        }
+        else{
+            
+            newimage = [self lt_scaleImageByDefaultWidth:size];
+        }
+    }
+    return newimage;
+}
 /**
  根据高度 比例缩放
  

@@ -19,4 +19,6 @@ typedef NS_ENUM(NSUInteger, AmountType) {
 @property(nonatomic,assign) IBInspectable AmountType amountType;
 @property(nonatomic,assign) double maxValue;//default 100000.00
 @property(nonatomic,assign,readonly) long long fenValue;
+
+- (void)setContentAmount:(long long)amount;
 @end

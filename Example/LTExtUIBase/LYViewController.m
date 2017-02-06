@@ -47,12 +47,14 @@
     self.btn.layer.cornerRadius = 5.0;
 //    self.btn.progressBgColor = [UIColor lightGrayColor];
     self.btn.progressColor = [UIColor blueColor];
-//    LTLoadingButton *amoutTF = [[LTLoadingButton alloc]initWithFrame:CGRectMake(120, 200, 100, 40)];
-//    amoutTF.backgroundColor = [UIColor lightGrayColor];
+    AmountTextField *amoutTF = [[AmountTextField alloc]initWithFrame:CGRectMake(120, 200, 100, 40)];
+    amoutTF.backgroundColor = [UIColor blueColor];
+    amoutTF.textColor = [UIColor whiteColor];
+    [amoutTF setContentAmount:1234565];
 //    amoutTF.layer.cornerRadius = 5.0;
-//    
-//    [self.view addSubview:amoutTF];
-//    
+    
+    [self.view addSubview:amoutTF];
+    
 //    [amoutTF addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
 }
 
@@ -71,8 +73,8 @@
 
     [self.view endEditing:YES];
     
-    NavViewController *viewCon = [[NavViewController alloc]initWithNibName:@"NavViewController" bundle:nil];
-    [self.navigationController pushViewController:viewCon animated:YES];
+//    NavViewController *viewCon = [[NavViewController alloc]initWithNibName:@"NavViewController" bundle:nil];
+//    [self.navigationController pushViewController:viewCon animated:YES];
 }
 
 

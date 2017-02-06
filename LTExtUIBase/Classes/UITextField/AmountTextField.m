@@ -84,6 +84,13 @@
     }
 }
 
+- (void)setContentAmount:(long long)amount{
+
+    numberString = [NSString stringWithFormat:@"%@",[@([@(amount) longLongValue]) stringValue]];
+    
+    [self updateDispalyText];
+}
+
 - (void)updateDispalyText{
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];

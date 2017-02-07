@@ -8,7 +8,7 @@
 
 #import "AmountTextField.h"
 
-@interface AmountTextField ()<UITextFieldDelegate>{
+@interface AmountTextField (){
 
     NSMutableString *numberString;
 }
@@ -16,51 +16,6 @@
 @end
 
 @implementation AmountTextField
-
-- (void)setup {
-
-    _amountType = -1;
-    self.amountType     = AmountTypeDefault;
-    self.maxValue       = 100000.00;
-    
-    numberString = [[NSMutableString alloc]init];
-    
-    self.delegate       = self;
-}
-
--(void)setAmountType:(AmountType)amountType{
-
-    if (amountType == _amountType) {
-        
-        return;
-    }
-    
-    _amountType = amountType;
-    
-    if (_amountType == AmountTypeDefault) {
-        
-        self.keyboardType   = UIKeyboardTypeDecimalPad;
-        
-        [self addTarget:self
-                 action:@selector(updateDispalyText)
-       forControlEvents:UIControlEventEditingDidEnd];
-        
-        [self addTarget:self
-                 action:@selector(beginEditingAction)
-       forControlEvents:UIControlEventEditingDidBegin];
-    }
-    else{
-        
-        self.keyboardType   = UIKeyboardTypeNumberPad;
-        
-        [self removeTarget:self
-                    action:@selector(updateDispalyText)
-          forControlEvents:UIControlEventEditingDidEnd];
-        [self removeTarget:self
-                    action:@selector(beginEditingAction)
-          forControlEvents:UIControlEventEditingDidBegin];
-    }
-}
 
 -(id)initWithFrame:(CGRect)frame {
     
@@ -72,21 +27,87 @@
 }
 
 -(void)awakeFromNib {
-   
+    
     [self setup];
+}
+
+- (void)setup {
+    
+    self.maxValue       = 100000.00;
+    
+    numberString = [[NSMutableString alloc]init];
+    
+    self.keyboardType   = UIKeyboardTypeDecimalPad;
+    
+    [self addTarget:self
+             action:@selector(updateDispalyText)
+   forControlEvents:UIControlEventEditingDidEnd];
+    
+    [self addTarget:self
+             action:@selector(beginEditingAction)
+   forControlEvents:UIControlEventEditingDidBegin];
+    
+    [self addTarget:self
+             action:@selector(textDidChanged:)
+   forControlEvents:UIControlEventEditingChanged];
 }
 
 - (void)beginEditingAction{
 
-    if (_amountType == AmountTypeDefault) {
-        
-        self.text = numberString;
-    }
+    self.text = numberString;
 }
 
-- (void)setContentAmount:(long long)amount{
+- (void)textDidChanged:(UITextField *)textField{
+    
+    if ([textField.text doubleValue]>self.maxValue) {
+        
+        if ([numberString doubleValue]>self.maxValue) {
+            
+            numberString = [NSString stringWithFormat:@"%0.2lf",self.maxValue];
+        }
+        textField.text = numberString;
+        return;
+    }
+    
+    NSString *filterString = @"0123456789.";
+    
+    numberString = [self numberString:textField.text
+                         filterString:filterString];
+    
+    NSArray *components = [numberString componentsSeparatedByString:@"."];
+    
+    if ([components count]>=2) {
+        
+        NSString *components2 = [NSString stringWithFormat:@"%@",components[1]];
+        
+        NSUInteger length = [components2 length];
+        if (length>2) {
+            components2 = [components2 substringToIndex:2];
+        }
+        
+        NSArray *stringComponents = @[components[0],components2];
+        
+        numberString = [stringComponents componentsJoinedByString:@"."];
+    }
+    
+    textField.text = numberString;
+}
 
-    numberString = [NSString stringWithFormat:@"%@",[@([@(amount) longLongValue]) stringValue]];
+- (void)setContentAmount:(NSNumber *)amount{
+    
+    if (amount.doubleValue>self.maxValue) {
+        
+        numberString = [NSString stringWithFormat:@"%0.2lf",self.maxValue];
+    }
+    else{
+    
+        numberString = [NSString stringWithFormat:@"%0.2lf",[amount doubleValue]];
+        
+        NSString *filterString = @"0123456789.";
+        
+        numberString = [self numberString:numberString
+                             filterString:filterString];
+    }
     
     [self updateDispalyText];
 }
@@ -97,16 +118,8 @@
     [formatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh_Hans_CN"]];
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     
-    NSNumber *num = nil;
+    NSNumber *num = @([numberString doubleValue]);
     
-    if (self.amountType == AmountTypeATM) {
-        
-        num = @([numberString doubleValue]/100.0);
-    }
-    else{
-        
-        num = @([numberString doubleValue]);
-    }
     self.text = [formatter stringFromNumber:num];
 }
 
@@ -116,105 +129,10 @@
     return [num longLongValue];
 }
 
-#pragma mark UITextFieldDelegate
-- (BOOL)textField:(UITextField *)textField
-shouldChangeCharactersInRange:(NSRange)range
-replacementString:(NSString *)string{
-
-    NSUInteger length = [numberString length];
-    
-    if ([string length]==0 && length > 0) {
-        
-        [numberString deleteCharactersInRange:NSMakeRange(length-1, 1)];
-        
-        self.text = numberString;
-        return NO;
-    }
-    
-    BOOL containPoint = [numberString containsString:@"."];
-    
-    NSString *filterString = @"0123456789.";
-    
-    if (containPoint || self.amountType == AmountTypeATM) {
-       
-        filterString = @"0123456789";
-    }
-    
-    string = [self numberString:string
-                   filterString:filterString];
-    
-    if ([string length] == 0) {
-        
-        return NO;
-    }
-    
-    switch (self.amountType) {
-        
-        case AmountTypeATM:{
-            
-            [self checkATMAppendString:string];
-            break;
-        }
-        default:{
-            
-            [self checkDefaultAppendString:string];
-            break;
-        }
-    }
-    
-    return NO;
-}
-
-- (void)checkDefaultAppendString:(NSString *)appendString{
-    
-    NSString *resultString = [NSString stringWithFormat:@"%@%@",numberString,appendString];
-    
-    double currentValue = [resultString doubleValue];
-    
-    if (currentValue>self.maxValue) {
-        
-        return;
-    }
-    
-    NSArray *components = [resultString componentsSeparatedByString:@"."];
-    
-    if ([components count]>=2) {
-        
-        NSString *component2 = components[1];
-        if ([component2 length]>2) {
-            
-            return;
-        }
-    }
-    
-    [numberString appendString:appendString];
-    
-    self.text = numberString;
-}
-
-- (void)checkATMAppendString:(NSString *)appendString{
-    
-    NSMutableString *tmpString = [numberString copy];
-    
-    tmpString = [tmpString stringByReplacingOccurrencesOfString:@"." withString:@""];
-    
-    NSString *resultString = [NSString stringWithFormat:@"%@%@",tmpString,appendString];
-    
-    double currentValue = [resultString doubleValue]/100.0;
-    
-    if (currentValue > self.maxValue) {
-        
-        return;
-    }
-
-    [numberString setString:resultString];
-    
-    [self updateDispalyText];
-}
-
 - (NSString *)numberString:(NSString *)string filterString:(NSString *)filterString{
     
-    NSString *text = string;
+    NSString *text = [string stringByReplacingOccurrencesOfString:@" "
+                                                               withString:@""];
     
     NSCharacterSet *setToRemove = [[NSCharacterSet characterSetWithCharactersInString:filterString]
                                    invertedSet];

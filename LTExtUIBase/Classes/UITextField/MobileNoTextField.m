@@ -8,7 +8,10 @@
 
 #import "MobileNoTextField.h"
 
-@interface MobileNoTextField ()<UITextFieldDelegate>
+@interface MobileNoTextField (){
+
+    NSString *contentString;
+}
 
 @end
 
@@ -17,7 +20,9 @@
 - (void)setup {
     
     self.keyboardType   = UIKeyboardTypeNumberPad;
-    self.delegate       = self;
+    [self addTarget:self
+             action:@selector(textDidChanged:)
+   forControlEvents:UIControlEventEditingChanged];
 }
 
 -(id)initWithFrame:(CGRect)frame {
@@ -34,39 +39,30 @@
     [self setup];
 }
 
-#pragma mark UITextFieldDelegate
-- (BOOL)textField:(UITextField *)textField
-shouldChangeCharactersInRange:(NSRange)range
-replacementString:(NSString *)string{
+- (void)textDidChanged:(UITextField *)textField{
     
-    if ([string length]==0) {
+    NSString *filterString = @"0123456789";
+    
+    NSString *string = [self numberString:textField.text
+                             filterString:filterString];
+    if ([string length]<=11) {
         
-        return YES;
+        contentString = string;
     }
     
-    BOOL flag = YES;
+    textField.text = contentString;
+}
+
+- (NSString *)numberString:(NSString *)string filterString:(NSString *)filterString{
     
-    NSUInteger length = [string length];
+    NSString *text = [string stringByReplacingOccurrencesOfString:@" "
+                                                       withString:@""];
     
-    for (NSUInteger index = 0; index < length; index++) {
-        
-        char ch = [string characterAtIndex:index];
-        
-        if (ch<'0' || ch>'9') {
-            
-            flag = NO;
-            break;
-        }
-    }
+    NSCharacterSet *setToRemove = [[NSCharacterSet characterSetWithCharactersInString:filterString]
+                                   invertedSet];
     
-    if (flag == NO) {
-        
-        return NO;
-    }
-    
-    NSString *resultString = [NSString stringWithFormat:@"%@%@",textField.text,string];
-    
-    return [resultString length] <= 11;
+    text = [text stringByTrimmingCharactersInSet:setToRemove];
+    return text;
 }
 
 @end

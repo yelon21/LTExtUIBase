@@ -47,10 +47,11 @@
     self.btn.layer.cornerRadius = 5.0;
 //    self.btn.progressBgColor = [UIColor lightGrayColor];
     self.btn.progressColor = [UIColor blueColor];
-    AmountTextField *amoutTF = [[AmountTextField alloc]initWithFrame:CGRectMake(120, 200, 100, 40)];
+    MobileNoTextField *amoutTF = [[MobileNoTextField alloc]initWithFrame:CGRectMake(50, 200, 200, 40)];
     amoutTF.backgroundColor = [UIColor blueColor];
     amoutTF.textColor = [UIColor whiteColor];
-    [amoutTF setContentAmount:1234565];
+    //[amoutTF setContentAmount:@1234565];
+    //amoutTF.maxValue = 50000.00;
 //    amoutTF.layer.cornerRadius = 5.0;
     
     [self.view addSubview:amoutTF];

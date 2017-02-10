@@ -6,16 +6,16 @@
 //
 //
 
-#import "NumberTextField.h"
+#import "LTNumberTextField.h"
 
-@interface NumberTextField (){
+@interface LTNumberTextField (){
     
     NSString *contentString;
 }
 
 @end
 
-@implementation NumberTextField
+@implementation LTNumberTextField
 
 - (void)setup {
     

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface NumberTextField : UITextField
+@interface LTNumberTextField : UITextField
 
 @property(nonatomic,assign) NSUInteger maxLength;
 

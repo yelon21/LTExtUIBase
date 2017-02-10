@@ -13,7 +13,7 @@
 		076A7C7BA7E70F5A1D3A5464BB93C34B /* UIView+LTCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 5ECA766EC257478FB2C431F1420044AF /* UIView+LTCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0C406E191750E093987B7A3F91630A64 /* UIView+LTTransform.m in Sources */ = {isa = PBXBuildFile; fileRef = 4DCF4DF1626D78AADAC11245B3C711D5 /* UIView+LTTransform.m */; };
 		10AF49C33806A4B313D16432A431188F /* UITextField+LTCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 0FFAA0B634D7474B7A27B35D48BCDD42 /* UITextField+LTCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1114DAAFD9CA09DEE73108D30781543F /* NumberTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = DEF94FECADD6687895149F3C3113937F /* NumberTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		1114DAAFD9CA09DEE73108D30781543F /* LTNumberTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = DEF94FECADD6687895149F3C3113937F /* LTNumberTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		11EDB0B6AEBA7465DEB214B5F739B5D9 /* PickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CA733D0E772D85078847C6B58FF294E1 /* PickerViewController.m */; };
 		13FFD0AE223AC44779D7D965B3800F1E /* UIViewController+LTUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 1E8215386241A4BBF45E4CE581A60BE6 /* UIViewController+LTUtil.m */; };
 		16E228551066F0B39C207B0B64F51222 /* Pods-LTExtUIBase_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F2BD3E825A3C3D6674150CFA6BF68CF9 /* Pods-LTExtUIBase_Example-dummy.m */; };
@@ -32,7 +32,7 @@
 		5CF392414BE01AC8A1F84349D38A750B /* LTSMSButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 0696F5CBD6F4A602FEA049F7F8ADEE3F /* LTSMSButton.m */; };
 		6179757CFE06241D667A2A032CA31CDE /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */; };
 		6A8F16EF10167EB2088B17CB1F8612BC /* UIView+LTTransform.h in Headers */ = {isa = PBXBuildFile; fileRef = 9B5566E4F7531945C62681C4C066D639 /* UIView+LTTransform.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		7D33F37C94BA9CDD5522E2B024A3038C /* NumberTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D065B8D6D095937E8B83A236CB78C5DF /* NumberTextField.m */; };
+		7D33F37C94BA9CDD5522E2B024A3038C /* LTNumberTextField.m in Sources */ = {isa = PBXBuildFile; fileRef = D065B8D6D095937E8B83A236CB78C5DF /* LTNumberTextField.m */; };
 		88B3C76D278A4494EFE29DBBF9D09539 /* MobileNoTextField.h in Headers */ = {isa = PBXBuildFile; fileRef = 470C972A490B2F2CE8D42C87403B9E23 /* MobileNoTextField.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		895EC4A4A866D0842A7AE8C4980652D1 /* UIImage+LTCommon.m in Sources */ = {isa = PBXBuildFile; fileRef = C1F8E9808A22F38EC4EAA89B28BA123C /* UIImage+LTCommon.m */; };
 		94AC11B3A0F14DEB33DC11939BCFEA7A /* UIColor+LTCommon.h in Headers */ = {isa = PBXBuildFile; fileRef = 680DD4268AA086DE8D442E7A9C885A4B /* UIColor+LTCommon.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -89,7 +89,7 @@
 		0FFAA0B634D7474B7A27B35D48BCDD42 /* UITextField+LTCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UITextField+LTCommon.h"; sourceTree = "<group>"; };
 		1443E1CE0E6DE7C824B9356E8D1D54F6 /* LTPickerView.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LTPickerView.h; sourceTree = "<group>"; };
 		162EC99068B0C8856C42627CEE550D8C /* UIControl+LTBlock.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIControl+LTBlock.h"; sourceTree = "<group>"; };
-		1A7902E010D9827A1A9484245F28150E /* libLTRouter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLTRouter.a; path = libLTRouter.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1A7902E010D9827A1A9484245F28150E /* libLTRouter.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLTRouter.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		1DBF5423554300D86EE122435661B730 /* UINavigationBar+LTUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+LTUtil.m"; sourceTree = "<group>"; };
 		1E8215386241A4BBF45E4CE581A60BE6 /* UIViewController+LTUtil.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+LTUtil.m"; sourceTree = "<group>"; };
 		214FCD870CDA0FEF37811E97EF89988D /* UIView+LTCommon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIView+LTCommon.m"; sourceTree = "<group>"; };
@@ -111,21 +111,21 @@
 		5ECA766EC257478FB2C431F1420044AF /* UIView+LTCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+LTCommon.h"; sourceTree = "<group>"; };
 		61CB3374AB7E293F8121ABACCAA8061A /* PickerViewController.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = PickerViewController.h; sourceTree = "<group>"; };
 		680DD4268AA086DE8D442E7A9C885A4B /* UIColor+LTCommon.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIColor+LTCommon.h"; sourceTree = "<group>"; };
-		6D9AEAC40C2B0A1E071C4628527FEC63 /* nav_back@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; path = "nav_back@3x.png"; sourceTree = "<group>"; };
+		6D9AEAC40C2B0A1E071C4628527FEC63 /* nav_back@3x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "nav_back@3x.png"; sourceTree = "<group>"; };
 		6EF0558B2E571077FC2D19E8197A3B3C /* Pods-LTExtUIBase_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LTExtUIBase_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
 		70EB5FEAF5C32E50619EA1B7E2D55DBD /* UIBarButtonItem+LTItem.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+LTItem.h"; sourceTree = "<group>"; };
-		725CADB2A6FDC03C8079379BC5989525 /* nav_back@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; path = "nav_back@2x.png"; sourceTree = "<group>"; };
+		725CADB2A6FDC03C8079379BC5989525 /* nav_back@2x.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = "nav_back@2x.png"; sourceTree = "<group>"; };
 		733A9E15CAAFC8214E1C552C560E8746 /* UIColor+LTCommon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIColor+LTCommon.m"; sourceTree = "<group>"; };
 		75685E7B7B2AED1A012492648EFF45F5 /* Pods-LTExtUIBase_Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-LTExtUIBase_Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		79AAC8031F5903565EA7574FBB96C48C /* LTPickerView.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LTPickerView.m; sourceTree = "<group>"; };
 		7AAD8C1F076C665CE590A865FFB6FE24 /* Pods-LTExtUIBase_Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LTExtUIBase_Tests-resources.sh"; sourceTree = "<group>"; };
-		83E1B0970959C656A13EE51FF93B47E0 /* libLTExtUIBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = libLTExtUIBase.a; path = libLTExtUIBase.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		83E1B0970959C656A13EE51FF93B47E0 /* libLTExtUIBase.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libLTExtUIBase.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		841329396276AA465F667F5E2B8E182F /* Pods-LTExtUIBase_Example-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-LTExtUIBase_Example-acknowledgements.plist"; sourceTree = "<group>"; };
 		89393E8A084E036819DFED81D06934A6 /* UIControl+LTBlock.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UIControl+LTBlock.m"; sourceTree = "<group>"; };
 		8C5B8E6C65E7114569BB23BF1A10B2EE /* Pods-LTExtUIBase_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LTExtUIBase_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8D6B3A8C0EB4CD3C6129F76EF1DB59C4 /* LTRouter-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LTRouter-prefix.pch"; sourceTree = "<group>"; };
-		9061C10E0101753697EE938048138F87 /* libPods-LTExtUIBase_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-LTExtUIBase_Example.a"; path = "libPods-LTExtUIBase_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9061C10E0101753697EE938048138F87 /* libPods-LTExtUIBase_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTExtUIBase_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		93A4A3777CF96A4AAC1D13BA6DCCEA73 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9B5566E4F7531945C62681C4C066D639 /* UIView+LTTransform.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIView+LTTransform.h"; sourceTree = "<group>"; };
 		A4FF9BFB9844C8AD4E77FBCF1B7637A9 /* LTRouter.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = LTRouter.m; path = LTRouter/Classes/LTRouter.m; sourceTree = "<group>"; };
 		ABCB9A24AFDDAB49E30BDEA3C8E80B79 /* UIViewController+LTUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UIViewController+LTUtil.h"; sourceTree = "<group>"; };
@@ -137,13 +137,13 @@
 		CA733D0E772D85078847C6B58FF294E1 /* PickerViewController.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = PickerViewController.m; sourceTree = "<group>"; };
 		CBB3DE36805AF21409EC968A9691732F /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS10.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		CE15BFBDE87EB8E4EA5CA5130C7D572F /* LTExtUIBase-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "LTExtUIBase-prefix.pch"; sourceTree = "<group>"; };
-		D065B8D6D095937E8B83A236CB78C5DF /* NumberTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = NumberTextField.m; sourceTree = "<group>"; };
+		D065B8D6D095937E8B83A236CB78C5DF /* LTNumberTextField.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LTNumberTextField.m; sourceTree = "<group>"; };
 		D0985F68C5BCF8D1546049D38FEA69DA /* Pods-LTExtUIBase_Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-LTExtUIBase_Tests-frameworks.sh"; sourceTree = "<group>"; };
-		D18D82FB0FCDC5F51C64EA5E65233638 /* nav_back.png */ = {isa = PBXFileReference; includeInIndex = 1; path = nav_back.png; sourceTree = "<group>"; };
-		D1F2B0F47EDFE753FEB007246F640D69 /* libPods-LTExtUIBase_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; name = "libPods-LTExtUIBase_Tests.a"; path = "libPods-LTExtUIBase_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D18D82FB0FCDC5F51C64EA5E65233638 /* nav_back.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; path = nav_back.png; sourceTree = "<group>"; };
+		D1F2B0F47EDFE753FEB007246F640D69 /* libPods-LTExtUIBase_Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTExtUIBase_Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99E6DB3C8CEEBBE4FCED2D97794DB87 /* UINavigationBar+LTUtil.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+LTUtil.h"; sourceTree = "<group>"; };
 		DEF5E159B342DD94EA31FB6A5C15F26D /* LTSMSButton.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LTSMSButton.h; sourceTree = "<group>"; };
-		DEF94FECADD6687895149F3C3113937F /* NumberTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = NumberTextField.h; sourceTree = "<group>"; };
+		DEF94FECADD6687895149F3C3113937F /* LTNumberTextField.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = LTNumberTextField.h; sourceTree = "<group>"; };
 		E1B06FE6231AC3B930BCC491286AE3E9 /* LTLoadingButton.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = LTLoadingButton.m; sourceTree = "<group>"; };
 		E1DCA90819F1A9F21164E6D89C2F764D /* Pods-LTExtUIBase_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-LTExtUIBase_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		E5232E3CDA522B6974DD795169BACBAA /* UITextField+LTCommon.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "UITextField+LTCommon.m"; sourceTree = "<group>"; };
@@ -196,7 +196,6 @@
 				725CADB2A6FDC03C8079379BC5989525 /* nav_back@2x.png */,
 				6D9AEAC40C2B0A1E071C4628527FEC63 /* nav_back@3x.png */,
 			);
-			name = Assets;
 			path = Assets;
 			sourceTree = "<group>";
 		};
@@ -206,7 +205,6 @@
 				162EC99068B0C8856C42627CEE550D8C /* UIControl+LTBlock.h */,
 				89393E8A084E036819DFED81D06934A6 /* UIControl+LTBlock.m */,
 			);
-			name = UIControl;
 			path = UIControl;
 			sourceTree = "<group>";
 		};
@@ -218,7 +216,6 @@
 				9B5566E4F7531945C62681C4C066D639 /* UIView+LTTransform.h */,
 				4DCF4DF1626D78AADAC11245B3C711D5 /* UIView+LTTransform.m */,
 			);
-			name = UIView;
 			path = UIView;
 			sourceTree = "<group>";
 		};
@@ -237,7 +234,6 @@
 				A4FF9BFB9844C8AD4E77FBCF1B7637A9 /* LTRouter.m */,
 				4022C4545DE4334EA6E0AEC128C48146 /* Support Files */,
 			);
-			name = LTRouter;
 			path = LTRouter;
 			sourceTree = "<group>";
 		};
@@ -273,7 +269,6 @@
 				2D5A4741276B0F7814F094F643367837 /* LTCipherText.h */,
 				35749D69E13054935FFBF218CDB710A5 /* LTCipherText.m */,
 			);
-			name = LTCipherText;
 			path = LTCipherText;
 			sourceTree = "<group>";
 		};
@@ -294,7 +289,6 @@
 				DEF5E159B342DD94EA31FB6A5C15F26D /* LTSMSButton.h */,
 				0696F5CBD6F4A602FEA049F7F8ADEE3F /* LTSMSButton.m */,
 			);
-			name = LTSMSButton;
 			path = LTSMSButton;
 			sourceTree = "<group>";
 		};
@@ -318,12 +312,11 @@
 				00AD69D7E825C05280209FE43A6A14C0 /* CardTextField.m */,
 				470C972A490B2F2CE8D42C87403B9E23 /* MobileNoTextField.h */,
 				5BF758504B0F3BF770FFD43E16166C5C /* MobileNoTextField.m */,
-				DEF94FECADD6687895149F3C3113937F /* NumberTextField.h */,
-				D065B8D6D095937E8B83A236CB78C5DF /* NumberTextField.m */,
+				DEF94FECADD6687895149F3C3113937F /* LTNumberTextField.h */,
+				D065B8D6D095937E8B83A236CB78C5DF /* LTNumberTextField.m */,
 				0FFAA0B634D7474B7A27B35D48BCDD42 /* UITextField+LTCommon.h */,
 				E5232E3CDA522B6974DD795169BACBAA /* UITextField+LTCommon.m */,
 			);
-			name = UITextField;
 			path = UITextField;
 			sourceTree = "<group>";
 		};
@@ -342,7 +335,6 @@
 				062901C5EAFCA1893E07E9CB012ED215 /* UIView */,
 				9F398FC26EFF7CA9F00FD6C816FC50E6 /* UIViewController */,
 			);
-			name = Classes;
 			path = Classes;
 			sourceTree = "<group>";
 		};
@@ -372,7 +364,6 @@
 				EDA0EB9C1853DA16DD51BC6EB20689E6 /* UIImage+LTCommon.h */,
 				C1F8E9808A22F38EC4EAA89B28BA123C /* UIImage+LTCommon.m */,
 			);
-			name = UIImage;
 			path = UIImage;
 			sourceTree = "<group>";
 		};
@@ -397,7 +388,6 @@
 				ABCB9A24AFDDAB49E30BDEA3C8E80B79 /* UIViewController+LTUtil.h */,
 				1E8215386241A4BBF45E4CE581A60BE6 /* UIViewController+LTUtil.m */,
 			);
-			name = UIViewController;
 			path = UIViewController;
 			sourceTree = "<group>";
 		};
@@ -406,7 +396,6 @@
 			children = (
 				04AB846A81B55C3F8CCD16728F423EC8 /* Assets */,
 			);
-			name = LTExtUIBase;
 			path = LTExtUIBase;
 			sourceTree = "<group>";
 		};
@@ -416,7 +405,6 @@
 				680DD4268AA086DE8D442E7A9C885A4B /* UIColor+LTCommon.h */,
 				733A9E15CAAFC8214E1C552C560E8746 /* UIColor+LTCommon.m */,
 			);
-			name = UIColor;
 			path = UIColor;
 			sourceTree = "<group>";
 		};
@@ -428,7 +416,6 @@
 				61CB3374AB7E293F8121ABACCAA8061A /* PickerViewController.h */,
 				CA733D0E772D85078847C6B58FF294E1 /* PickerViewController.m */,
 			);
-			name = LTPickerView;
 			path = LTPickerView;
 			sourceTree = "<group>";
 		};
@@ -465,7 +452,6 @@
 				FCBDAAACAA946AA10983394022FA5C81 /* LTLoadingButton.h */,
 				E1B06FE6231AC3B930BCC491286AE3E9 /* LTLoadingButton.m */,
 			);
-			name = LTLoadingButton;
 			path = LTLoadingButton;
 			sourceTree = "<group>";
 		};
@@ -475,7 +461,6 @@
 				D12925B77F31188CF74B93C2B20AFF4D /* LTLoadingButton */,
 				688A36704AAA95C0D3B9FF5F53BD98E3 /* LTSMSButton */,
 			);
-			name = UIButton;
 			path = UIButton;
 			sourceTree = "<group>";
 		};
@@ -484,7 +469,6 @@
 			children = (
 				747FF034E5FF0BD541BE0B42FA41B615 /* Classes */,
 			);
-			name = LTExtUIBase;
 			path = LTExtUIBase;
 			sourceTree = "<group>";
 		};
@@ -494,7 +478,6 @@
 				70EB5FEAF5C32E50619EA1B7E2D55DBD /* UIBarButtonItem+LTItem.h */,
 				37D67B6AE454934848824944AE06A6D8 /* UIBarButtonItem+LTItem.m */,
 			);
-			name = UIBarButtonItem;
 			path = UIBarButtonItem;
 			sourceTree = "<group>";
 		};
@@ -506,7 +489,6 @@
 				D99E6DB3C8CEEBBE4FCED2D97794DB87 /* UINavigationBar+LTUtil.h */,
 				1DBF5423554300D86EE122435661B730 /* UINavigationBar+LTUtil.m */,
 			);
-			name = LTNavigationController;
 			path = LTNavigationController;
 			sourceTree = "<group>";
 		};
@@ -542,7 +524,7 @@
 				4B9328240D3C982E569BF390A1BA0DD5 /* LTPickerView.h in Headers */,
 				1BBFA93BB50A5D8A4611D922D3A8DAA7 /* LTSMSButton.h in Headers */,
 				88B3C76D278A4494EFE29DBBF9D09539 /* MobileNoTextField.h in Headers */,
-				1114DAAFD9CA09DEE73108D30781543F /* NumberTextField.h in Headers */,
+				1114DAAFD9CA09DEE73108D30781543F /* LTNumberTextField.h in Headers */,
 				BA17576473FE316616182AE0BBC985AD /* PickerViewController.h in Headers */,
 				C39166476AA83864EE86232D2F617CCE /* UIBarButtonItem+LTItem.h in Headers */,
 				94AC11B3A0F14DEB33DC11939BCFEA7A /* UIColor+LTCommon.h in Headers */,
@@ -679,7 +661,7 @@
 				F4AB355BB4CD5486CB8B19D4D92CD232 /* LTPickerView.m in Sources */,
 				5CF392414BE01AC8A1F84349D38A750B /* LTSMSButton.m in Sources */,
 				19304D7C0053E574BF16ACFD0FDB1698 /* MobileNoTextField.m in Sources */,
-				7D33F37C94BA9CDD5522E2B024A3038C /* NumberTextField.m in Sources */,
+				7D33F37C94BA9CDD5522E2B024A3038C /* LTNumberTextField.m in Sources */,
 				11EDB0B6AEBA7465DEB214B5F739B5D9 /* PickerViewController.m in Sources */,
 				E0C2011FF0AD8946BD0FD3E9D44CE7AE /* UIBarButtonItem+LTItem.m in Sources */,
 				9E925FC61063E8334ECA886252EAB367 /* UIColor+LTCommon.m in Sources */,

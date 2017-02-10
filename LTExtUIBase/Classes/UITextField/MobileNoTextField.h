@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "NumberTextField.h"
-@interface MobileNoTextField : NumberTextField
+#import "LTNumberTextField.h"
+@interface MobileNoTextField : LTNumberTextField
 
 @end

@@ -8,61 +8,21 @@
 
 #import "MobileNoTextField.h"
 
-@interface MobileNoTextField (){
-
-    NSString *contentString;
-}
-
-@end
-
 @implementation MobileNoTextField
-
-- (void)setup {
-    
-    self.keyboardType   = UIKeyboardTypeNumberPad;
-    [self addTarget:self
-             action:@selector(textDidChanged:)
-   forControlEvents:UIControlEventEditingChanged];
-}
 
 -(id)initWithFrame:(CGRect)frame {
     
     if ( !(self = [super initWithFrame:frame]) )
         return nil;
     
-    [self setup];
+    self.maxLength = 11;
     return self;
 }
 
 -(void)awakeFromNib {
     
-    [self setup];
-}
-
-- (void)textDidChanged:(UITextField *)textField{
-    
-    NSString *filterString = @"0123456789";
-    
-    NSString *string = [self numberString:textField.text
-                             filterString:filterString];
-    if ([string length]<=11) {
-        
-        contentString = string;
-    }
-    
-    textField.text = contentString;
-}
-
-- (NSString *)numberString:(NSString *)string filterString:(NSString *)filterString{
-    
-    NSString *text = [string stringByReplacingOccurrencesOfString:@" "
-                                                       withString:@""];
-    
-    NSCharacterSet *setToRemove = [[NSCharacterSet characterSetWithCharactersInString:filterString]
-                                   invertedSet];
-    
-    text = [text stringByTrimmingCharactersInSet:setToRemove];
-    return text;
+    [super awakeFromNib];
+    self.maxLength = 11;
 }
 
 @end

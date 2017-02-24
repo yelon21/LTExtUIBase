@@ -19,7 +19,11 @@
 
 - (void)setup {
     
-    self.maxLength = 11;
+    if (self.maxLength == 0) {
+        
+        self.maxLength = 11;
+    }
+    
     self.keyboardType   = UIKeyboardTypeNumberPad;
     [self addTarget:self
              action:@selector(textDidChanged:)

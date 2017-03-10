@@ -58,4 +58,65 @@
     }
     return rootVC;
 }
+
++ (UIViewController *)LT_TopFrontViewController{
+    
+    UIViewController *viewCon = [[UIApplication sharedApplication].delegate window].rootViewController;
+    return [UIViewController LT_FrontTopViewController:viewCon];
+}
+
++ (UIViewController *)LT_FrontTopViewController:(UIViewController *)root{
+    
+    UIViewController *rootVC = root;
+    
+    if (rootVC.presentedViewController) {
+        
+        return [self LT_FrontTopViewController:rootVC.presentedViewController];
+    }
+    else if ([rootVC isKindOfClass:[UINavigationController class]]) {
+        
+        return [(UINavigationController *)rootVC topViewController];
+    }
+    else if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        
+        return [self LT_FrontTopViewController:[(UITabBarController *)rootVC selectedViewController]];
+    }
+    else if ([rootVC isKindOfClass:[UIViewController class]]) {
+        
+        return rootVC;
+    }
+    
+    return rootVC;
+}
+
+//获取最前端的 UINavigationController
++ (UINavigationController *)LT_FrontNavigationViewController{
+    
+    UIViewController *viewCon = [self LT_FrontViewController];
+    
+    return [self LT_FindFrontNavigationViewController:viewCon];
+}
+
++ (UINavigationController *)LT_FindFrontNavigationViewController:(UIViewController *)root{
+    
+    UIViewController *rootVC = root;
+    
+    if (rootVC.presentedViewController) {
+        
+        return [self LT_FindFrontNavigationViewController:rootVC.presentedViewController];
+    }
+    else if ([rootVC isKindOfClass:[UINavigationController class]]) {
+        
+        return rootVC;
+    }
+    else if ([rootVC isKindOfClass:[UITabBarController class]]) {
+        
+        return [self LT_FindFrontNavigationViewController:[(UITabBarController *)rootVC selectedViewController]];
+    }
+    else if ([rootVC isKindOfClass:[UIViewController class]]) {
+        
+        return rootVC.navigationController;
+    }
+    return nil;
+}
 @end

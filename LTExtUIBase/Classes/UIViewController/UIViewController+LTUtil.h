@@ -27,6 +27,11 @@
 
 - (void)lt_closeSelfAction;
 - (void)lt_closeSelfActionAfter:(CGFloat)delay;
-
+//获取最前端的 ViewController (parent)
 + (UIViewController *)LT_FrontViewController;
+//获取最前端的 ViewController (child)
++ (UIViewController *)LT_TopFrontViewController;
+
+//获取最前端的 UINavigationController
++ (UINavigationController *)LT_FrontNavigationViewController;
 @end

@@ -17,4 +17,6 @@
 @property(nonatomic,assign)UIColor *pointColor;
 
 @property(nonatomic,assign)UIEdgeInsets boundInsets;
+
+- (void)setCellCount:(NSUInteger)count;
 @end

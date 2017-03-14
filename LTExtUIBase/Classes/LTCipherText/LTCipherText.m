@@ -8,9 +8,13 @@
 
 #import "LTCipherText.h"
 
-static NSInteger cellCount = 6;
+@interface LTCipherText ()
+
+@property(nonatomic,assign,readonly) NSUInteger cellCount;
+@end
 
 @implementation LTCipherText
+@synthesize cellCount = _cellCount;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     
@@ -29,18 +33,34 @@ static NSInteger cellCount = 6;
 }
 
 - (void)setup{
-
-    CGFloat screenW = CGRectGetWidth([[UIScreen mainScreen] bounds]);
     
-    self.frame = CGRectMake(0.0, 0.0, screenW-60.0, 60.0);
-    self.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor redColor];
     self.boundInsets = UIEdgeInsetsZero;
     
     self.gridBackgroundColor = [UIColor whiteColor];
     self.gridLineColor = [UIColor grayColor];
     self.pointColor = [UIColor darkGrayColor];
     
-    _pointsCount = 0;
+    _pointsCount = 1;
+}
+
+- (void)setCellCount:(NSUInteger)count{
+
+    _cellCount = count;
+}
+
+-(NSUInteger)cellCount{
+
+    if (_cellCount == 0) {
+        
+        return 6;
+    }
+    return _cellCount;
+}
+
+-(void)layoutSubviews{
+
+    [self setNeedsDisplay];
 }
 
 -(void)setPointsCount:(NSUInteger)pointsCount{
@@ -64,8 +84,10 @@ static NSInteger cellCount = 6;
     CGFloat left = _boundInsets.left;
     CGFloat top = _boundInsets.top;
     
-    CGFloat cellW = (viewW - left - _boundInsets.right)/cellCount;
-    CGFloat cellH = MIN(cellW, viewH - top - _boundInsets.bottom);
+    CGFloat cellW = (viewW - left - _boundInsets.right)/self.cellCount;
+    
+    CGFloat grideH = viewH - top - _boundInsets.bottom;
+    CGFloat cellH = MIN(cellW, grideH);
     
     CGFloat radius = cellH/4;
     
@@ -73,7 +95,7 @@ static NSInteger cellCount = 6;
         
         CGMutablePathRef path = CGPathCreateMutable();
         
-        CGPathAddArc(path, NULL, left+cellW/2.0+cellW*i, top+cellH/2.0, radius, 0.0, M_PI*2, YES);
+        CGPathAddArc(path, NULL, left+cellW/2.0+cellW*i, top+grideH/2.0, radius, 0.0, M_PI*2, YES);
         
         CGContextRef context = UIGraphicsGetCurrentContext();
         CGContextSaveGState(context);
@@ -92,22 +114,20 @@ static NSInteger cellCount = 6;
 
 - (void)drawGridLine{
     
-    NSInteger pointCount = 6;
-    
     CGFloat viewW = CGRectGetWidth(self.bounds);
     CGFloat viewH = CGRectGetHeight(self.bounds);
     
     CGFloat left = _boundInsets.left;
     CGFloat top = _boundInsets.top;
     
-    CGFloat cellW = (viewW - left - _boundInsets.right)/pointCount;
-    CGFloat cellH = MIN(cellW, viewH - top - _boundInsets.bottom);
+    CGFloat cellW = (viewW - left - _boundInsets.right)/self.cellCount;
+    CGFloat cellH = viewH - top - _boundInsets.bottom;
     
     CGMutablePathRef path = CGPathCreateMutable();
     
-    CGPathAddRoundedRect(path, NULL, CGRectMake(left, top, cellW*pointCount, cellH), 2.5, 2.5);
+    CGPathAddRoundedRect(path, NULL, CGRectMake(left, top, cellW*self.cellCount, cellH), 2.5, 2.5);
     
-    for (NSInteger i = 1; i < pointCount; i++) {
+    for (NSInteger i = 1; i < self.cellCount; i++) {
         
         CGPathMoveToPoint(path, NULL, left+i*cellW, top);
         CGPathAddLineToPoint(path, NULL, left+i*cellW, top+cellH);

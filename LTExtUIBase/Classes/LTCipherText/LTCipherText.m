@@ -45,7 +45,10 @@
 
 - (void)setCellCount:(NSUInteger)count{
 
-    _cellCount = count;
+    if (_cellCount==0) {
+        
+        _cellCount = count;
+    }
 }
 
 -(NSUInteger)cellCount{

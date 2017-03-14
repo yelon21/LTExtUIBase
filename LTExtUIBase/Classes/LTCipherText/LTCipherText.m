@@ -10,7 +10,6 @@
 
 @interface LTCipherText ()
 
-@property(nonatomic,assign,readonly) NSUInteger cellCount;
 @end
 
 @implementation LTCipherText
@@ -64,6 +63,11 @@
 }
 
 -(void)setPointsCount:(NSUInteger)pointsCount{
+    
+    if (pointsCount>self.cellCount) {
+        
+        return;
+    }
     
     _pointsCount = pointsCount;
     

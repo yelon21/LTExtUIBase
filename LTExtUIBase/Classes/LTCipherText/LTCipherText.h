@@ -18,5 +18,7 @@
 
 @property(nonatomic,assign)UIEdgeInsets boundInsets;
 
+@property(nonatomic,assign,readonly) NSUInteger cellCount;
 - (void)setCellCount:(NSUInteger)count;
+
 @end

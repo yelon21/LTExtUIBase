@@ -16,7 +16,7 @@
                      sel:(SEL)sel{
     
     return [UIBarButtonItem LT_itemImage:[UIImage imageNamed:imageName]
-                               highlight:[UIImage imageNamed:imageNameH]
+                               highlight:imageNameH?[UIImage imageNamed:imageNameH]:nil
                                   target:target
                                      sel:sel];
 }
@@ -42,15 +42,32 @@
                   target:(NSObject *)target
                      sel:(SEL)sel{
     
+    return [self LT_item:title
+                   color:titleColor
+                    font:[UIFont systemFontOfSize:17.0]
+                  target:target
+                     sel:sel];
+}
+
++(UIBarButtonItem *)LT_item:(NSString *)title
+                      color:(UIColor *)titleColor
+                       font:(UIFont *)font
+                     target:(NSObject *)target
+                        sel:(SEL)sel{
+    
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
     btn.backgroundColor = [UIColor clearColor];
-    btn.titleLabel.font = [UIFont systemFontOfSize:17.0];
+    if (font) {
+        
+        btn.titleLabel.font = font;
+    }
+    
     [btn setTitle:title forState:UIControlStateNormal];
     if (titleColor) {
         [btn setTitleColor:titleColor forState:UIControlStateNormal];
     }
     else{
-    
+        
         [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     }
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
@@ -59,6 +76,5 @@
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
     return item;
 }
-
 
 @end

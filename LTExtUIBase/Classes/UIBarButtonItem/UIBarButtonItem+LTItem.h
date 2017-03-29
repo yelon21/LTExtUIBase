@@ -24,4 +24,10 @@
                    color:(UIColor *)titleColor
                   target:(NSObject *)target
                      sel:(SEL)sel;
+
++(UIBarButtonItem *)LT_item:(NSString *)title
+                      color:(UIColor *)titleColor
+                       font:(UIFont *)font
+                     target:(NSObject *)target
+                        sel:(SEL)sel;
 @end

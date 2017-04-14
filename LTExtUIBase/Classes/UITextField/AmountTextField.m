@@ -10,7 +10,7 @@
 
 @interface AmountTextField (){
 
-    NSMutableString *numberString;
+    NSString *numberString;
 }
 
 @end
@@ -36,7 +36,7 @@
     
     self.maxValue       = 100000.00;
     
-    numberString = [[NSMutableString alloc]init];
+    numberString = @"";
     
     self.keyboardType   = UIKeyboardTypeDecimalPad;
     

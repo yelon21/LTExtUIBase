@@ -63,7 +63,7 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
 
-    NSArray *views = [self.navigationController.navigationBar subviews];
+    //NSArray *views = [self.navigationController.navigationBar subviews];
     //NSLog(@"views=%@",views);
     
     NSInteger row = indexPath.row;

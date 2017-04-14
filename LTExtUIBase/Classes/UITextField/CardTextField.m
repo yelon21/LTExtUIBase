@@ -62,8 +62,6 @@
 
     NSString *tmp = [self numberString:textField.text];
     
-    BOOL flag = [tmp length]>4;
-    
     NSInteger count = ceil([tmp length]/4.0);
     
     NSMutableArray *compnents = [[NSMutableArray alloc]init];

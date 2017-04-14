@@ -4,6 +4,8 @@ source'https://github.com/CocoaPods/Specs.git'#官方仓库的地址
 target 'LTExtUIBase_Example' do
   pod 'LTExtUIBase', :path => '../'
 
+pod 'LTRouter', :git => 'https://github.com/yelon21/LTRouter.git'
+
   target 'LTExtUIBase_Tests' do
     inherit! :search_paths
 

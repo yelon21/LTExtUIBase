@@ -107,7 +107,7 @@
     }
     else if ([rootVC isKindOfClass:[UINavigationController class]]) {
         
-        return rootVC;
+        return (UINavigationController *)rootVC;
     }
     else if ([rootVC isKindOfClass:[UITabBarController class]]) {
         

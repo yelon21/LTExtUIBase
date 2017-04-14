@@ -32,6 +32,7 @@ NSString *LTLTRouter_FilterString(id obj){
 #define kInitFunctionName @"LT_InitInstanceWithPara:"
 
 static UIViewController *LT_defaultRootViewController = nil;
+static Class LT_defaultNavigationViewControllerClass = nil;
 
 @implementation LTRouter
 
@@ -41,7 +42,7 @@ static UIViewController *LT_defaultRootViewController = nil;
  @param rootVC 根视图控制器
  */
 + (void)LT_SetDefaultRootViewController:(UIViewController *)rootVC{
-
+    
     if (!rootVC || ![rootVC isKindOfClass:[UIViewController class]]) {
         
         return;
@@ -49,6 +50,15 @@ static UIViewController *LT_defaultRootViewController = nil;
     LT_defaultRootViewController = [rootVC retain];
 }
 
++ (void)LT_SetDefaultNavigationViewControllerClass:(Class)navClass{
+    
+    if (!navClass || ![[navClass new] isKindOfClass:[UINavigationController class]]) {
+        
+        return;
+    }
+    
+    LT_defaultNavigationViewControllerClass = navClass;
+}
 /**
  关闭视图控制器
  
@@ -56,7 +66,7 @@ static UIViewController *LT_defaultRootViewController = nil;
  @param animated 是否动画
  */
 + (void)LT_CloseViewController:(UIViewController *)viewCon animated:(BOOL)animated{
-
+    
     if (!viewCon || ![viewCon isKindOfClass:[UIViewController class]]) {
         
         return;
@@ -66,24 +76,33 @@ static UIViewController *LT_defaultRootViewController = nil;
     
     if (nav) {
         
-        if ([nav.viewControllers count] > 1) {
+        NSArray *viewControllers = nav.viewControllers;
+        
+        NSUInteger index = [viewControllers indexOfObject:viewCon];
+        
+        if (index == NSNotFound) {
             
-            [nav popViewControllerAnimated:animated];
+            return;
+        }
+        else if (index > 0) {
+            
+            UIViewController *toVC = [viewControllers objectAtIndex:index-1];
+            [nav popToViewController:toVC animated:animated];
         }
         else {
-        
+            
             [LTRouter LT_CloseViewController:nav animated:animated];
         }
     }
     else{
-    
+        
         if (viewCon.presentingViewController) {
             
             [viewCon dismissViewControllerAnimated:animated completion:nil];
         }
         else if (LT_defaultRootViewController
                  &&[LT_defaultRootViewController isKindOfClass:[UIViewController class]]){
-        
+            
             if (viewCon != LT_defaultRootViewController) {
                 
                 [[UIApplication sharedApplication].delegate window].rootViewController = LT_defaultRootViewController;
@@ -98,16 +117,46 @@ static UIViewController *LT_defaultRootViewController = nil;
  @param urlString url格式，host为类名，query为相关参数
  @param animated 是否动画
  */
-+ (void)LT_OpenUrl:(NSString *)urlString animated:(BOOL)animated{
++ (id)LT_OpenUrl:(NSString *)urlString animated:(BOOL)animated{
     
-    urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
-    NSURL *url = [NSURL URLWithString:LTLTRouter_FilterString(urlString)];
+    urlString = LTLTRouter_FilterString(urlString);
     
-    __strong UIViewController *viewControlelr = [self LT_GetViewController:urlString];
+    if ([urlString respondsToSelector:@selector(stringByAddingPercentEncodingWithAllowedCharacters:)]) {
+        
+        urlString = [urlString stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    }
+    else{
+        
+        urlString = [urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    }
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+   
+    if (!url) {
+        
+        return nil;
+    }
+    
+    return [self LT_OpenURL:url animated:animated];
+}
+/**
+ 开启一个视图控制器
+ 
+ @param url url格式，host为类名，query为相关参数
+ @param animated 是否动画
+ */
++ (id)LT_OpenURL:(NSURL *)url animated:(BOOL)animated{
+    
+    if (!url || ![url isKindOfClass:[NSURL class]]) {
+        
+        return nil;
+    }
+    
+    __strong UIViewController *viewControlelr = [self LT_GetViewController:url.absoluteString];
     
     if (!viewControlelr || ![viewControlelr isKindOfClass:[UIViewController class]]) {
         
-        return;
+        return nil;
     }
     
     NSString *scheme = LTLTRouter_FilterString(url.scheme);
@@ -127,18 +176,26 @@ static UIViewController *LT_defaultRootViewController = nil;
                               animated:animated
                             completion:nil];
     }
+    
+    return viewControlelr;
 }
 
 
 //push 一视图控制器
 + (void)LT_PushViewController:(UIViewController *)viewCon
                      animated:(BOOL)animated{
-
+    
     UINavigationController *nav = [self LT_FrontNavigationViewController];
     
     if (!nav) {
         
-        UINavigationController *navCon = [[UINavigationController alloc] initWithRootViewController:viewCon];
+        Class navClass = LT_defaultNavigationViewControllerClass;
+        if (!navClass) {
+            
+            navClass = [UINavigationController class];
+        }
+        
+        UINavigationController *navCon = [[navClass alloc] initWithRootViewController:viewCon];
         
         [self LT_PresentViewController:navCon
                               animated:animated
@@ -155,7 +212,7 @@ static UIViewController *LT_defaultRootViewController = nil;
 + (void)LT_PresentViewController:(UIViewController *)viewCon
                         animated:(BOOL)animated
                       completion:(void (^ __nullable)(void))completion{
-
+    
     UIViewController *frontVC = [self LT_FrontViewController];
     
     if (frontVC) {
@@ -167,9 +224,9 @@ static UIViewController *LT_defaultRootViewController = nil;
     }
     else{
         
-        [[UIApplication sharedApplication].delegate window].rootViewController = frontVC;
+        [[UIApplication sharedApplication].delegate window].rootViewController = viewCon;
     }
-
+    
 }
 
 //根据urlString获取实例
@@ -268,7 +325,7 @@ static UIViewController *LT_defaultRootViewController = nil;
     }
     else if ([rootVC isKindOfClass:[UINavigationController class]]) {
         
-        return rootVC;
+        return (UINavigationController *)rootVC;
     }
     else if ([rootVC isKindOfClass:[UITabBarController class]]) {
         
@@ -304,3 +361,74 @@ static UIViewController *LT_defaultRootViewController = nil;
 NSString * const kLTRouterSchemePresent = @"LTRouterSchemePresent";
 NSString * const kLTRouterSchemePush    = @"LTRouterSchemePush";
 NSString * const kLTRouterSchemeDefault = @"LTRouterSchemeDefault";
+
+#import <objc/runtime.h>
+
+@interface UIApplication (LTCommon)
+
+@end
+
+@implementation UIApplication (LTCommon)
+
++ (void)load {
+    
+    [self swizzleSelector:@selector(openURL:)
+             withSelector:@selector(ltRouter_openURL:)];
+    
+    [self swizzleSelector:@selector(openURL:options:completionHandler:)
+             withSelector:@selector(ltRouter_openURL:options:completionHandler:)];
+}
+
++ (void)swizzleSelector:(SEL)originalSelector withSelector:(SEL)swizzledSelector {
+    
+    Method originalMethod = class_getInstanceMethod(self, originalSelector);
+    Method swizzledMethod = class_getInstanceMethod(self, swizzledSelector);
+    
+    method_exchangeImplementations(originalMethod, swizzledMethod);
+}
+
+-(BOOL)ltRouter_openURL:(NSURL *)url{
+    
+    NSString *scheme = url.scheme;
+    
+    if ([scheme isEqualToString:kLTRouterSchemeDefault]
+        ||[scheme isEqualToString:kLTRouterSchemePush]
+        |[scheme isEqualToString:kLTRouterSchemePresent]) {
+        
+        [LTRouter LT_OpenURL:url animated:YES];
+        return NO;
+    }
+    else{
+        
+        return [self ltRouter_openURL:url];
+    }
+}
+
+-(void)ltRouter_openURL:(NSURL *)url
+                options:(NSDictionary<NSString *,id> *)options
+      completionHandler:(void (^)(BOOL))completion{
+    
+    NSString *scheme = url.scheme;
+    
+    if ([scheme isEqualToString:kLTRouterSchemeDefault]
+        ||[scheme isEqualToString:kLTRouterSchemePush]
+        |[scheme isEqualToString:kLTRouterSchemePresent]) {
+        
+        [LTRouter LT_OpenURL:url animated:YES];
+        
+        if (completion) {
+            
+            completion(NO);
+        }
+    }
+    else{
+        
+        [self ltRouter_openURL:url
+                       options:options
+             completionHandler:completion];
+    }
+}
+
+@end
+
+

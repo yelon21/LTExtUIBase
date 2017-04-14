@@ -61,7 +61,7 @@
         return [UIColor colorWithCGColor:oldCGColor];
     }
     
-    int i = componentsCount - 1;
+    long i = componentsCount - 1;
     
     newComponentColors[i] = oldComponentColors[i]; // alpha
     

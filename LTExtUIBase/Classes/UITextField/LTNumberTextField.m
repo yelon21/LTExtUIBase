@@ -45,18 +45,24 @@
     [self setup];
 }
 
-- (void)textDidChanged:(UITextField *)textField{
+-(void)setText:(NSString *)text{
     
     NSString *filterString = @"0123456789";
     
-    NSString *string = [self numberString:textField.text
+    NSString *string = [self numberString:text
                              filterString:filterString];
+    
     if ([string length]<=self.maxLength) {
         
         contentString = string;
     }
     
-    textField.text = contentString;
+    [super setText:contentString];
+}
+
+- (void)textDidChanged:(UITextField *)textField{
+    
+    self.text = textField.text;
 }
 
 - (NSString *)numberString:(NSString *)string filterString:(NSString *)filterString{

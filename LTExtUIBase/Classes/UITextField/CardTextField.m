@@ -8,18 +8,13 @@
 
 #import "CardTextField.h"
 
-@interface CardTextField (){
-    
-    NSMutableString *contentString;
-}
+@interface CardTextField ()
 
 @end
 
 @implementation CardTextField
 
 - (void)setup {
-    
-    contentString = [[NSMutableString alloc]init];
     
     self.keyboardType   = UIKeyboardTypeNumberPad;
     

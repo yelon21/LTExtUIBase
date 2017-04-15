@@ -94,6 +94,16 @@
     textField.text = numberString;
 }
 
+-(void)setText:(NSString *)text{
+
+    [super setText:text];
+    
+    if (text == nil || [text length] == 0) {
+        
+        numberString = @"";
+    }
+}
+
 - (void)setContentAmount:(NSNumber *)amount{
     
     if (amount.doubleValue>self.maxValue) {

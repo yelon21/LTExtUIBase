@@ -136,7 +136,7 @@
 
 -(long long)fenValue{
     
-    NSNumber *num = @([numberString doubleValue]*100.0);
+    NSNumber *num = @(round([numberString doubleValue]*100.0));
     return [num longLongValue];
 }
 

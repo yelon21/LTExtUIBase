@@ -90,7 +90,8 @@
     for (UIView *view in [self subviews]) {
         
         NSString *className = NSStringFromClass([view class]);
-        if ([className isEqualToString:@"_UINavigationBarBackground"]) {
+        if ([className isEqualToString:@"_UINavigationBarBackground"]
+            ||[className isEqualToString:@"_UIBarBackground"]) {
             
             if (view.alpha > 0.0) {
                 

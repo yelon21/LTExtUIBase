@@ -227,13 +227,12 @@
                               color:(UIColor *)color
                                font:(UIFont *)font{
 
-    CGFloat imageW = self.size.width;
-    CGFloat imageH = self.size.height;
-    
-    if (imageH*imageW==0.0) {
+    if (![color isKindOfClass:[UIColor class]]) {
         
-        return nil;
+        color = [UIColor whiteColor];
     }
+    
+    CGFloat imageH = self.size.height;
     
     CGSize size = [markString sizeWithFont:font constrainedToSize:self.size];
 
@@ -268,7 +267,13 @@
     
     if (imageH*imageW==0.0) {
         
-        return nil;
+        return self;
+    }
+    
+    if (![markString isKindOfClass:[NSString class]]) {
+        
+        NSLog(@"markString 非文本");
+        return self;
     }
     
     UIGraphicsBeginImageContextWithOptions(self.size, YES, self.scale);

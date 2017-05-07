@@ -15,9 +15,14 @@
 #import "CardTextField.h"
 #import "LTLoadingButton.h"
 #import "NavViewController.h"
+#import "UIView+LTCommon.h"
+#import "UIImage+LTCommon.h"
+
 @interface LYViewController ()
 
 @property (weak, nonatomic) IBOutlet LTLoadingButton *btn;
+@property (weak, nonatomic) IBOutlet UIView *twxtVeiw;
+@property (weak, nonatomic) IBOutlet UIImageView *imageView;
 
 @end
 
@@ -31,7 +36,7 @@
     
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(10, 10, 40, 40)];
     btn.backgroundColor = [UIColor grayColor];
-    [self.view addSubview:btn];
+//    [self.view addSubview:btn];
     
     [btn lt_handleControlEvent:UIControlEventTouchUpInside
                 conditionBlock:^BOOL(id obj, ActionBlock actionBlock) {
@@ -54,7 +59,7 @@
     //amoutTF.maxValue = 50000.00;
 //    amoutTF.layer.cornerRadius = 5.0;
     
-    [self.view addSubview:amoutTF];
+//    [self.view addSubview:amoutTF];
     
 //    [amoutTF addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
 }
@@ -76,6 +81,13 @@
     
 //    NavViewController *viewCon = [[NavViewController alloc]initWithNibName:@"NavViewController" bundle:nil];
 //    [self.navigationController pushViewController:viewCon animated:YES];
+    
+    UIImage *image = [self.twxtVeiw lt_screenshot];
+    
+    self.imageView.image = [image lt_imageWithMarkString:@"要是有些事我没说，"
+                                                   color:[UIColor whiteColor]
+                                                    font:[UIFont systemFontOfSize:14.0]];
+    
 }
 
 

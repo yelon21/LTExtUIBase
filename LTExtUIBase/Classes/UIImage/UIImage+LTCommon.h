@@ -77,4 +77,28 @@
  @return 新图片
  */
 - (UIImage *)lt_scaleImageByDefaultWidth:(CGFloat)width;
+
+/**
+ 添加文字水印
+
+ @param markString 文字内容
+ @param color 文本颜色
+ @param font 字体
+ @return 添加后的图片
+ */
+- (UIImage *)lt_imageWithMarkString:(NSString *)markString
+                              color:(UIColor *)color
+                               font:(UIFont *)font;
+
+/**
+  添加文字水印
+
+ @param markString 文字内容
+ @param inRect 文本所在图片位置
+ @param attrs 文本修饰属性
+ @return 添加后的图片
+ */
+- (UIImage *)lt_imageWithMarkString:(NSString *)markString
+                             inRect:(CGRect)inRect
+                     withAttributes:(nullable NSDictionary<NSString *, id> *)attrs;
 @end

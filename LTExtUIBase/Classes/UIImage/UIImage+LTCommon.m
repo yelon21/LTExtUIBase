@@ -201,12 +201,7 @@
     }
     return newimage;
 }
-/**
- 根据宽度 比例缩放
- 
- @param width 指定宽度
- @return 新图片
- */
+
 - (UIImage *)lt_scaleImageByDefaultWidth:(CGFloat)width{
     
     UIImage *newimage = nil;
@@ -226,6 +221,67 @@
         
     }
     return newimage;
+}
+#pragma mark add mark
+- (UIImage *)lt_imageWithMarkString:(NSString *)markString
+                              color:(UIColor *)color
+                               font:(UIFont *)font{
+
+    CGFloat imageW = self.size.width;
+    CGFloat imageH = self.size.height;
+    
+    if (imageH*imageW==0.0) {
+        
+        return nil;
+    }
+    
+    CGSize size = [markString sizeWithFont:font constrainedToSize:self.size];
+
+    CGRect rect = CGRectMake(10,
+                             imageH - size.height-10,
+                             size.width,
+                             size.height);
+    
+    NSShadow *shadow = [[NSShadow alloc]init];
+    shadow.shadowOffset = CGSizeMake(1, 1);
+    shadow.shadowBlurRadius = 1.0;
+    shadow.shadowColor = [[UIColor blackColor] colorWithAlphaComponent:0.5];
+    NSDictionary *att = @{NSFontAttributeName:font,
+                          NSForegroundColorAttributeName:color,
+                          NSShadowAttributeName:shadow,
+                          NSVerticalGlyphFormAttributeName:@(0)
+                          };
+    
+    UIImage *newPic = [self lt_imageWithMarkString:markString
+                                            inRect:rect
+                                    withAttributes:att];
+    
+    return newPic;
+}
+
+- (UIImage *)lt_imageWithMarkString:(NSString *)markString
+                             inRect:(CGRect)inRect
+                              withAttributes:(nullable NSDictionary<NSString *, id> *)attrs{
+    
+    CGFloat imageW = self.size.width;
+    CGFloat imageH = self.size.height;
+    
+    if (imageH*imageW==0.0) {
+        
+        return nil;
+    }
+    
+    UIGraphicsBeginImageContextWithOptions(self.size, YES, self.scale);
+    
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    
+    [markString drawInRect:inRect
+            withAttributes:attrs];
+    
+    UIImage *newPic = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newPic;
 }
 
 @end

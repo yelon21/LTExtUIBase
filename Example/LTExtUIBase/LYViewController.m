@@ -82,7 +82,7 @@
 //    NavViewController *viewCon = [[NavViewController alloc]initWithNibName:@"NavViewController" bundle:nil];
 //    [self.navigationController pushViewController:viewCon animated:YES];
     
-    UIImage *image = [self.twxtVeiw lt_screenshot];
+    UIImage *image = [[UIImage imageNamed:@"imageLoadingFailed"] lt_imageWithTintColor:[UIColor redColor]];
     
     self.imageView.image = [image lt_imageWithMarkString:@"要是有些事我没说，"
                                                    color:[UIColor whiteColor]

@@ -21,6 +21,7 @@
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		6003F5BA195388D20070C39A /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 6003F5B8195388D20070C39A /* InfoPlist.strings */; };
 		6003F5BC195388D20070C39A /* Tests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6003F5BB195388D20070C39A /* Tests.m */; };
+		6319617A1EBF4EA10063A84A /* imageLoadingFailed@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 631961791EBF4EA10063A84A /* imageLoadingFailed@3x.png */; };
 		6364C59F1DF28189003AE715 /* LYViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6364C59E1DF28189003AE715 /* LYViewController.xib */; };
 		636E07741E0FA22300323E9C /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636E07721E0FA22300323E9C /* NavViewController.m */; };
 		636E07751E0FA22300323E9C /* NavViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 636E07731E0FA22300323E9C /* NavViewController.xib */; };
@@ -63,6 +64,7 @@
 		6003F5B9195388D20070C39A /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		6003F5BB195388D20070C39A /* Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Tests.m; sourceTree = "<group>"; };
 		606FC2411953D9B200FFA9A0 /* Tests-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Prefix.pch"; sourceTree = "<group>"; };
+		631961791EBF4EA10063A84A /* imageLoadingFailed@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "imageLoadingFailed@3x.png"; sourceTree = "<group>"; };
 		6364C59E1DF28189003AE715 /* LYViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LYViewController.xib; sourceTree = "<group>"; };
 		636E07711E0FA22300323E9C /* NavViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavViewController.h; sourceTree = "<group>"; };
 		636E07721E0FA22300323E9C /* NavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			isa = PBXGroup;
 			children = (
 				637067061DF454460068968A /* eg_tulip.jpg */,
+				631961791EBF4EA10063A84A /* imageLoadingFailed@3x.png */,
 				6003F59C195388D20070C39A /* LYAppDelegate.h */,
 				6003F59D195388D20070C39A /* LYAppDelegate.m */,
 				6003F5A5195388D20070C39A /* LYViewController.h */,
@@ -300,6 +303,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				637067071DF454460068968A /* eg_tulip.jpg in Resources */,
+				6319617A1EBF4EA10063A84A /* imageLoadingFailed@3x.png in Resources */,
 				636E07751E0FA22300323E9C /* NavViewController.xib in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6364C59F1DF28189003AE715 /* LYViewController.xib in Resources */,

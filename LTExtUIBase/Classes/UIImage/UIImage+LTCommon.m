@@ -29,7 +29,7 @@
 
 - (UIImage *) lt_imageWithTintColor:(UIColor *)tintColor
 {
-    return [self lt_imageWithTintColor:tintColor blendMode:kCGBlendModeDestinationIn];
+    return [self lt_imageWithTintColor:tintColor blendMode:kCGBlendModeOverlay];
     
 }
 
@@ -43,7 +43,9 @@
     
     //Draw the tinted image in context
     [self drawInRect:bounds blendMode:blendMode alpha:1.0f];
-    
+    if (blendMode != kCGBlendModeDestinationIn) {
+        [self drawInRect:bounds blendMode:kCGBlendModeDestinationIn alpha:1.0f];
+    }
     UIImage *tintedImage = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     

@@ -36,11 +36,22 @@
 
 - (UIImage *)lt_screenshot{
     
+    UIImage *image = [self lt_screenshot:self.bounds];
+    return image;
+}
+
+- (UIImage *)lt_screenshot:(CGRect)inRect{
+    
     if (self) {
         
-        UIGraphicsBeginImageContextWithOptions(self.bounds.size, YES, [[UIScreen mainScreen] scale]);
+        CGPoint pt = inRect.origin;
+        CGSize size = inRect.size;
+        
+        NSAssert(size.width * size.height > 0.0, @"inRect.size 不能为0");
+        
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(size.width+pt.x, size.height+pt.y), YES, [[UIScreen mainScreen] scale]);
         if ([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-            [self drawViewHierarchyInRect:self.bounds afterScreenUpdates:YES];
+            [self drawViewHierarchyInRect:inRect afterScreenUpdates:YES];
         } else {
             [self.layer renderInContext:UIGraphicsGetCurrentContext()];
         }

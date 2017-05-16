@@ -17,5 +17,4 @@
 - (void)lt_setBorder:(CGFloat)borderWidth color:(UIColor *)color;
 
 - (UIImage *)lt_screenshot;
-- (UIImage *)lt_screenshot:(CGRect)inRect;
 @end

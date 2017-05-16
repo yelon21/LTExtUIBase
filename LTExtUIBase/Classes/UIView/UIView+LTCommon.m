@@ -36,22 +36,20 @@
 
 - (UIImage *)lt_screenshot{
     
-    UIImage *image = [self lt_screenshot:self.bounds];
-    return image;
-}
-
-- (UIImage *)lt_screenshot:(CGRect)inRect{
-    
     if (self) {
         
-        CGPoint pt = inRect.origin;
-        CGSize size = inRect.size;
+        CGSize size = self.bounds.size;
         
-        NSAssert(size.width * size.height > 0.0, @"inRect.size 不能为0");
+        if (size.width * size.height == 0.0) {
+            
+            NSLog(@"bounds.size 不能为0");
+            return nil;
+        }
         
-        UIGraphicsBeginImageContextWithOptions(CGSizeMake(size.width+pt.x, size.height+pt.y), YES, [[UIScreen mainScreen] scale]);
+        UIGraphicsBeginImageContextWithOptions(CGSizeMake(size.width, size.height), YES, [[UIScreen mainScreen] scale]);
         if ([self respondsToSelector:@selector(drawViewHierarchyInRect:afterScreenUpdates:)]) {
-            [self drawViewHierarchyInRect:inRect afterScreenUpdates:YES];
+            [self drawViewHierarchyInRect:CGRectMake(0, 0, size.width, size.height)
+                       afterScreenUpdates:YES];
         } else {
             [self.layer renderInContext:UIGraphicsGetCurrentContext()];
         }
@@ -62,4 +60,5 @@
     }
     return nil;
 }
+
 @end

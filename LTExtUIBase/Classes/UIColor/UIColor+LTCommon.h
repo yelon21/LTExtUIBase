@@ -32,7 +32,7 @@
  *
  *  根据色值返回颜色对象
  *
- *  @param hex 十六进制RGB色值字符串
+ *  @param stringToConvert 十六进制RGB色值字符串
  *
  *  @return 颜色UIColor
  */

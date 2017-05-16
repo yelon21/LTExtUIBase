@@ -21,7 +21,7 @@
  *
  *  @return 图片
  */
-+ (UIImage*) lt_imageWithColor:(UIColor*)color;
++ (UIImage*_Nullable) lt_imageWithColor:(UIColor*_Nonnull)color;
 /**
  *  @author yelon
  *
@@ -31,7 +31,7 @@
  *
  *  @return 图片
  */
-- (UIImage *) lt_imageWithTintColor:(UIColor *)tintColor;
+- (UIImage *_Nonnull) lt_imageWithTintColor:(UIColor *_Nonnull)tintColor;
 /**
  *  @author yelon
  *
@@ -41,7 +41,7 @@
  *
  *  @return NSData类型的图片
  */
-- (NSData *)lt_fitImageMaxData:(float)max;
+- (NSData *_Nonnull)lt_fitImageMaxData:(float)max;
 /**
  *  @author yelon
  *
@@ -51,10 +51,10 @@
  *
  *  @return 图片数据
  */
-- (UIImage *)lt_thumbImage:(CGSize)size;
+- (UIImage *_Nonnull)lt_thumbImage:(CGSize)size;
 
-+ (UIImage *)lt_imageName:(NSString *)name;
-+ (UIImage *)lt_imageWithPath:(NSString *)imagePath;
++ (UIImage *_Nullable)lt_imageName:(NSString *_Nonnull)name;
++ (UIImage *_Nullable)lt_imageWithPath:(NSString *_Nonnull)imagePath;
 
 /**
  根据高度 比例缩放
@@ -62,21 +62,21 @@
  @param size 指定最大边长
  @return 新图片
  */
-- (UIImage *)lt_scaleImageToMaxSize:(CGFloat)size;
+- (UIImage *_Nonnull)lt_scaleImageToMaxSize:(CGFloat)size;
 /**
 根据高度 比例缩放
 
  @param height 指定高度
  @return 新图片
  */
-- (UIImage *)lt_scaleImageByDefaultHeight:(CGFloat)height;
+- (UIImage *_Nonnull)lt_scaleImageByDefaultHeight:(CGFloat)height;
 /**
  根据宽度 比例缩放
  
  @param width 指定宽度
  @return 新图片
  */
-- (UIImage *)lt_scaleImageByDefaultWidth:(CGFloat)width;
+- (UIImage *_Nonnull)lt_scaleImageByDefaultWidth:(CGFloat)width;
 
 /**
  添加文字水印
@@ -86,9 +86,9 @@
  @param font 字体
  @return 添加后的图片
  */
-- (UIImage *)lt_imageWithMarkString:(NSString *)markString
-                              color:(UIColor *)color
-                               font:(UIFont *)font;
+- (UIImage *_Nonnull)lt_imageWithMarkString:(NSString *_Nullable)markString
+                              color:(UIColor *_Nullable)color
+                               font:(UIFont *_Nonnull)font;
 
 /**
   添加文字水印
@@ -98,7 +98,7 @@
  @param attrs 文本修饰属性
  @return 添加后的图片
  */
-- (UIImage *)lt_imageWithMarkString:(NSString *)markString
+- (UIImage *_Nonnull)lt_imageWithMarkString:(NSString *_Nullable)markString
                              inRect:(CGRect)inRect
                      withAttributes:(nullable NSDictionary<NSString *, id> *)attrs;
 @end

@@ -78,9 +78,6 @@
         if ([numberString doubleValue]>self.maxValue) {
             
             numberString = [NSString stringWithFormat:@"%0.2lf",self.maxValue];
-        }else{
-            
-            numberString = textField.text;
         }
     }
     else{

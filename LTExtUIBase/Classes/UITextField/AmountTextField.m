@@ -60,38 +60,70 @@
 
 - (void)textDidChanged:(UITextField *)textField{
     
+    NSString *text = textField.text;
+    
+    if (text.length == 0) {
+        
+        numberString = @"";
+        return;
+    }
+    
+    if (![self checkAmountString:textField.text]) {
+        
+        textField.text = numberString;
+    }
+    
     if ([textField.text doubleValue]>self.maxValue) {
         
         if ([numberString doubleValue]>self.maxValue) {
             
             numberString = [NSString stringWithFormat:@"%0.2lf",self.maxValue];
+        }else{
+            
+            numberString = textField.text;
         }
-        textField.text = numberString;
-        return;
     }
-    
-    NSString *filterString = @"0123456789.";
-    
-    numberString = [self numberString:textField.text
-                         filterString:filterString];
-    
-    NSArray *components = [numberString componentsSeparatedByString:@"."];
-    
-    if ([components count]>=2) {
+    else{
         
-        NSString *components2 = [NSString stringWithFormat:@"%@",components[1]];
-        
-        NSUInteger length = [components2 length];
-        if (length>2) {
-            components2 = [components2 substringToIndex:2];
-        }
-        
-        NSArray *stringComponents = @[components[0],components2];
-        
-        numberString = [stringComponents componentsJoinedByString:@"."];
+        numberString = textField.text;
     }
     
     textField.text = numberString;
+    
+    //    NSString *filterString = @"0123456789.";
+    //
+    //    numberString = [self numberString:textField.text
+    //                         filterString:filterString];
+    //
+    //    NSArray *components = [numberString componentsSeparatedByString:@"."];
+    //
+    //    if ([components count]>=2) {
+    //
+    //        NSString *components2 = [NSString stringWithFormat:@"%@",components[1]];
+    //
+    //        NSUInteger length = [components2 length];
+    //        if (length>2) {
+    //            components2 = [components2 substringToIndex:2];
+    //        }
+    //
+    //        NSArray *stringComponents = @[components[0],components2];
+    //
+    //        numberString = [stringComponents componentsJoinedByString:@"."];
+    //    }
+    //    
+    //    textField.text = numberString;
+}
+
+- (BOOL)checkAmountString:(NSString *)string{
+    
+    if (![string isKindOfClass:[NSString class]]) {
+        
+        return NO;
+    }
+    NSString *rex = @"^(([1-9]{1}\\d*)|([0]{1}))(\\.(\\d){0,2})?$";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", rex];
+    
+    return [predicate evaluateWithObject:string];
 }
 
 -(void)setText:(NSString *)text{
@@ -129,9 +161,18 @@
     [formatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh_Hans_CN"]];
     [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     
-    NSNumber *num = @([numberString doubleValue]);
+    double doubleValue = [numberString doubleValue];
     
-    self.text = [formatter stringFromNumber:num];
+    if (doubleValue == 0.0) {
+        
+        self.text = @"";
+    }
+    else{
+        
+        NSNumber *num = @(doubleValue);
+        
+        self.text = [formatter stringFromNumber:num];
+    }
 }
 
 -(long long)fenValue{

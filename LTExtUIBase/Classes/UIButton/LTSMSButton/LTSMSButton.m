@@ -56,8 +56,8 @@
     
     self.titleLabel.font = [UIFont systemFontOfSize:14.0];
     
-    self.layer.borderWidth = 1.0;
-    self.layer.borderColor = self.defaultColor.CGColor;
+//    self.layer.borderWidth = 1.0;
+//    self.layer.borderColor = self.defaultColor.CGColor;
 }
 
 - (void)startCountdown{

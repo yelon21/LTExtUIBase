@@ -76,7 +76,7 @@
     
     if (self) {
         
-        UIGraphicsBeginImageContextWithOptions(size, YES, self.scale);
+        UIGraphicsBeginImageContextWithOptions(size, NO, self.scale);
         
         [self drawInRect:CGRectMake(0, 0, size.width, size.height)];
         
@@ -278,7 +278,7 @@
         return self;
     }
     
-    UIGraphicsBeginImageContextWithOptions(self.size, YES, self.scale);
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, self.scale);
     
     [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
     

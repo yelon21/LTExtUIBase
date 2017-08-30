@@ -33,7 +33,7 @@
 
 - (void)setup{
     
-    self.backgroundColor = [UIColor redColor];
+    self.backgroundColor = [UIColor clearColor];
     self.boundInsets = UIEdgeInsetsZero;
     
     self.gridBackgroundColor = [UIColor whiteColor];

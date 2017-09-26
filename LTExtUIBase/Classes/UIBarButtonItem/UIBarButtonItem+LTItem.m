@@ -32,7 +32,11 @@
          forState:UIControlStateNormal];
     
     [btn addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
+    btn.contentMode = UIViewContentModeLeft;
     [btn sizeToFit];
+    CGRect frame = btn.frame;
+    frame.size.width = MAX(frame.size.width, 20.0);
+    btn.frame = frame;
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
     return item;
 }
@@ -73,6 +77,9 @@
     [btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
     [btn addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
     [btn sizeToFit];
+    CGRect frame = btn.frame;
+    frame.size.width = MAX(frame.size.width, 20.0);
+    btn.frame = frame;
     UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithCustomView:btn];
     return item;
 }

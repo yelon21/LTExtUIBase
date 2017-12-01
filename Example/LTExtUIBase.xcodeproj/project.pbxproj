@@ -26,6 +26,7 @@
 		636E07741E0FA22300323E9C /* NavViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 636E07721E0FA22300323E9C /* NavViewController.m */; };
 		636E07751E0FA22300323E9C /* NavViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 636E07731E0FA22300323E9C /* NavViewController.xib */; };
 		637067071DF454460068968A /* eg_tulip.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 637067061DF454460068968A /* eg_tulip.jpg */; };
+		63A78B911FD136A800C52E73 /* Launch Screen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 63A78B901FD136A800C52E73 /* Launch Screen.storyboard */; };
 		A4D64DF33AC10DC23D68072A /* libPods-LTExtUIBase_Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4398353C9716B12FE6A6D2A9 /* libPods-LTExtUIBase_Tests.a */; };
 /* End PBXBuildFile section */
 
@@ -70,6 +71,7 @@
 		636E07721E0FA22300323E9C /* NavViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavViewController.m; sourceTree = "<group>"; };
 		636E07731E0FA22300323E9C /* NavViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NavViewController.xib; sourceTree = "<group>"; };
 		637067061DF454460068968A /* eg_tulip.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = eg_tulip.jpg; sourceTree = "<group>"; };
+		63A78B901FD136A800C52E73 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		92BEE0D8E5D12DD21B78E931 /* Pods-LTExtUIBase_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTExtUIBase_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTExtUIBase_Example/Pods-LTExtUIBase_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		A44A2669C0589027689EB2E5 /* LTExtUIBase.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LTExtUIBase.podspec; path = ../LTExtUIBase.podspec; sourceTree = "<group>"; };
 		C172979E4610B440C0F43B2C /* Pods-LTExtUIBase_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTExtUIBase_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTExtUIBase_Tests/Pods-LTExtUIBase_Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -146,6 +148,7 @@
 				6003F5A5195388D20070C39A /* LYViewController.h */,
 				6003F5A6195388D20070C39A /* LYViewController.m */,
 				6364C59E1DF28189003AE715 /* LYViewController.xib */,
+				63A78B901FD136A800C52E73 /* Launch Screen.storyboard */,
 				636E07701E0FA20A00323E9C /* NavigationBar */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
@@ -308,6 +311,7 @@
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6364C59F1DF28189003AE715 /* LYViewController.xib in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
+				63A78B911FD136A800C52E73 /* Launch Screen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

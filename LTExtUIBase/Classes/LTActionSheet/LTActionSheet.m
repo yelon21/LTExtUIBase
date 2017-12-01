@@ -7,6 +7,7 @@
 //
 
 #import "LTActionSheet.h"
+#define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
 @interface LTActionSheet ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>{
 
@@ -82,7 +83,7 @@
         _contentView = [[UIView alloc]initWithFrame:CGRectMake(0.0,
                                                                CGRectGetHeight(self.bounds),
                                                                CGRectGetWidth(self.bounds),
-                                                               44)];
+                                                               88.0)];
         _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         _contentView.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.35];
     }
@@ -94,12 +95,22 @@
 
     if (!_tableView) {
         
-        _tableView = [[UITableView alloc]initWithFrame:self.contentView.bounds
+        CGRect contentFrame = self.contentView.bounds;
+
+        if (KIsiPhoneX) {
+            
+            contentFrame.size.height -= 34.0;
+        }
+        
+        _tableView = [[UITableView alloc]initWithFrame:contentFrame
                                                  style:UITableViewStyleGrouped];
+        
         _tableView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
         
         _tableView.bounces = NO;
-        
+        _tableView.estimatedRowHeight = 0.0;
+        _tableView.estimatedSectionFooterHeight = 0.0;
+        _tableView.estimatedSectionHeaderHeight = 0.0;
         _tableView.backgroundColor = [UIColor clearColor];
         _tableView.delegate = self;
         _tableView.dataSource = self;
@@ -162,7 +173,9 @@
         
         CGSize contentSize = [self.tableView contentSize];
         
-        CGFloat height = contentSize.height;
+        CGFloat deltBootom = KIsiPhoneX ? 34.0 : 0.0;
+        
+        CGFloat height = contentSize.height + deltBootom;
         
         if (height > bgH) {
             

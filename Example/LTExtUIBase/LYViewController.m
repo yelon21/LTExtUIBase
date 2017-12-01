@@ -17,6 +17,7 @@
 #import "NavViewController.h"
 #import "UIView+LTCommon.h"
 #import "UIImage+LTCommon.h"
+#import "LTActionSheet.h"
 
 @interface LYViewController ()
 
@@ -66,12 +67,17 @@
 
 - (IBAction)btnAction:(LTLoadingButton *)sender {
     
-    [sender startLoading];
+//    [sender startLoading];
+//
+//    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+//
+//        [sender stopLoading];
+//    });
     
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(10.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
-        
-        [sender stopLoading];
-    });
+    [LTActionSheet LT_ShowActionSheet:@"e3234324"
+                              buttons:@[@"w",@"4e",@"w2"]
+                           clickBlock:nil
+                          cancelBlock:nil];
 }
 
 
@@ -79,14 +85,15 @@
 
     [self.view endEditing:YES];
     
+    [self btnAction:nil];
 //    NavViewController *viewCon = [[NavViewController alloc]initWithNibName:@"NavViewController" bundle:nil];
 //    [self.navigationController pushViewController:viewCon animated:YES];
     
-    UIImage *image = [[UIImage imageNamed:@"imageLoadingFailed"] lt_imageWithTintColor:[UIColor redColor]];
-    
-    self.imageView.image = [image lt_imageWithMarkString:@"要是有些事我没说，"
-                                                   color:[UIColor whiteColor]
-                                                    font:[UIFont systemFontOfSize:14.0]];
+//    UIImage *image = [[UIImage imageNamed:@"imageLoadingFailed"] lt_imageWithTintColor:[UIColor redColor]];
+//
+//    self.imageView.image = [image lt_imageWithMarkString:@"要是有些事我没说，"
+//                                                   color:[UIColor whiteColor]
+//                                                    font:[UIFont systemFontOfSize:14.0]];
     
 }
 

@@ -1,47 +1,37 @@
 //
-//  LTPickerView.m
-//  YJNew
+//  LTDatePickerView.m
+//  LTExtUIBase
 //
-//  Created by yelon on 16/3/2.
-//  Copyright © 2016年 yelon. All rights reserved.
+//  Created by yelon on 2018/1/31.
 //
 
-#import "LTPickerView.h"
-#import "PickerViewController.h"
+#import "LTDatePickerView.h"
+#import "DatePickerViewController.h"
 #import "UIView+LTTransform.h"
 #import "LTNavigationController.h"
 
 #define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
+@interface LTDatePickerView ()<DatePickerViewControllerDelegate>
 
-@interface LTPickerView ()<PickerViewControllerDelegate>
-
-@property(nonatomic,strong)id<LTPickerViewDelegate>delegate;
-@property(nonatomic,strong)PickerViewController *pickerVC;
-@property(nonatomic,strong)LTNavigationController *pickerNav;
+@property(nonatomic,strong) id<LTDatePickerViewDelegate> delegate;
+@property(nonatomic,strong) DatePickerViewController     *pickerVC;
+@property(nonatomic,strong) LTNavigationController       *pickerNav;
 @end
 
-@implementation LTPickerView
+@implementation LTDatePickerView
 
-+ (instancetype)showPickerViewInView:(UIView *)inView
-                            delegate:(id<LTPickerViewDelegate>)delegate{
-
-    return [LTPickerView showPickerViewInView:inView
-                              navigationTitle:nil
-                                     delegate:delegate];
-}
-
-+ (instancetype)showPickerViewInView:(UIView *)inView
-                     navigationTitle:(NSString *)title
-                            delegate:(id<LTPickerViewDelegate>)delegate{
++(instancetype)LT_ShowPickerViewInView:(UIView *)inView
+                       navigationTitle:(NSString *)title
+                              delegate:(id<LTDatePickerViewDelegate>)delegate{
     
-    LTPickerView *pickerView = [[LTPickerView alloc]initWithSuperView:inView];
+    LTDatePickerView *pickerView = [[LTDatePickerView alloc]initWithSuperView:inView];
     pickerView.delegate = delegate;
     pickerView.title = title;
     return pickerView;
 }
 
 -(instancetype)initWithSuperView:(UIView *)superView{
-
+    
     if (self = [self initWithFrame:superView.bounds]) {
         
         self.backgroundColor = [UIColor colorWithWhite:0.0 alpha:0.3];
@@ -77,7 +67,7 @@
                                                               attribute:NSLayoutAttributeTop
                                                              multiplier:1.0
                                                                constant:0]];
-
+        
         [self initPickerVC];
         [self moveInPickerVC];
     }
@@ -85,12 +75,12 @@
 }
 
 - (void)initPickerVC{
-
+    
     if (self.pickerVC) {
         
         return;
     }
-    self.pickerVC = [[PickerViewController alloc] init];
+    self.pickerVC = [[DatePickerViewController alloc] init];
     self.pickerVC.delegate = self;
     self.pickerNav = [LTNavigationController LT_NavigationController:self.pickerVC];
     self.pickerNav.view.translatesAutoresizingMaskIntoConstraints = NO;
@@ -118,7 +108,7 @@
                                                              toItem:superView
                                                           attribute:NSLayoutAttributeBottom
                                                          multiplier:1.0
-                                                           constant:KIsiPhoneX?-34.0:0]];
+                                                           constant:KIsiPhoneX?-34:0]];
     [superView addConstraint:[NSLayoutConstraint constraintWithItem:self.pickerNav.view
                                                           attribute:NSLayoutAttributeHeight
                                                           relatedBy:NSLayoutRelationEqual
@@ -131,7 +121,7 @@
 }
 
 -(void)setTitle:(NSString *)title{
-
+    
     if (_title != title) {
         
         _title = title;
@@ -143,9 +133,9 @@
 }
 
 - (void)moveOutPickerVC{
-
+    
     [self.pickerNav.view lt_setTransform:CGAffineTransformMakeTranslation(0.0, CGRectGetHeight(self.bounds))
-                        animated:NO];
+                                animated:NO];
     [self lt_setAlpha:0.0 animated:NO];
 }
 
@@ -158,8 +148,8 @@
 }
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-
-    [self pickerViewControllerDidSelectIndex:-1];
+    
+    [self datePickerViewControllerDidCancel];
 }
 
 - (void)hidePickerVC{
@@ -172,50 +162,43 @@
                               }];
 }
 
-- (NSString *)pickerViewControllerNavigationTitle{
-
+#pragma mark delegate
+- (NSString *)datePickerViewControllerNavigationTitle{
+    
     return self.title;
 }
 
--(void)pickerViewControllerDidSelectIndex:(NSInteger)index{
+-(void)datePickerView:(UIDatePicker *)datePicker{
+    
+    if ([self.delegate respondsToSelector:@selector(ltDatePickerView:datePicker:)]) {
+        
+        [self.delegate ltDatePickerView:self
+                             datePicker:datePicker];
+    }
+}
 
+-(void)datePickerViewControllerDidSelectDate:(NSDate *)date{
+    
     [self hidePickerVC];
     if (index<0) {
         
         return;
     }
-    if ([self.delegate respondsToSelector:@selector(ltPickerView:didSelectRowAtIndex:)]) {
-        
-        [self.delegate ltPickerView:self didSelectRowAtIndex:index];
-    }
-}
-
-- (NSUInteger)pickerViewControllerNumberOfItems{
-
-    NSUInteger count = 0;
-    if ([self.delegate respondsToSelector:@selector(numberOfItemInltPickerView:)]) {
-        
-        count = [self.delegate numberOfItemInltPickerView:self];
-    }
-    return count;
-}
-
-- (NSString *)pickerViewControllerTitleForRowAtIndex:(NSInteger)rowIndex{
-
-    NSString *title = @"";
     
-    if ([self.delegate respondsToSelector:@selector(ltPickerView:titleForRowAtIndex:)]) {
+    if ([self.delegate respondsToSelector:@selector(ltDatePickerView:didSelectDate:)]) {
         
-        title = [self.delegate ltPickerView:self titleForRowAtIndex:rowIndex];
+        [self.delegate ltDatePickerView:self
+                          didSelectDate:date];
     }
-    return title;
 }
 
-- (void)pickerViewControllerDidChangeToIndex:(NSInteger)index{
-
-    if ([self.delegate respondsToSelector:@selector(ltPickerView:didChangeToIndex:)]) {
+-(void)datePickerViewControllerDidCancel{
+    
+     [self hidePickerVC];
+    
+    if ([self.delegate respondsToSelector:@selector(ltDatePickerViewDidCancel:)]) {
         
-        [self.delegate ltPickerView:self didChangeToIndex:index];
+        [self.delegate ltDatePickerViewDidCancel:self];
     }
 }
 

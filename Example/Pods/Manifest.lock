@@ -9,7 +9,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   LTExtUIBase:
-    :path: "../"
+    :path: ../
   LTRouter:
     :git: https://github.com/yelon21/LTRouter.git
 
@@ -19,9 +19,9 @@ CHECKOUT OPTIONS:
     :git: https://github.com/yelon21/LTRouter.git
 
 SPEC CHECKSUMS:
-  LTExtUIBase: 6a0b66acc55e15d3e26925eb95b1b1d080d7918d
+  LTExtUIBase: 6dc315a98d6171c7c9cf812a2ec7d89b30079a98
   LTRouter: a606412de0342ce52c9f0dab94edf7597fb2cb7c
 
 PODFILE CHECKSUM: 41729e144d91acdf21e75808170bbc38fa2839a4
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.4.0.rc.1

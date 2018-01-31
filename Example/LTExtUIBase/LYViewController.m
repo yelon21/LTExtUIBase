@@ -18,8 +18,8 @@
 #import "UIView+LTCommon.h"
 #import "UIImage+LTCommon.h"
 #import "LTActionSheet.h"
-
-@interface LYViewController ()
+#import "LTDatePickerView.h"
+@interface LYViewController ()<LTDatePickerViewDelegate>
 
 @property (weak, nonatomic) IBOutlet LTLoadingButton *btn;
 @property (weak, nonatomic) IBOutlet UIView *twxtVeiw;
@@ -74,18 +74,18 @@
 //        [sender stopLoading];
 //    });
     
-    [LTActionSheet LT_ShowActionSheet:@"e3234324"
-                              buttons:@[@"w",@"4e",@"w2"]
-                           clickBlock:nil
-                          cancelBlock:nil];
+//    [LTActionSheet LT_ShowActionSheet:@"e3234324"
+//                              buttons:@[@"w",@"4e",@"w2"]
+//                           clickBlock:nil
+//                          cancelBlock:nil];
 }
 
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 
     [self.view endEditing:YES];
-    
-    [self btnAction:nil];
+    //日期选择演示
+    [self datePickerAction];
 //    NavViewController *viewCon = [[NavViewController alloc]initWithNibName:@"NavViewController" bundle:nil];
 //    [self.navigationController pushViewController:viewCon animated:YES];
     
@@ -97,5 +97,29 @@
     
 }
 
+#pragma mark datePicker
+- (void)datePickerAction{
+    
+    [LTDatePickerView LT_ShowPickerViewInView:self.view
+                              navigationTitle:@"你说啥"
+                                     delegate:self];
+}
+
+-(void)ltDatePickerView:(LTDatePickerView *)ltDatePickerView datePicker:(UIDatePicker *)datePicker{
+    
+    NSLog(@"日期选择配置");
+    datePicker.datePickerMode = UIDatePickerModeDate;
+}
+
+-(void)ltDatePickerView:(LTDatePickerView *)ltDatePickerView
+          didSelectDate:(NSDate *)date{
+    
+    NSLog(@"日期选择确认：%@",date);
+}
+
+-(void)ltDatePickerViewDidCancel:(LTDatePickerView *)ltDatePickerView{
+    
+    NSLog(@"日期选择取消");
+}
 
 @end

@@ -6,6 +6,7 @@
 //
 
 #import "DatePickerViewController.h"
+#import "UIBarButtonItem+LTItem.h"
 
 @interface DatePickerViewController ()
 
@@ -48,19 +49,50 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn_left];
     
-    UIButton *btn_right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
-    btn_right.backgroundColor = [UIColor clearColor];
-    btn_right.titleLabel.font = [UIFont systemFontOfSize:17.0];
-    [btn_right setTitle:@"确定" forState:UIControlStateNormal];
+//    UIButton *btn_right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
+//    btn_right.backgroundColor = [UIColor clearColor];
+//    btn_right.titleLabel.font = [UIFont systemFontOfSize:17.0];
+//    [btn_right setTitle:@"确定" forState:UIControlStateNormal];
+//
+//    [btn_right setTitleColor:tintColor forState:UIControlStateNormal];
+//    [btn_right setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+//    [btn_right addTarget:self
+//                  action:@selector(rightAction)
+//        forControlEvents:UIControlEventTouchUpInside];
+//    [btn_right sizeToFit];
+//
+//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn_right];
+    NSMutableArray *items = [[NSMutableArray alloc]init];
     
-    [btn_right setTitleColor:tintColor forState:UIControlStateNormal];
-    [btn_right setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [btn_right addTarget:self
-                  action:@selector(rightAction)
-        forControlEvents:UIControlEventTouchUpInside];
-    [btn_right sizeToFit];
+    UIBarButtonItem *confirmItem = [UIBarButtonItem LT_item:@"确定"
+                                                      color:tintColor
+                                                     target:self
+                                                        sel:@selector(rightAction)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn_right];
+    [items addObject:confirmItem];
+    
+    do {
+
+        if ([self.delegate respondsToSelector:@selector(datePickerViewControllerAssistedButtonTitle)]) {
+            
+            NSString *assistedButtonTitle = [self.delegate datePickerViewControllerAssistedButtonTitle];
+            
+            if (assistedButtonTitle.length==0) {
+                break;
+            }
+            
+            UIBarButtonItem *item = [UIBarButtonItem LT_item:assistedButtonTitle
+                                                       color:tintColor
+                                                      target:self
+                                                         sel:@selector(assistedButtonAction:)];
+            [items addObject:item];
+        }
+        
+        break;
+    } while (YES);
+    
+    
+    self.navigationItem.rightBarButtonItems =  items;
     
     if ([self.delegate respondsToSelector:@selector(datePickerViewControllerNavigationTitle)]) {
         
@@ -119,6 +151,14 @@
     if ([self.delegate respondsToSelector:@selector(datePickerViewControllerDidSelectDate:)]) {
         
         [self.delegate datePickerViewControllerDidSelectDate:self.picker.date];
+    }
+}
+
+- (void)assistedButtonAction:(UIButton *)btn{
+    
+    if ([self.delegate respondsToSelector:@selector(datePickerViewControllerAssistedButtonPressed:)]) {
+        
+        [self.delegate datePickerViewControllerAssistedButtonPressed:btn.titleLabel.text];
     }
 }
 

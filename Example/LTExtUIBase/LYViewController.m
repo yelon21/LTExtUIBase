@@ -122,4 +122,14 @@
     NSLog(@"日期选择取消");
 }
 
+-(void)ltDatePickerView:(LTDatePickerView *)ltDatePickerView assistedButtonPressed:(NSString *)buttonTitle{
+    
+    NSLog(@"buttonTitle=%@",buttonTitle);
+}
+
+-(NSString *)ltDatePickerViewAssistedButtonTitle:(LTDatePickerView *)ltDatePickerView{
+    
+    return nil;
+}
+
 @end

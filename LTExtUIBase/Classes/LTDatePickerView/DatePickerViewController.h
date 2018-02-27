@@ -14,6 +14,10 @@
 @optional
 
 - (NSString *)datePickerViewControllerNavigationTitle;
+
+- (NSString *)datePickerViewControllerAssistedButtonTitle;
+- (void)datePickerViewControllerAssistedButtonPressed:(NSString *)buttonTitle;
+
 - (void)datePickerView:(UIDatePicker *)datePicker;
 @end
 

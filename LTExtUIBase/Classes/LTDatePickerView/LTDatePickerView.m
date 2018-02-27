@@ -180,10 +180,6 @@
 -(void)datePickerViewControllerDidSelectDate:(NSDate *)date{
     
     [self hidePickerVC];
-    if (index<0) {
-        
-        return;
-    }
     
     if ([self.delegate respondsToSelector:@selector(ltDatePickerView:didSelectDate:)]) {
         
@@ -199,6 +195,25 @@
     if ([self.delegate respondsToSelector:@selector(ltDatePickerViewDidCancel:)]) {
         
         [self.delegate ltDatePickerViewDidCancel:self];
+    }
+}
+
+-(NSString *)datePickerViewControllerAssistedButtonTitle{
+    
+    if ([self.delegate respondsToSelector:@selector(ltDatePickerViewAssistedButtonTitle:)]) {
+        
+        return [self.delegate ltDatePickerViewAssistedButtonTitle:self];
+    }
+    return @"";
+}
+
+-(void)datePickerViewControllerAssistedButtonPressed:(NSString *)buttonTitle{
+    
+    [self hidePickerVC];
+    
+    if ([self.delegate respondsToSelector:@selector(ltDatePickerView:assistedButtonPressed:)]) {
+        
+        return [self.delegate ltDatePickerView:self assistedButtonPressed:buttonTitle];
     }
 }
 

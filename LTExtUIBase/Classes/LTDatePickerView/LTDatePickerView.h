@@ -18,6 +18,11 @@
 - (void)ltDatePickerView:(LTDatePickerView *)ltDatePickerView
            didSelectDate:(NSDate *)date;
 - (void)ltDatePickerViewDidCancel:(LTDatePickerView *)ltDatePickerView;
+
+- (NSString *)ltDatePickerViewAssistedButtonTitle:(LTDatePickerView *)ltDatePickerView;
+- (void)ltDatePickerView:(LTDatePickerView *)ltDatePickerView
+   assistedButtonPressed:(NSString *)buttonTitle;
+
 @end
 
 @interface LTDatePickerView : UIView

@@ -1,18 +1,24 @@
 //
 //  LTNavigationController.h
-//  LTBarrage
+//  FBSnapshotTestCase
 //
-//  Created by yelon on 16/8/27.
-//  Copyright © 2016年 yelon21. All rights reserved.
+//  Created by yelon on 2018/4/27.
 //
 
 #import <UIKit/UIKit.h>
-
 #import "UINavigationBar+LTUtil.h"
 
 @interface LTNavigationController : UINavigationController
 
-+ (LTNavigationController *)LT_NavigationController:(UIViewController *)rootViewController;
+@property(nonatomic,strong) UIViewController *lt_topContentViewController;
 
-- (void)setBackgroundImage:(UIImage *)backgroundImage;
++ (LTNavigationController *)LT_NavigationController:(UIViewController *)rootViewController;
+@end
+
+@interface UIViewController (ltnavigationController)
+
+@property(nonatomic,strong,readonly) LTNavigationController *lt_NavigationController;
+
+- (UIBarButtonItem *)lt_backItem;
+- (void)lt_backAction:(id)sender;
 @end

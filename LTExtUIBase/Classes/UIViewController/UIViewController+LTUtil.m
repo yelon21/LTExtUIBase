@@ -22,10 +22,9 @@
 
 - (void)lt_setNavBackItemImg:(UIImage *)image{
     
-    self.navigationItem.leftBarButtonItem = [UIBarButtonItem LT_itemImage:image
-                                                                highlight:nil
-                                                                   target:self
-                                                                      sel:@selector(lt_closeSelfAction)];
+    self.navigationItem.leftBarButtonItem = [UIBarButtonItem LT_systemItemWithImage:image
+                                                                             target:self
+                                                                        sel:@selector(lt_closeSelfAction)];
 }
 
 - (void)lt_closeSelfAction{

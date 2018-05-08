@@ -236,8 +236,13 @@
     
     CGFloat imageH = self.size.height;
     
-    CGSize size = [markString sizeWithFont:font constrainedToSize:self.size];
+//    CGSize size = [markString sizeWithFont:font constrainedToSize:self.size];
 
+    CGRect rectString = [markString boundingRectWithSize:self.size
+                                           options:NSStringDrawingUsesLineFragmentOrigin
+                                        attributes:@{NSFontAttributeName:font}
+                                           context:nil];
+    CGSize size = rectString.size;
     CGRect rect = CGRectMake(10,
                              imageH - size.height-10,
                              size.width,
@@ -291,26 +296,26 @@
     return newPic;
 }
 
--(UIImage *)addText:(NSString *)text1
-{
-    //get image width and height
-    int w = self.size.width;
-    int h = self.size.height;
-    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
-    //create a graphic context with CGBitmapContextCreate
-    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
-    CGContextDrawImage(context, CGRectMake(0, 0, w, h), self.CGImage);
-    CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 1);
-    char* text = (char *)[text1 cStringUsingEncoding:NSUTF8StringEncoding];
-    CGContextSelectFont(context, "Georgia", 30, kCGEncodingMacRoman);
-    CGContextSetTextDrawingMode(context, kCGTextFill);
-    CGContextSetRGBFillColor(context, 255, 0, 0, 1);
-    CGContextShowTextAtPoint(context, w/2-strlen(text)*5, h/2, text, strlen(text));
-    //Create image ref from the context
-    CGImageRef imageMasked = CGBitmapContextCreateImage(context);
-    CGContextRelease(context);
-    CGColorSpaceRelease(colorSpace);
-    return [UIImage imageWithCGImage:imageMasked];
-}
+//-(UIImage *)addText:(NSString *)text1
+//{
+//    //get image width and height
+//    int w = self.size.width;
+//    int h = self.size.height;
+//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+//    //create a graphic context with CGBitmapContextCreate
+//    CGContextRef context = CGBitmapContextCreate(NULL, w, h, 8, 4 * w, colorSpace, kCGImageAlphaPremultipliedFirst);
+//    CGContextDrawImage(context, CGRectMake(0, 0, w, h), self.CGImage);
+//    CGContextSetRGBFillColor(context, 0.0, 1.0, 1.0, 1);
+//    char* text = (char *)[text1 cStringUsingEncoding:NSUTF8StringEncoding];
+//    CGContextSelectFont(context, "Georgia", 30, kCGEncodingMacRoman);
+//    CGContextSetTextDrawingMode(context, kCGTextFill);
+//    CGContextSetRGBFillColor(context, 255, 0, 0, 1);
+//    CGContextShowTextAtPoint(context, w/2-strlen(text)*5, h/2, text, strlen(text));
+//    //Create image ref from the context
+//    CGImageRef imageMasked = CGBitmapContextCreateImage(context);
+//    CGContextRelease(context);
+//    CGColorSpaceRelease(colorSpace);
+//    return [UIImage imageWithCGImage:imageMasked];
+//}
 
 @end

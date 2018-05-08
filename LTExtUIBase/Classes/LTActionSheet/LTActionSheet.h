@@ -17,7 +17,7 @@
 + (id)LT_ShowActionSheet:(NSString *)title
                  buttons:(NSArray <NSString *> *)buttons
               clickBlock:(void(^)(NSString *buttonTitle,NSUInteger buttonIndex))clickBlock
-             cancelBlock:(void(^)())cancelBlock;
+             cancelBlock:(void(^)(void))cancelBlock;
 
 - (void)lt_reload;
 

@@ -83,9 +83,19 @@
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 
-    [self.view endEditing:YES];
-    //日期选择演示
-    [self datePickerAction];
+    self.navigationController.navigationBar.tintColor = [UIColor redColor];
+//    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"123"
+//                                                                            style:UIBarButtonItemStylePlain
+//                                                                           target:nil
+//                                                                           action:nil];
+    
+    LYViewController *viewCon = [[LYViewController alloc]initWithNibName:@"LYViewController"
+                                                                  bundle:nil];
+    [self.navigationController pushViewController:viewCon animated:YES];
+    
+//    [self.view endEditing:YES];
+//    //日期选择演示
+//    [self datePickerAction];
 //    NavViewController *viewCon = [[NavViewController alloc]initWithNibName:@"NavViewController" bundle:nil];
 //    [self.navigationController pushViewController:viewCon animated:YES];
     

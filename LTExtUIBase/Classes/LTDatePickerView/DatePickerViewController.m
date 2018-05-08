@@ -6,7 +6,6 @@
 //
 
 #import "DatePickerViewController.h"
-#import "UIBarButtonItem+LTItem.h"
 
 @interface DatePickerViewController ()
 
@@ -35,19 +34,11 @@
         
         tintColor = [UIColor whiteColor];
     }
-    UIButton *btn_left = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
-    btn_left.backgroundColor = [UIColor clearColor];
-    btn_left.titleLabel.font = [UIFont systemFontOfSize:17.0];
-    [btn_left setTitle:@"关闭" forState:UIControlStateNormal];
     
-    [btn_left setTitleColor:tintColor forState:UIControlStateNormal];
-    [btn_left setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [btn_left addTarget:self
-                 action:@selector(leftAction)
-       forControlEvents:UIControlEventTouchUpInside];
-    [btn_left sizeToFit];
-    
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn_left];
+    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"关闭"
+                                                                            style:UIBarButtonItemStylePlain
+                                                                           target:self
+                                                                           action:@selector(leftAction)];
     
 //    UIButton *btn_right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
 //    btn_right.backgroundColor = [UIColor clearColor];
@@ -64,10 +55,10 @@
 //    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn_right];
     NSMutableArray *items = [[NSMutableArray alloc]init];
     
-    UIBarButtonItem *confirmItem = [UIBarButtonItem LT_item:@"确定"
-                                                      color:tintColor
-                                                     target:self
-                                                        sel:@selector(rightAction)];
+    UIBarButtonItem *confirmItem = [[UIBarButtonItem alloc]initWithTitle:@"确定"
+                                                                   style:UIBarButtonItemStyleDone
+                                                                  target:self
+                                                                  action:@selector(rightAction)];
     
     [items addObject:confirmItem];
     
@@ -81,10 +72,11 @@
                 break;
             }
             
-            UIBarButtonItem *item = [UIBarButtonItem LT_item:assistedButtonTitle
-                                                       color:tintColor
-                                                      target:self
-                                                         sel:@selector(assistedButtonAction:)];
+            UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:assistedButtonTitle
+                                                                    style:UIBarButtonItemStyleDone
+                                                                   target:self
+                                                                   action:@selector(assistedButtonAction:)];
+            
             [items addObject:item];
         }
         

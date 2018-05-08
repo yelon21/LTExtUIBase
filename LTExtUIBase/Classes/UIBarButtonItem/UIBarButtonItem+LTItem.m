@@ -7,6 +7,7 @@
 //
 
 #import "UIBarButtonItem+LTItem.h"
+#import "UIControl+LTBlock.h"
 
 @implementation UIBarButtonItem (LTItem)
 
@@ -15,10 +16,21 @@
                   target:(NSObject *)target
                      sel:(SEL)sel{
     
-    return [UIBarButtonItem LT_itemImage:[UIImage imageNamed:imageName]
-                               highlight:imageNameH?[UIImage imageNamed:imageNameH]:nil
-                                  target:target
-                                     sel:sel];
+    return [UIBarButtonItem LT_customItemImage:[UIImage imageNamed:imageName]
+                                highlightImage:imageNameH?[UIImage imageNamed:imageNameH]:nil
+                                        target:target
+                                           sel:sel];
+}
+
++(UIBarButtonItem *)LT_customItemImageName:(NSString *)imageName
+                        highlightImageName:(NSString *)highlightImageName
+                                    target:(NSObject *)target
+                                       sel:(SEL)sel{
+    
+    return [UIBarButtonItem LT_customItemImage:[UIImage imageNamed:imageName]
+                                highlightImage:highlightImageName?[UIImage imageNamed:highlightImageName]:nil
+                                        target:target
+                                           sel:sel];
 }
 
 +(UIBarButtonItem *)LT_itemImage:(UIImage *)image
@@ -26,10 +38,24 @@
                      target:(NSObject *)target
                         sel:(SEL)sel{
     
+    return [UIBarButtonItem LT_customItemImage:image
+                                highlightImage:imageH
+                                        target:target
+                                           sel:sel];
+}
+
++(UIBarButtonItem *)LT_customItemImage:(UIImage *)image
+                        highlightImage:(UIImage *)highlightImage
+                                target:(NSObject *)target
+                                   sel:(SEL)sel{
+    
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
     
-    [btn setImage:image
-         forState:UIControlStateNormal];
+    if (image) {
+        
+        [btn setImage:image
+             forState:UIControlStateNormal];
+    }
     
     [btn addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
     btn.contentMode = UIViewContentModeLeft;
@@ -52,12 +78,53 @@
                   target:target
                      sel:sel];
 }
+//
++(UIBarButtonItem *)LT_customItem:(NSString *)title
+                            color:(UIColor *)titleColor
+                           target:(NSObject *)target
+                              sel:(SEL)sel{
+    
+    return [self LT_customItem:title
+                         color:titleColor
+                          font:[UIFont systemFontOfSize:17.0]
+                        target:target
+                           sel:sel];
+}
 
 +(UIBarButtonItem *)LT_item:(NSString *)title
                       color:(UIColor *)titleColor
                        font:(UIFont *)font
                      target:(NSObject *)target
                         sel:(SEL)sel{
+    
+    return [UIBarButtonItem LT_customItem:title
+                               titleColor:titleColor
+                         highlightedColor:nil
+                                     font:font
+                                   target:target
+                                      sel:sel];
+}
+//
++(UIBarButtonItem *)LT_customItem:(NSString *)title
+                            color:(UIColor *)titleColor
+                             font:(UIFont *)font
+                           target:(NSObject *)target
+                              sel:(SEL)sel{
+    
+    return [UIBarButtonItem LT_customItem:title
+                               titleColor:titleColor
+                         highlightedColor:nil
+                                     font:font
+                                   target:target
+                                      sel:sel];
+}
+
++(UIBarButtonItem *)LT_customItem:(NSString *)title
+                       titleColor:(UIColor *)titleColor
+                 highlightedColor:(UIColor *)highlightedColor
+                             font:(UIFont *)font
+                           target:(NSObject *)target
+                              sel:(SEL)sel{
     
     UIButton *btn = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
     btn.backgroundColor = [UIColor clearColor];
@@ -67,14 +134,21 @@
     }
     
     [btn setTitle:title forState:UIControlStateNormal];
-    if (titleColor) {
-        [btn setTitleColor:titleColor forState:UIControlStateNormal];
-    }
-    else{
+    
+    if (!titleColor) {
         
-        [btn setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        titleColor = [UIColor whiteColor];
     }
-    [btn setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
+
+    [btn setTitleColor:titleColor forState:UIControlStateNormal];
+    
+    if (!highlightedColor) {
+        
+        highlightedColor = [UIColor whiteColor];
+    }
+    
+    [btn setTitleColor:highlightedColor forState:UIControlStateHighlighted];
+    
     [btn addTarget:target action:sel forControlEvents:UIControlEventTouchUpInside];
     [btn sizeToFit];
     CGRect frame = btn.frame;
@@ -84,4 +158,25 @@
     return item;
 }
 
++(UIBarButtonItem *)LT_systemItemWithTitle:(NSString *)title
+                                    target:(NSObject *)target
+                                       sel:(SEL)sel{
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:title
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:target
+                                                           action:sel];
+    return item;
+}
+
++(UIBarButtonItem *)LT_systemItemWithImage:(UIImage *)image
+                                    target:(NSObject *)target
+                                       sel:(SEL)sel{
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:image
+                                                            style:UIBarButtonItemStylePlain
+                                                           target:target
+                                                           action:sel];
+    return item;
+}
 @end

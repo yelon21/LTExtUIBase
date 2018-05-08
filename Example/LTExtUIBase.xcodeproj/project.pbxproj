@@ -73,7 +73,7 @@
 		637067061DF454460068968A /* eg_tulip.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = eg_tulip.jpg; sourceTree = "<group>"; };
 		63A78B901FD136A800C52E73 /* Launch Screen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Launch Screen.storyboard"; sourceTree = "<group>"; };
 		92BEE0D8E5D12DD21B78E931 /* Pods-LTExtUIBase_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTExtUIBase_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTExtUIBase_Example/Pods-LTExtUIBase_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		A44A2669C0589027689EB2E5 /* LTExtUIBase.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LTExtUIBase.podspec; path = ../LTExtUIBase.podspec; sourceTree = "<group>"; };
+		A44A2669C0589027689EB2E5 /* LTExtUIBase.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LTExtUIBase.podspec; path = ../LTExtUIBase.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		C172979E4610B440C0F43B2C /* Pods-LTExtUIBase_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LTExtUIBase_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LTExtUIBase_Tests/Pods-LTExtUIBase_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E57371E3F1CC46C7DBCBE7A4 /* libPods-LTExtUIBase_Example.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-LTExtUIBase_Example.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -575,7 +575,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LTExtUIBase/LTExtUIBase-Prefix.pch";
 				INFOPLIST_FILE = "LTExtUIBase/LTExtUIBase-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -596,7 +596,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "LTExtUIBase/LTExtUIBase-Prefix.pch";
 				INFOPLIST_FILE = "LTExtUIBase/LTExtUIBase-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";

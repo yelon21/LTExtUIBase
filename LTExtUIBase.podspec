@@ -28,7 +28,7 @@ LTExtUIBase 个人工具.
   s.source           = { :git => 'https://github.com/yelon21/LTExtUIBase.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '6.0'
+  s.ios.deployment_target = '7.0'
 
   s.source_files = 'LTExtUIBase/Classes/**/*'
   s.resource = 'LTExtUIBase/Assets/*.png'

@@ -20,7 +20,7 @@
 @property(nonatomic,strong) UIView *contentView;
 
 @property(nonatomic,strong) void(^clickBlock)(NSString *buttonTitle,NSUInteger buttonIndex);
-@property(nonatomic,strong) void(^cancelBlock)();
+@property(nonatomic,strong) void(^cancelBlock)(void);
 
 @end
 
@@ -29,7 +29,7 @@
 + (id)LT_ShowActionSheet:(NSString *)title
                    buttons:(NSArray <NSString *> *)buttons
                 clickBlock:(void(^)(NSString *buttonTitle,NSUInteger buttonIndex))clickBlock
-               cancelBlock:(void(^)())cancelBlock{
+               cancelBlock:(void(^)(void))cancelBlock{
     
     LTActionSheet *actionSheet = [LTActionSheet new];
     actionSheet.listArray = buttons;
@@ -278,8 +278,12 @@
 forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
 
     cell.separatorInset = UIEdgeInsetsZero;
-    cell.preservesSuperviewLayoutMargins = NO;
-    cell.layoutMargins = UIEdgeInsetsZero;
+    if (@available(iOS 8.0, *)) {
+        cell.preservesSuperviewLayoutMargins = NO;
+        cell.layoutMargins = UIEdgeInsetsZero;
+    } else {
+        // Fallback on earlier versions
+    }
 }
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{

@@ -7,7 +7,7 @@
 //
 
 #import "UIViewController+LTUtil.h"
-
+#import "LTNavigationController.h"
 @implementation UIViewController (LTUtil)
 
 - (void)lt_setNavBackItem{
@@ -34,7 +34,7 @@
 
 - (void)lt_closeSelfActionAfter:(CGFloat)delay{
 
-    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, 3*NSEC_PER_SEC);
+    dispatch_time_t time = dispatch_time(DISPATCH_TIME_NOW, delay*NSEC_PER_SEC);
     dispatch_after(time, dispatch_get_main_queue(), ^{
        
         [self lt_closeSelfAction];
@@ -72,6 +72,10 @@
         
         return [self LT_FrontTopViewController:rootVC.presentedViewController];
     }
+    else if ([rootVC isKindOfClass:[LTNavigationController class]]) {
+        
+        return [(LTNavigationController *)rootVC lt_topContentViewController];
+    }
     else if ([rootVC isKindOfClass:[UINavigationController class]]) {
         
         return [(UINavigationController *)rootVC topViewController];
@@ -79,6 +83,10 @@
     else if ([rootVC isKindOfClass:[UITabBarController class]]) {
         
         return [self LT_FrontTopViewController:[(UITabBarController *)rootVC selectedViewController]];
+    }
+    else if ([[rootVC childViewControllers] count]>0) {
+        
+        return [self LT_FrontTopViewController:[[rootVC childViewControllers]lastObject]];
     }
     else if ([rootVC isKindOfClass:[UIViewController class]]) {
         

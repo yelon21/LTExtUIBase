@@ -8,7 +8,19 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^LTItemClickBlock)(UIBarButtonItem *item);
+
 @interface UIBarButtonItem (LTItem)
+
++(UIBarButtonItem *)LT_systemItemWithTitle:(NSString *)title
+                                clickBlock:(LTItemClickBlock)clickBlock;
+
++(UIBarButtonItem *)LT_systemItemWithImage:(UIImage *)image
+                                clickBlock:(LTItemClickBlock)clickBlock;
+
+- (instancetype)initWithTitle:(NSString *)title
+                        style:(UIBarButtonItemStyle)style
+                   clickBlock:(LTItemClickBlock)clickBlock;
 
 // Deprecated: use LT_customItemImageName:highlightImageName: target: sel:
 +(UIBarButtonItem *)LT_item:(NSString *)imageName

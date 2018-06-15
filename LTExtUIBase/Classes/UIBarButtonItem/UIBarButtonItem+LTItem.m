@@ -7,9 +7,81 @@
 //
 
 #import "UIBarButtonItem+LTItem.h"
-#import "UIControl+LTBlock.h"
+#import <objc/runtime.h>
+
+@interface UIBarButtonItem ()
+
+@property(nonatomic,strong) LTItemClickBlock clickBlock;
+
+@end
 
 @implementation UIBarButtonItem (LTItem)
+
+#pragma mark block
+
+static char *key_property_clickBlock = "key_property_clickBlock";
+
+-(void)setClickBlock:(LTItemClickBlock)clickBlock{
+    
+    objc_setAssociatedObject(self, &key_property_clickBlock, clickBlock, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+-(LTItemClickBlock)clickBlock{
+    
+    LTItemClickBlock block = objc_getAssociatedObject(self, &key_property_clickBlock);
+    return block;
+}
+
+-(void)lt_blockButtonPressed:(UIBarButtonItem *)item{
+    
+    if (item.clickBlock) {
+        
+        item.clickBlock(item);
+    }
+}
+
+- (instancetype)initWithTitle:(NSString *)title
+                        style:(UIBarButtonItemStyle)style
+                   clickBlock:(LTItemClickBlock)clickBlock{
+    
+    self = [self initWithTitle:title
+                         style:style
+                        target:self
+                        action:@selector(lt_blockButtonPressed:)];
+    self.clickBlock = clickBlock;
+    
+    return self;
+}
+
+-(instancetype)initWithImage:(UIImage *)image
+                       style:(UIBarButtonItemStyle)style
+                  clickBlock:(LTItemClickBlock)clickBlock{
+    
+    self = [self initWithImage:image style:style target:self action:@selector(lt_blockButtonPressed:cmd:)];
+    self.clickBlock = clickBlock;
+    
+    return self;
+}
+
+#pragma mark ==CLASS MTH BLOCK==
++(UIBarButtonItem *)LT_systemItemWithTitle:(NSString *)title
+                                    clickBlock:(LTItemClickBlock)clickBlock{
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithTitle:title
+                                                            style:UIBarButtonItemStylePlain clickBlock:clickBlock];
+    return item;
+}
+
++(UIBarButtonItem *)LT_systemItemWithImage:(UIImage *)image
+                                    clickBlock:(LTItemClickBlock)clickBlock{
+    
+    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:image
+                                                            style:UIBarButtonItemStylePlain
+                                                       clickBlock:clickBlock];
+    return item;
+}
+
+#pragma mark ==CLASS MTH==
 
 +(UIBarButtonItem *)LT_item:(NSString *)imageName
                highlight:(NSString *)imageNameH

@@ -19,7 +19,7 @@
     "ios": "7.0"
   },
   "source_files": "LTExtUIBase/Classes/**/*",
-  "resources": "LTExtUIBase/Assets/*.png",
+  "resources": "LTExtUIBase/Assets/*.{xib,png}",
   "dependencies": {
     "LTRouter": [
       "~> 0.1.0"

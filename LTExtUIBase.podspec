@@ -31,7 +31,7 @@ LTExtUIBase 个人工具.
   s.ios.deployment_target = '7.0'
 
   s.source_files = 'LTExtUIBase/Classes/**/*'
-  s.resource = 'LTExtUIBase/Assets/*.png'
+  s.resource = 'LTExtUIBase/Assets/*.{xib,png}'
   # s.resource_bundles = {
   #   'LTExtUIBase' => ['LTExtUIBase/Assets/*.png']
   # }

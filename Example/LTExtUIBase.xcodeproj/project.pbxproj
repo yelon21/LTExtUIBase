@@ -229,7 +229,6 @@
 				6003F586195388D20070C39A /* Sources */,
 				6003F587195388D20070C39A /* Frameworks */,
 				6003F588195388D20070C39A /* Resources */,
-				DB4AF23ABB357B8346DBF299 /* [CP] Embed Pods Frameworks */,
 				826A1582F611D83C69D02D82 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
@@ -249,8 +248,6 @@
 				6003F5AA195388D20070C39A /* Sources */,
 				6003F5AB195388D20070C39A /* Frameworks */,
 				6003F5AC195388D20070C39A /* Resources */,
-				BC51DDAA31B2DEF51737B974 /* [CP] Embed Pods Frameworks */,
-				11053000FE383D51516B7DB1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -326,21 +323,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		11053000FE383D51516B7DB1 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTExtUIBase_Tests/Pods-LTExtUIBase_Tests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		1540DD0B9CA20F42242F8191 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -384,12 +366,14 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-LTExtUIBase_Example/Pods-LTExtUIBase_Example-resources.sh",
+				"${PODS_ROOT}/../../LTExtUIBase/Assets/LTActionSheetCell.xib",
 				"${PODS_ROOT}/../../LTExtUIBase/Assets/nav_back.png",
 				"${PODS_ROOT}/../../LTExtUIBase/Assets/nav_back@2x.png",
 				"${PODS_ROOT}/../../LTExtUIBase/Assets/nav_back@3x.png",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/LTActionSheetCell.nib",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/nav_back.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/nav_back@2x.png",
 				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/nav_back@3x.png",
@@ -397,36 +381,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTExtUIBase_Example/Pods-LTExtUIBase_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BC51DDAA31B2DEF51737B974 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTExtUIBase_Tests/Pods-LTExtUIBase_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		DB4AF23ABB357B8346DBF299 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-LTExtUIBase_Example/Pods-LTExtUIBase_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

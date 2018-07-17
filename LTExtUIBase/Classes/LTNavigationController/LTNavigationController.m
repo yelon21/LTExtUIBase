@@ -174,14 +174,7 @@
     
     [wrapViewControllers enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
-        if ([obj isKindOfClass:[LTWrapViewController class]]) {
-            
-            [viewControllers addObject:[LTWrapViewController LT_ContentViewController:obj]];
-        }
-        else{
-            
-            [viewControllers addObject:obj];
-        }
+        [viewControllers addObject:[LTWrapViewController LT_ContentViewController:obj]];
     }];
     
     return [NSArray arrayWithArray:viewControllers];
@@ -342,6 +335,13 @@
     [super setViewControllers:[LTWrapViewController LT_WrapViewControllers:viewControllers] animated:animated];
 }
 
+-(NSArray<UIViewController *> *)viewControllers{
+    
+    NSArray *viewControllers = [super viewControllers];
+    
+    return [LTWrapViewController LT_ContentViewControllers:viewControllers];
+}
+
 -(void)pushViewController:(UIViewController *)viewController
                  animated:(BOOL)animated{
     
@@ -372,7 +372,7 @@
     
     __block UIViewController *toViewController = viewController;
     
-    [self.viewControllers enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+    [[super viewControllers] enumerateObjectsUsingBlock:^(__kindof UIViewController * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
         
         UIViewController *currentVC = [LTWrapViewController LT_ContentViewController:obj];
         

@@ -31,6 +31,7 @@
 - (NSUInteger)numberOfButtonsInActionSheet:(LTActionSheet *)actionSheet;
 
 - (void)ltActionSheet:(LTActionSheet *)actionSheet
+        iconImageView:(UIImageView *)iconImageView
       buttonTextLabel:(UILabel *)label
               atIndex:(NSUInteger)index;
 @optional

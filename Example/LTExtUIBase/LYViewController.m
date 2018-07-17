@@ -19,7 +19,7 @@
 #import "UIImage+LTCommon.h"
 #import "LTActionSheet.h"
 #import "LTDatePickerView.h"
-@interface LYViewController ()<LTDatePickerViewDelegate>
+@interface LYViewController ()<LTDatePickerViewDelegate,LTActionSheetDelegate>
 
 @property (weak, nonatomic) IBOutlet LTLoadingButton *btn;
 @property (weak, nonatomic) IBOutlet UIView *twxtVeiw;
@@ -78,20 +78,21 @@
 //                              buttons:@[@"w",@"4e",@"w2"]
 //                           clickBlock:nil
 //                          cancelBlock:nil];
+    
 }
 
 
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
 
-    self.navigationController.navigationBar.tintColor = [UIColor redColor];
+//    self.navigationController.navigationBar.tintColor = [UIColor redColor];
 //    self.navigationItem.backBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"123"
 //                                                                            style:UIBarButtonItemStylePlain
 //                                                                           target:nil
 //                                                                           action:nil];
     
-    LYViewController *viewCon = [[LYViewController alloc]initWithNibName:@"LYViewController"
-                                                                  bundle:nil];
-    [self.navigationController pushViewController:viewCon animated:YES];
+//    LYViewController *viewCon = [[LYViewController alloc]initWithNibName:@"LYViewController"
+//                                                                  bundle:nil];
+//    [self.navigationController pushViewController:viewCon animated:YES];
     
 //    [self.view endEditing:YES];
 //    //日期选择演示
@@ -105,8 +106,35 @@
 //                                                   color:[UIColor whiteColor]
 //                                                    font:[UIFont systemFontOfSize:14.0]];
     
+    LTActionSheet *sheet = [[LTActionSheet alloc]init];
+    sheet.delegate = self;
+    [sheet lt_reload];
+}
+#pragma mark LTActionSheetDelegate
+- (NSUInteger)numberOfButtonsInActionSheet:(LTActionSheet *)actionSheet{
+    
+    return 3;
 }
 
+- (void)ltActionSheet:(LTActionSheet *)actionSheet
+        iconImageView:(UIImageView *)iconImageView
+      buttonTextLabel:(UILabel *)label
+              atIndex:(NSUInteger)index{
+    
+    iconImageView.image = [UIImage imageNamed:@"eg_tulip.jpg"];
+    label.text = [NSString stringWithFormat:@"%@",@(index)];
+}
+
+- (void)ltActionSheetDidCancel:(LTActionSheet *)actionSheet{
+    
+}
+
+- (void)ltActionSheet:(LTActionSheet *)actionSheet
+         clickAtIndex:(NSUInteger)index
+          buttonTitle:(NSString *)buttonTitle{
+    
+    
+}
 #pragma mark datePicker
 - (void)datePickerAction{
     

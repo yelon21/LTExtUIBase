@@ -41,13 +41,12 @@
            options:(NSDictionary<NSString *,id> *)options
  completionHandler:(void (^)(BOOL))completion{
     
-    if ([self respondsToSelector:@selector(openURL:options:completionHandler:)]) {
+    if (@available(iOS 10.0, *)) {
         
         [self openURL:url
               options:options
     completionHandler:completion];
-    }
-    else{
+    } else {
         
         BOOL flag = [self openURL:url];
         

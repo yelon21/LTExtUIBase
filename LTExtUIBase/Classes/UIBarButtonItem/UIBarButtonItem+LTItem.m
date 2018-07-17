@@ -57,7 +57,7 @@ static char *key_property_clickBlock = "key_property_clickBlock";
                        style:(UIBarButtonItemStyle)style
                   clickBlock:(LTItemClickBlock)clickBlock{
     
-    self = [self initWithImage:image style:style target:self action:@selector(lt_blockButtonPressed:cmd:)];
+    self = [self initWithImage:image style:style target:self action:@selector(lt_blockButtonPressed:)];
     self.clickBlock = clickBlock;
     
     return self;

@@ -7,6 +7,7 @@
 //
 
 #import "LTActionSheet.h"
+#import "LTActionSheetCell.h"
 #define KIsiPhoneX ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(1125, 2436), [[UIScreen mainScreen] currentMode].size) : NO)
 
 @interface LTActionSheet ()<UITableViewDelegate,UITableViewDataSource,UIGestureRecognizerDelegate>{
@@ -69,7 +70,7 @@
 
     dispatch_async(dispatch_get_main_queue(), ^{
        
-        _listArray = listArray;
+        self->_listArray = listArray;
         [self.tableView reloadData];
     });
     
@@ -115,8 +116,11 @@
         _tableView.delegate = self;
         _tableView.dataSource = self;
         
-        [_tableView registerClass:[UITableViewCell class]
-           forCellReuseIdentifier:@"UITableViewCell"];
+        UINib *nib = [UINib nibWithNibName:@"LTActionSheetCell" bundle:nil];
+        [_tableView registerNib:nib
+         forCellReuseIdentifier:@"LTActionSheetCell"];
+//        [_tableView registerClass:[UITableViewCell class]
+//           forCellReuseIdentifier:@"UITableViewCell"];
         [_tableView registerClass:[UITableViewCell class]
            forCellReuseIdentifier:@"UITableViewCellF"];
     }
@@ -164,7 +168,7 @@
     
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        if (!sourceFromListArray) {
+        if (!self->sourceFromListArray) {
             
             [self.tableView reloadData];
         }
@@ -309,12 +313,12 @@ forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
         
     }
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"UITableViewCell"];
+    LTActionSheetCell *cell = [tableView dequeueReusableCellWithIdentifier:@"LTActionSheetCell"];
     
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
-    cell.textLabel.textAlignment = NSTextAlignmentCenter;
-    cell.textLabel.font = [UIFont systemFontOfSize:14.0];
-    cell.textLabel.textColor = [UIColor blackColor];
+    cell.titleLabel.textAlignment = NSTextAlignmentCenter;
+    cell.titleLabel.font = [UIFont systemFontOfSize:14.0];
+    cell.titleLabel.textColor = [UIColor blackColor];
     
     NSUInteger row = indexPath.row;
     
@@ -322,19 +326,20 @@ forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
         
         if (row<self.listArray.count) {
             
-            cell.textLabel.text = self.listArray[row];
+            cell.titleLabel.text = self.listArray[row];
         }
         else{
         
-            cell.textLabel.text = @"";
+            cell.titleLabel.text = @"";
         }
     }
     else{
     
-        if ([self.delegate respondsToSelector:@selector(ltActionSheet:buttonTextLabel:atIndex:)]) {
+        if ([self.delegate respondsToSelector:@selector(ltActionSheet:iconImageView:buttonTextLabel:atIndex:)]) {
             
             [self.delegate ltActionSheet:self
-                         buttonTextLabel:cell.textLabel
+                           iconImageView:cell.iconImageView
+                         buttonTextLabel:cell.titleLabel
                                  atIndex:row];
         }
     }
@@ -351,12 +356,12 @@ forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
         return [self cancelAction];
     }
     
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    LTActionSheetCell *cell = [tableView cellForRowAtIndexPath:indexPath];
 
-    NSString *title = cell.textLabel.text;
+    NSString *title = cell.titleLabel.text;
     NSUInteger row = indexPath.row;
     
-    NSLog(@"ell.textLabel.text=%@",title);
+    NSLog(@"titleLabel=%@",title);
     
     if (sourceFromListArray) {
         

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0700"
+   LastUpgradeVersion = "0930"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'BDC5C425A194B4C0F21CEF9CEECC2FBD'
-               BlueprintName = 'LTExtUIBase'
-               ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'libLTExtUIBase.a'>
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "E0B5436E5179D63A4313C5376DE732BC"
+               BlueprintName = "LTExtUIBase"
+               ReferencedContainer = "container:Pods.xcodeproj"
+               BuildableName = "libLTExtUIBase.a">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

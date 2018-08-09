@@ -146,11 +146,11 @@
     }
 }
 
-- (void)assistedButtonAction:(UIButton *)btn{
+- (void)assistedButtonAction:(UIBarButtonItem *)item{
     
     if ([self.delegate respondsToSelector:@selector(datePickerViewControllerAssistedButtonPressed:)]) {
         
-        [self.delegate datePickerViewControllerAssistedButtonPressed:btn.titleLabel.text];
+        [self.delegate datePickerViewControllerAssistedButtonPressed:item.title];
     }
 }
 

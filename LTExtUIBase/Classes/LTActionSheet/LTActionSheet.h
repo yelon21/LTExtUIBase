@@ -15,13 +15,14 @@
 @property(nonatomic,weak) id<LTActionSheetDelegate>delegate;
 
 + (id)LT_ShowActionSheet:(NSString *)title
+                  inView:(UIView *)inView
                  buttons:(NSArray <NSString *> *)buttons
               clickBlock:(void(^)(NSString *buttonTitle,NSUInteger buttonIndex))clickBlock
              cancelBlock:(void(^)(void))cancelBlock;
 
 - (void)lt_reload;
 
-- (void)lt_show;
+- (void)lt_showInView:(UIView *)view;
 - (void)lt_hide;
 @end
 

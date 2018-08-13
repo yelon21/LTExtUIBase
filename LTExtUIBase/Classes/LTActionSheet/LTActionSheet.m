@@ -28,6 +28,7 @@
 @implementation LTActionSheet
 
 + (id)LT_ShowActionSheet:(NSString *)title
+                  inView:(UIView *)inView
                    buttons:(NSArray <NSString *> *)buttons
                 clickBlock:(void(^)(NSString *buttonTitle,NSUInteger buttonIndex))clickBlock
                cancelBlock:(void(^)(void))cancelBlock{
@@ -38,7 +39,7 @@
     actionSheet.cancelBlock = cancelBlock;
     actionSheet->sourceFromListArray = YES;
     
-    [actionSheet lt_show];
+    [actionSheet lt_showInView:inView];
     
     return actionSheet;
 }
@@ -160,17 +161,29 @@
     dispatch_async(dispatch_get_main_queue(), ^{
         
         [self.tableView reloadData];
-        [self lt_show];
     });
 }
 
-- (void)lt_show{
+- (void)lt_showInView:(UIView *)inView{
     
+    
+    __block UIView *superView = inView;
     dispatch_async(dispatch_get_main_queue(), ^{
         
         if (!self->sourceFromListArray) {
             
             [self.tableView reloadData];
+        }
+        
+        if (!self.superview) {
+            
+            if (!superView) {
+                
+                superView = [UIApplication sharedApplication].windows.firstObject;
+            }
+            
+            self.frame = superView.bounds;
+            [superView addSubview:self];
         }
         
         CGFloat bgH = CGRectGetHeight(self.bounds);
@@ -190,11 +203,6 @@
                                             bgH,
                                             contentSize.width,
                                             height);
-        if (!self.superview) {
-            
-            UIWindow *window = [UIApplication sharedApplication].windows.lastObject;
-            [window addSubview:self];
-        }
         
         [UIView animateWithDuration:0.25
                          animations:^{

@@ -29,10 +29,10 @@
     
     [self.navigationController.navigationBar lt_setNavigationBarBackgroundAlpha:8.0];
     
-    self.navigationItem.rightBarButtonItem = [UIBarButtonItem LT_itemImage:[UIImage imageNamed:@"nav_back"]
-                                                                highlight:nil
-                                                                   target:self
-                                                                      sel:@selector(lt_closeSelfAction)];
+    self.navigationItem.rightBarButtonItem = [UIBarButtonItem LT_customItemImage:[UIImage imageNamed:@"nav_back"]
+                                                                  highlightImage:nil
+                                                                          target:self
+                                                                             sel:@selector(lt_closeSelfAction)];
     
     self.automaticallyAdjustsScrollViewInsets = NO;
     self.extendedLayoutIncludesOpaqueBars = NO;

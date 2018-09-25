@@ -6,9 +6,9 @@ target 'LTExtUIBase_Example' do
 
 pod 'LTRouter', :git => 'https://github.com/yelon21/LTRouter.git'
 
-  target 'LTExtUIBase_Tests' do
-    inherit! :search_paths
-
-    
-  end
+#  target 'LTExtUIBase_Tests' do
+#    inherit! :search_paths
+#
+#
+#  end
 end

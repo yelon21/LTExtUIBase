@@ -41,7 +41,7 @@
     self.keyboardType   = UIKeyboardTypeDecimalPad;
     
     [self addTarget:self
-             action:@selector(updateDispalyText)
+             action:@selector(endEditingAction)
    forControlEvents:UIControlEventEditingDidEnd];
     
     [self addTarget:self
@@ -58,31 +58,57 @@
     self.text = numberString;
 }
 
+- (void)endEditingAction{
+    
+    [self updateDispalyText];
+    
+    if (self.didEndEditingBlock) {
+        self.didEndEditingBlock(self.fenValue);
+    }
+}
+
 - (void)textDidChanged:(UITextField *)textField{
     
     NSString *text = textField.text;
     
+    NSString *currentNumberString = @"";
     if (text.length == 0) {
         
-        numberString = @"";
+        currentNumberString = @"";
         return;
     }
     
-    if (![self checkAmountString:textField.text]) {
+    if (![self checkAmountString:text]) {
         
-        textField.text = numberString;
-    }
-    
-    if ([textField.text doubleValue]>self.maxValue) {
-        
-        if ([numberString doubleValue]>self.maxValue) {
-            
-            numberString = [NSString stringWithFormat:@"%0.2lf",self.maxValue];
-        }
+        currentNumberString = numberString;
     }
     else{
         
-        numberString = textField.text;
+        if ([text doubleValue]>self.maxValue) {
+            
+            if ([numberString doubleValue]>self.maxValue) {
+                
+                currentNumberString = [NSString stringWithFormat:@"%0.2lf",self.maxValue];
+            }
+            else{
+                
+                currentNumberString = numberString;
+            }
+        }
+        else{
+            
+            currentNumberString = text;
+        }
+    }
+    
+    if (![numberString isEqualToString:currentNumberString]) {
+        
+        numberString = currentNumberString;
+        
+        if (self.didChangeValueBlock) {
+            
+            self.didChangeValueBlock(self.fenValue);
+        }
     }
     
     textField.text = numberString;
@@ -147,6 +173,17 @@
         
         numberString = [self numberString:numberString
                              filterString:filterString];
+    }
+    
+    double doubleValue = [numberString doubleValue];
+    
+    if (doubleValue == [numberString longLongValue]) {
+        
+        numberString = [NSString stringWithFormat:@"%0.0lf",doubleValue];
+    }
+    else if (doubleValue*10 == [@(doubleValue *10) longLongValue]) {
+        
+        numberString = [NSString stringWithFormat:@"%0.1lf",doubleValue];
     }
     
     [self updateDispalyText];

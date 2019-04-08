@@ -28,12 +28,12 @@
     
     [super viewDidLoad];
     
-    UIColor *tintColor = self.navigationController.navigationBar.tintColor;
-    
-    if (!tintColor) {
-        
-        tintColor = [UIColor whiteColor];
-    }
+//    UIColor *tintColor = self.navigationController.navigationBar.tintColor;
+//    
+//    if (!tintColor) {
+//        
+//        tintColor = [UIColor whiteColor];
+//    }
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"关闭"
                                                                             style:UIBarButtonItemStylePlain

@@ -74,7 +74,7 @@
     NSString *currentNumberString = @"";
     if (text.length == 0) {
         
-        currentNumberString = @"";
+//        currentNumberString = @"";
         return;
     }
     

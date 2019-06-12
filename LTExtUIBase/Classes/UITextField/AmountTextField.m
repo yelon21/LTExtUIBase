@@ -149,6 +149,15 @@
     return [predicate evaluateWithObject:string];
 }
 
+-(void)setHideCurrency:(BOOL)hideCurrency{
+    
+    if (_hideCurrency != hideCurrency) {
+        
+        _hideCurrency = hideCurrency;
+        [self updateDispalyText];
+    }
+}
+
 -(void)setText:(NSString *)text{
 
     [super setText:text];
@@ -192,8 +201,16 @@
 - (void)updateDispalyText{
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
-    [formatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh_Hans_CN"]];
-    [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    if (self.hideCurrency) {
+        
+        [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    }
+    else{
+        
+        [formatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh_Hans_CN"]];
+        [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    }
+    
     
     double doubleValue = [numberString doubleValue];
     

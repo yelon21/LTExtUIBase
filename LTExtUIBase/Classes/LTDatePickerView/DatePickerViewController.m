@@ -20,7 +20,12 @@
     
     if (!_picker){
         _picker = [[UIDatePicker alloc]init];
-        _picker.backgroundColor = [UIColor whiteColor];
+        
+        if (@available(iOS 13.0, *)) {
+            _picker.backgroundColor = [UIColor secondarySystemGroupedBackgroundColor];
+        } else {
+            _picker.backgroundColor = [UIColor whiteColor];
+        }
     }
     return _picker;
 }
@@ -28,31 +33,11 @@
     
     [super viewDidLoad];
     
-//    UIColor *tintColor = self.navigationController.navigationBar.tintColor;
-//    
-//    if (!tintColor) {
-//        
-//        tintColor = [UIColor whiteColor];
-//    }
-    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"关闭"
                                                                             style:UIBarButtonItemStylePlain
                                                                            target:self
                                                                            action:@selector(leftAction)];
     
-//    UIButton *btn_right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
-//    btn_right.backgroundColor = [UIColor clearColor];
-//    btn_right.titleLabel.font = [UIFont systemFontOfSize:17.0];
-//    [btn_right setTitle:@"确定" forState:UIControlStateNormal];
-//
-//    [btn_right setTitleColor:tintColor forState:UIControlStateNormal];
-//    [btn_right setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-//    [btn_right addTarget:self
-//                  action:@selector(rightAction)
-//        forControlEvents:UIControlEventTouchUpInside];
-//    [btn_right sizeToFit];
-//
-//    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn_right];
     NSMutableArray *items = [[NSMutableArray alloc]init];
     
     UIBarButtonItem *confirmItem = [[UIBarButtonItem alloc]initWithTitle:@"确定"

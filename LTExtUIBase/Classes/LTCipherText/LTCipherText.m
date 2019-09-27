@@ -36,9 +36,15 @@
     self.backgroundColor = [UIColor clearColor];
     self.boundInsets = UIEdgeInsetsZero;
     
-    self.gridBackgroundColor = [UIColor whiteColor];
-    self.gridLineColor = [UIColor grayColor];
-    self.pointColor = [UIColor darkGrayColor];
+    if (@available(iOS 13.0, *)) {
+        self.gridBackgroundColor = [UIColor secondarySystemGroupedBackgroundColor];
+        self.gridLineColor = [UIColor systemGrayColor];
+        self.pointColor = [UIColor secondaryLabelColor];
+    } else {
+        self.gridBackgroundColor = [UIColor whiteColor];
+        self.gridLineColor = [UIColor grayColor];
+        self.pointColor = [UIColor darkGrayColor];
+    }
     
     _pointsCount = 1;
 }

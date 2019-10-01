@@ -87,7 +87,11 @@
                                                                CGRectGetWidth(self.bounds),
                                                                88.0)];
         _contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
-        _contentView.backgroundColor = [[UIColor whiteColor]colorWithAlphaComponent:0.35];
+        if (@available(iOS 13.0, *)) {
+            _contentView.backgroundColor = [[UIColor systemBackgroundColor] colorWithAlphaComponent:0.35];
+        } else {
+            _contentView.backgroundColor = [[UIColor whiteColor] colorWithAlphaComponent:0.35];
+        }
     }
     
     return _contentView;
@@ -307,7 +311,11 @@ forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
         cell.selectionStyle = UITableViewCellSelectionStyleDefault;
         cell.textLabel.textAlignment = NSTextAlignmentCenter;
         cell.textLabel.font = [UIFont systemFontOfSize:14.0];
-        cell.textLabel.textColor = [UIColor blackColor];
+        if (@available(iOS 13.0, *)) {
+            cell.textLabel.textColor = [UIColor labelColor];
+        } else {
+            cell.textLabel.textColor = [UIColor blackColor];
+        }
         
         cell.textLabel.text = @"取消";
         
@@ -326,7 +334,11 @@ forRowAtIndexPath:(nonnull NSIndexPath *)indexPath{
     cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     cell.titleLabel.textAlignment = NSTextAlignmentCenter;
     cell.titleLabel.font = [UIFont systemFontOfSize:14.0];
-    cell.titleLabel.textColor = [UIColor blackColor];
+    if (@available(iOS 13.0, *)) {
+        cell.textLabel.textColor = [UIColor labelColor];
+    } else {
+        cell.textLabel.textColor = [UIColor blackColor];
+    }
     
     NSUInteger row = indexPath.row;
     

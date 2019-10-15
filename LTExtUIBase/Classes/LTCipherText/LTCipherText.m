@@ -38,11 +38,11 @@
     
     if (@available(iOS 13.0, *)) {
         self.gridBackgroundColor = [UIColor secondarySystemGroupedBackgroundColor];
-        self.gridLineColor = [UIColor systemGrayColor];
+        self.gridLineColor = [UIColor lightGrayColor];
         self.pointColor = [UIColor secondaryLabelColor];
     } else {
         self.gridBackgroundColor = [UIColor whiteColor];
-        self.gridLineColor = [UIColor grayColor];
+        self.gridLineColor = [UIColor lightGrayColor];
         self.pointColor = [UIColor darkGrayColor];
     }
     
@@ -138,7 +138,7 @@
     
     CGMutablePathRef path = CGPathCreateMutable();
     
-    CGPathAddRoundedRect(path, NULL, CGRectMake(left, top, cellW*self.cellCount, cellH), 2.5, 2.5);
+    CGPathAddRoundedRect(path, NULL, CGRectMake(left, top, cellW*self.cellCount, cellH), 5, 5);
     
     for (NSInteger i = 1; i < self.cellCount; i++) {
         

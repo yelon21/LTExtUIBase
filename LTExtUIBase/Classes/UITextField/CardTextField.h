@@ -6,8 +6,8 @@
 //
 //
 
-#import <UIKit/UIKit.h>
+#import "LTLengthTextField.h"
 
-@interface CardTextField : UITextField
+@interface CardTextField : LTLengthTextField
 
 @end

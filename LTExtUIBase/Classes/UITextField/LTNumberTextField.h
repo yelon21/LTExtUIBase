@@ -6,10 +6,8 @@
 //
 //
 
-#import <UIKit/UIKit.h>
+#import "LTLengthTextField.h"
 
-@interface LTNumberTextField : UITextField
-
-@property(nonatomic,assign) NSUInteger maxLength;
+@interface LTNumberTextField : LTLengthTextField
 
 @end

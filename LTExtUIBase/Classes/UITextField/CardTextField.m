@@ -8,34 +8,11 @@
 
 #import "CardTextField.h"
 
-@interface CardTextField ()
-
-@end
-
 @implementation CardTextField
 
 - (void)setup {
     
-    self.keyboardType   = UIKeyboardTypeNumberPad;
-    
-    [self addTarget:self
-             action:@selector(textDidChanged:)
-   forControlEvents:UIControlEventEditingChanged];
-}
-
--(id)initWithFrame:(CGRect)frame {
-    
-    if ( !(self = [super initWithFrame:frame]) )
-        return nil;
-    
-    [self setup];
-    return self;
-}
-
--(void)awakeFromNib {
-    
-    [super awakeFromNib];
-    [self setup];
+    self.maxLength = 28;
 }
 
 - (NSString *)numberString:(NSString *)string{

@@ -63,6 +63,28 @@
 //    [self.view addSubview:amoutTF];
     
 //    [amoutTF addTarget:self action:@selector(btnAction:) forControlEvents:UIControlEventTouchUpInside];
+    [self testHH];
+}
+
+- (void)testHH{
+    NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+
+    [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
+    
+    NSArray *iders = [NSLocale availableLocaleIdentifiers];
+    
+    [iders enumerateObjectsUsingBlock:^(NSString*  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        
+
+        [formatter setLocale:[NSLocale localeWithLocaleIdentifier:obj]];
+        NSString *stringRes= [formatter stringFromNumber:@(1234567890.123)];
+        if ([stringRes rangeOfString:@" "].location != NSNotFound) {
+            
+            NSLog(@"%@=%@", obj, [formatter numberFromString:@"1234567890.123"]);
+        }
+        NSLog(@"%@=%@", obj, [stringRes stringByReplacingOccurrencesOfString:@" " withString:@""]);
+    }];
+    
 }
 
 - (IBAction)btnAction:(LTLoadingButton *)sender {

@@ -201,13 +201,13 @@
 - (void)updateDispalyText{
     
     NSNumberFormatter *formatter = [[NSNumberFormatter alloc]init];
+    [formatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh_Hans_CN"]];
     if (self.hideCurrency) {
         
         [formatter setNumberStyle:NSNumberFormatterDecimalStyle];
     }
     else{
         
-        [formatter setLocale:[NSLocale localeWithLocaleIdentifier:@"zh_Hans_CN"]];
         [formatter setNumberStyle:NSNumberFormatterCurrencyStyle];
     }
     

@@ -18,6 +18,7 @@
 @optional
 - (void)pickerViewControllerDidChangeToIndex:(NSInteger)index;
 - (NSString *)pickerViewControllerNavigationTitle;
+- (NSUInteger)pickerViewControllerSelectRowIndex;
 @end
 @interface PickerViewController : UIViewController
 

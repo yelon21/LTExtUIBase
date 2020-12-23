@@ -32,6 +32,7 @@
                             delegate:(id<LTPickerViewDelegate>)delegate;
 
 @property(nonatomic,strong)NSString *title;
+@property(nonatomic,assign)NSUInteger selectRowIndex;
 
 @property(nonatomic,strong,readonly)LTNavigationController *pickerNav;
 @end

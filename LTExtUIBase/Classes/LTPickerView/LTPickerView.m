@@ -177,6 +177,11 @@
     return self.title;
 }
 
+-(NSUInteger)pickerViewControllerSelectRowIndex{
+    
+    return self.selectRowIndex;
+}
+
 -(void)pickerViewControllerDidSelectIndex:(NSInteger)index{
 
     [self hidePickerVC];

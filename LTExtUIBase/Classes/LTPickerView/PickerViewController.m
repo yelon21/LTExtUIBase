@@ -71,6 +71,11 @@
     dataPickerView.translatesAutoresizingMaskIntoConstraints = NO;
     [superView addSubview:dataPickerView];
     [dataPickerView reloadAllComponents];
+    if ([self.delegate respondsToSelector:@selector(pickerViewControllerSelectRowIndex)]) {
+        
+        NSUInteger rowIndex = [self.delegate pickerViewControllerSelectRowIndex];
+        [dataPickerView selectRow:rowIndex inComponent:0 animated:YES];
+    }
     
     [superView addConstraint:[NSLayoutConstraint constraintWithItem:dataPickerView
                                                           attribute:NSLayoutAttributeTop
@@ -116,7 +121,6 @@
         [self.delegate pickerViewControllerDidSelectIndex:selectedRow];
     }
 }
-
 #pragma mark ================================
 #pragma mark pickerViewDelegate
 

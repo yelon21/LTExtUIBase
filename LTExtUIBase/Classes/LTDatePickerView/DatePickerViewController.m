@@ -20,7 +20,11 @@
     
     if (!_picker){
         _picker = [[UIDatePicker alloc]init];
-        
+        if (@available(iOS 13.4, *)) {
+            _picker.preferredDatePickerStyle = UIDatePickerStyleWheels;
+        } else {
+            // Fallback on earlier versions
+        }
         if (@available(iOS 13.0, *)) {
             _picker.backgroundColor = [UIColor secondarySystemGroupedBackgroundColor];
         } else {

@@ -11,7 +11,6 @@
 @interface PickerViewController ()<UIPickerViewDataSource,UIPickerViewDelegate>{
 
     UIPickerView *dataPickerView;
-    NSInteger selectedRow;
 }
 
 @end
@@ -21,40 +20,41 @@
 - (void)viewDidLoad {
     
     [super viewDidLoad];
-    
-    UIColor *tintColor = self.navigationController.navigationBar.tintColor;
-    
-    if (!tintColor) {
-        
-        tintColor = [UIColor whiteColor];
-    }
-    UIButton *btn_left = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
-    btn_left.backgroundColor = [UIColor clearColor];
-    btn_left.titleLabel.font = [UIFont systemFontOfSize:17.0];
-    [btn_left setTitle:@"关闭" forState:UIControlStateNormal];
 
-    [btn_left setTitleColor:tintColor forState:UIControlStateNormal];
-    [btn_left setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [btn_left addTarget:self
-                 action:@selector(leftAction)
-       forControlEvents:UIControlEventTouchUpInside];
-    [btn_left sizeToFit];
+    if (@available(iOS 13.0, *)) {
+        self.view.backgroundColor = [UIColor secondarySystemGroupedBackgroundColor];
+        
+        UINavigationBarAppearance * appearance = [self.navigationController.navigationBar standardAppearance];
+        if (!appearance) {
+            
+            appearance = [[UINavigationBarAppearance alloc] init];
+        }
+        
+        // 背景色
+        appearance.backgroundColor = [UIColor secondarySystemGroupedBackgroundColor];
+        
+        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;
+        self.navigationController.navigationBar.standardAppearance = appearance;
+    } else {
+        self.view.backgroundColor = [UIColor whiteColor];
+        
+        self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    }
     
-    self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn_left];
+    self.navigationController.navigationBar.translucent = NO;
+    UIBarButtonItem *leftBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"关闭"
+                                                                          style:UIBarButtonItemStylePlain
+                                                                         target:self
+                                                                         action:@selector(leftAction)];
     
-    UIButton *btn_right = [[UIButton alloc]initWithFrame:CGRectMake(0, 0, 50, 30)];
-    btn_right.backgroundColor = [UIColor clearColor];
-    btn_right.titleLabel.font = [UIFont systemFontOfSize:17.0];
-    [btn_right setTitle:@"确定" forState:UIControlStateNormal];
+    self.navigationItem.leftBarButtonItem = leftBarButtonItem;
     
-    [btn_right setTitleColor:tintColor forState:UIControlStateNormal];
-    [btn_right setTitleColor:[UIColor grayColor] forState:UIControlStateHighlighted];
-    [btn_right addTarget:self
-                 action:@selector(rightAction)
-       forControlEvents:UIControlEventTouchUpInside];
-    [btn_right sizeToFit];
+    UIBarButtonItem *rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"确定"
+                                                                          style:UIBarButtonItemStyleDone
+                                                                         target:self
+                                                                         action:@selector(rightAction)];
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc]initWithCustomView:btn_right];
+    self.navigationItem.rightBarButtonItem = rightBarButtonItem;
     
     if ([self.delegate respondsToSelector:@selector(pickerViewControllerNavigationTitle)]) {
         
@@ -64,7 +64,7 @@
     UIView *superView = self.view;
     
     dataPickerView = [UIPickerView new];
-    dataPickerView.backgroundColor = [UIColor whiteColor];
+  
     dataPickerView.delegate     = self;
     dataPickerView.dataSource   = self;
     dataPickerView.showsSelectionIndicator = YES;
@@ -73,8 +73,8 @@
     [dataPickerView reloadAllComponents];
     if ([self.delegate respondsToSelector:@selector(pickerViewControllerSelectRowIndex)]) {
         
-        NSUInteger rowIndex = [self.delegate pickerViewControllerSelectRowIndex];
-        [dataPickerView selectRow:rowIndex inComponent:0 animated:YES];
+        [dataPickerView selectRow:[self.delegate pickerViewControllerSelectRowIndex]
+                      inComponent:0 animated:YES];
     }
     
     [superView addConstraint:[NSLayoutConstraint constraintWithItem:dataPickerView
@@ -118,7 +118,7 @@
     
     if ([self.delegate respondsToSelector:@selector(pickerViewControllerDidSelectIndex:)]) {
         
-        [self.delegate pickerViewControllerDidSelectIndex:selectedRow];
+        [self.delegate pickerViewControllerDidSelectIndex:[dataPickerView selectedRowInComponent:0]];
     }
 }
 #pragma mark ================================
@@ -153,7 +153,6 @@
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
     
-    selectedRow = row;
     if ([self.delegate respondsToSelector:@selector(pickerViewControllerDidChangeToIndex:)]) {
         
         [self.delegate pickerViewControllerDidChangeToIndex:row];

@@ -133,6 +133,14 @@
         
         LTWrapNavigationController *wrapNavigationController = [[LTWrapNavigationController alloc]initWithRootViewController:contentViewController];
         wrapViewController.wrapNavigationController = wrapNavigationController;
+        if (@available(iOS 13.0, *)) {
+            wrapNavigationController.navigationBar.standardAppearance = contentViewController.navigationController.navigationBar.standardAppearance;
+            wrapNavigationController.navigationBar.scrollEdgeAppearance = contentViewController.navigationController.navigationBar.scrollEdgeAppearance;
+        }
+        wrapNavigationController.navigationBar.tintColor = contentViewController.navigationController.navigationBar.tintColor;
+        wrapNavigationController.navigationBar.barTintColor = contentViewController.navigationController.navigationBar.tintColor;
+        wrapNavigationController.navigationBar.titleTextAttributes = contentViewController.navigationController.navigationBar.titleTextAttributes;
+        wrapNavigationController.navigationBar.shadowImage = contentViewController.navigationController.navigationBar.shadowImage;
     }
     
     [wrapViewController addChildViewController:wrapViewController.wrapNavigationController];
@@ -276,6 +284,25 @@
 + (LTNavigationController *)LT_NavigationController:(UIViewController *)rootViewController{
     
     LTNavigationController *controller = [[LTNavigationController alloc] initWithRootViewController:rootViewController];
+    
+    if (@available(iOS 13.0, *)) {
+        
+        UINavigationBarAppearance * appearance = [[UINavigationBarAppearance alloc] init];
+
+        appearance.backgroundColor = [UIColor systemGroupedBackgroundColor];
+        appearance.shadowColor = [UIColor clearColor];
+        appearance.titleTextAttributes = @{NSForegroundColorAttributeName: [UIColor labelColor]};
+        controller.navigationBar.scrollEdgeAppearance = appearance;
+        controller.navigationBar.standardAppearance = appearance;
+        
+        controller.navigationBar.tintColor = [UIColor labelColor];
+    } else {
+        
+        controller.navigationBar.tintColor = [UIColor blackColor];
+        controller.navigationBar.barTintColor = [UIColor whiteColor];
+        controller.navigationBar.titleTextAttributes = @{NSForegroundColorAttributeName:[UIColor blackColor]};
+        controller.navigationBar.shadowImage = [UIImage new];
+    }
     
     return controller;
 }

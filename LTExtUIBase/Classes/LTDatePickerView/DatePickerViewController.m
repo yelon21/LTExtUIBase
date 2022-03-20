@@ -15,7 +15,6 @@
 @implementation DatePickerViewController
 @synthesize picker = _picker;
 
-
 -(UIDatePicker *)picker{
     
     if (!_picker){
@@ -37,12 +36,34 @@
     
     [super viewDidLoad];
     
+    self.navigationController.navigationBar.translucent = NO;
+    
+    if (@available(iOS 13.0, *)) {
+        
+        UINavigationBarAppearance * appearance = [self.navigationController.navigationBar standardAppearance];
+        if (!appearance) {
+            
+            appearance = [[UINavigationBarAppearance alloc] init];
+        }
+        
+        // 背景色
+        appearance.backgroundColor = [UIColor secondarySystemGroupedBackgroundColor];
+        
+        self.navigationController.navigationBar.scrollEdgeAppearance = appearance;
+        self.navigationController.navigationBar.standardAppearance = appearance;
+    }
+    else{
+        self.view.backgroundColor = [UIColor whiteColor];
+        
+        self.navigationController.navigationBar.barTintColor = [UIColor whiteColor];
+    }
+    
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc]initWithTitle:@"关闭"
                                                                             style:UIBarButtonItemStylePlain
                                                                            target:self
                                                                            action:@selector(leftAction)];
     
-    NSMutableArray *items = [[NSMutableArray alloc]init];
+    NSMutableArray *items = [[NSMutableArray alloc] init];
     
     UIBarButtonItem *confirmItem = [[UIBarButtonItem alloc]initWithTitle:@"确定"
                                                                    style:UIBarButtonItemStyleDone

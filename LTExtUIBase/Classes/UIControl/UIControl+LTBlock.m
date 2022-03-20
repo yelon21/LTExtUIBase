@@ -9,49 +9,25 @@
 #import "UIControl+LTBlock.h"
 #import <objc/runtime.h>
 
-#define FunctionName(tag) [NSString stringWithFormat:@"%@_newFuction",@(tag)]
-
-#define kCondition(tag) [NSString stringWithFormat:@"%@_condition",@(tag)]
-#define kAction(tag) [NSString stringWithFormat:@"%@_action",@(tag)]
-
-typedef void(^CheckedBlock)(UIControlEvents resultEvent);
+typedef void(^CheckedBlock)(UIControlEvents event);
 
 @interface UIControl ()
-
-@property(nonatomic,strong) NSMutableDictionary *blockDic;
 
 @end
 
 @implementation UIControl (LTBlock)
 
-static char *block_dic_Key = "Block_DIC_Key";
-
-- (void)setBlockDic:(NSMutableDictionary *)blockDic{
+- (void)lt_handleControlEvent:(UIControlEvents)controlEvent
+                  actionBlock:(ActionBlock)actionBlock{
     
-    objc_setAssociatedObject(self, &block_dic_Key, blockDic, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    [self lt_handleControlEvent:controlEvent
+                      forTarget:self
+                         action:actionBlock];
 }
 
--(NSMutableDictionary *)blockDic{
+void enumerateControlEvents(UIControlEvents controlEvent,CheckedBlock ckeckedEvent){
     
-    NSMutableDictionary *dic = objc_getAssociatedObject(self, &block_dic_Key);
-    
-    if (!dic || ![dic isKindOfClass:[NSMutableDictionary class]]) {
-        
-        if ([dic isKindOfClass:[NSDictionary class]]) {
-            
-            dic = [NSMutableDictionary dictionaryWithDictionary:dic];
-        }
-        else{
-            
-            dic = [NSMutableDictionary dictionary];
-        }
-    }
-    return dic;
-}
-
-void enumerateAddedControlEvents(UIControlEvents controlEvent,CheckedBlock checkedBlock){
-    
-    if (checkedBlock) {
+    if (ckeckedEvent) {
         
         for (NSInteger move = 0; move < 20; move++) {
             
@@ -60,77 +36,41 @@ void enumerateAddedControlEvents(UIControlEvents controlEvent,CheckedBlock check
             
             if (resultEvent == event) {
                 
-                checkedBlock(resultEvent);
+                ckeckedEvent(resultEvent);
             }
         }
     }
 }
 
-void lt_blockButtonPressed(UIButton *btn,SEL _cmd){
+- (void)lt_handleControlEvent:(UIControlEvents)controlEvent
+                    forTarget:(_Nonnull id)target
+                       action:(_Nonnull ActionBlock)action{
     
-    NSString *funcName = NSStringFromSelector(_cmd);
-    UIControlEvents controlEvent = [funcName integerValue];
-    
-    
-    enumerateAddedControlEvents(controlEvent, ^(UIControlEvents resultEvent) {
+    if (!action || !target) {
         
-        NSMutableDictionary *dic = btn.blockDic;
+        return;
+    }
+    enumerateControlEvents(controlEvent, ^(UIControlEvents controlEvent) {
         
-        ConditionBlock conditionBlock = dic[kCondition(resultEvent)];
+        NSString *targetAddress = [NSString stringWithFormat:@"%p", self];
         
-        ActionBlock actionBlock = dic[kAction(resultEvent)];
+        NSString *funcName = LTFunctionName(targetAddress, controlEvent);
         
-        BOOL condition = YES;
+        SEL sel = NSSelectorFromString(funcName);
         
-        if (conditionBlock) {
+        [self addTarget:target
+                 action:sel
+       forControlEvents:controlEvent];
+        
+        IMP blockImp = imp_implementationWithBlock(action);
+        
+        if (!class_addMethod([target class], sel, blockImp, "v@:@")) {
             
-            condition = conditionBlock(btn,actionBlock);
-        }
-        
-        if (condition && actionBlock) {
-            
-            actionBlock(btn);
+            IMP orgImp = class_getMethodImplementation([target class], sel);
+            imp_removeBlock(orgImp);
+            class_replaceMethod([target class], sel, blockImp, "v@:@");
         }
     });
-}
-
-- (void)lt_handleControlEvent:(UIControlEvents)controlEvent
-                  actionBlock:(ActionBlock)actionBlock{
-    
-    [self lt_handleControlEvent:controlEvent
-                 conditionBlock:nil
-                    actionBlock:actionBlock];
-}
-
-- (void)lt_handleControlEvent:(UIControlEvents)controlEvent
-               conditionBlock:(ConditionBlock)conditionBlock
-                  actionBlock:(ActionBlock)actionBlock{
-    
-    enumerateAddedControlEvents(controlEvent
-                                , ^(UIControlEvents resultEvent) {
-                                    
-                                    NSMutableDictionary *dic = self.blockDic;
-                                    
-                                    dic[kCondition(resultEvent)] = conditionBlock;
-                                    dic[kAction(resultEvent)] = actionBlock;
-                                    
-                                    self.blockDic = dic;
-                                    
-                                    NSString *functionName = FunctionName(resultEvent);
-                                    NSLog(@"%@",functionName);
-                                    
-                                    SEL selector = NSSelectorFromString(functionName);
-                                    
-                                    NSLog(@"selector=%@",NSStringFromSelector(selector));
-                                    class_replaceMethod([UIButton class],
-                                                        selector,
-                                                        (IMP)lt_blockButtonPressed,
-                                                        "v@:@");
-                                    
-                                    [self addTarget:self
-                                             action:selector
-                                   forControlEvents:controlEvent];
-                                });
 }
 
 @end

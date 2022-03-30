@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-#define LTFunctionName(target, event) [NSString stringWithFormat:@"func_%@_%ld",target, event]
-
 typedef void(^ActionBlock)(id  _Nonnull target, UIControl * _Nonnull control, UIEvent * _Nonnull event);
 typedef BOOL(^ConditionBlock)(id _Nonnull obj,_Nonnull ActionBlock actionBlock);
 

@@ -9,6 +9,8 @@
 #import "UIControl+LTBlock.h"
 #import <objc/runtime.h>
 
+#define LTFunctionName(target, event) [NSString stringWithFormat:@"func_%@_%ld",target, event]
+
 typedef void(^CheckedBlock)(UIControlEvents event);
 
 @interface UIControl ()

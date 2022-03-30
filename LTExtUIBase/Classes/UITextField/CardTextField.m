@@ -12,6 +12,7 @@
 
 - (void)setup {
     
+    [super setup];
     self.maxLength = 28;
 }
 

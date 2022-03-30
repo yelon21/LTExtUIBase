@@ -21,6 +21,8 @@
 @optional
 - (void)ltPickerView:(LTPickerView *)ltPickerView
  didChangeToIndex:(NSInteger)rowIndex;
+- (void)ltPickerViewDidCancel:(LTPickerView *)ltPickerView;
+- (void)ltPickerViewDidHide:(LTPickerView *)ltPickerView;
 @end
 
 @interface LTPickerView : UIView

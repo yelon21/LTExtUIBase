@@ -169,6 +169,10 @@
                               completion:^(BOOL finished) {
                                   
                                   [self removeFromSuperview];
+        if ([self.delegate respondsToSelector:@selector(ltPickerViewDidHide:)]) {
+            
+            [self.delegate ltPickerViewDidHide:self];
+        }
                               }];
 }
 
@@ -187,6 +191,11 @@
     [self hidePickerVC];
     if (index<0) {
         
+        if ([self.delegate respondsToSelector:@selector(ltPickerViewDidCancel:)]) {
+            
+            [self.delegate ltPickerViewDidCancel:self];
+        }
+
         return;
     }
     if ([self.delegate respondsToSelector:@selector(ltPickerView:didSelectRowAtIndex:)]) {
